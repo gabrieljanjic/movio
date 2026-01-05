@@ -1,4 +1,4 @@
-import MovieCardComponent from "@/components/MovieCardComponent";
+import MovieCardComponent from "@/components/Movies/MovieCardComponent";
 
 const NowPlaying = () => {
   return <MovieCardComponent page={1} link="now_playing" />;

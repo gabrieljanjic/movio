@@ -11,12 +11,12 @@ const CreditsActors = ({
 }) => {
   return (
     <div className="flex flex-col p-6">
-      <h2 className="text-2xl font-bold">Top Billed Cast</h2>
+      <h1 className="text-2xl font-semibold mb-2">Top Billed Cast</h1>
       <div className="flex gap-4 overflow-x-auto py-2">
         {dataCredits.cast.slice(0, 10).map((actor: any) => (
           <div
             key={actor.id}
-            className="flex flex-col  min-w-[120px] custom-box-shadow-sm ms-2"
+            className="flex flex-col  min-w-[120px] max-w-[120px] custom-box-shadow-sm ms-2 p-1 rounded"
           >
             <Image
               src={`https://image.tmdb.org/t/p/w300${actor.profile_path}`}

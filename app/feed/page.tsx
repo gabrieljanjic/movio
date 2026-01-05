@@ -1,6 +1,8 @@
 import getMovies from "@/lib/api/external/getMovies";
 import Image from "next/image";
-import { formatDate, formRating, getColorByPercentage } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
+import RatingBadge from "@/components/RatingBadge";
+
 const Feed = async () => {
   const data = await getMovies("popular", 1);
   console.log(data.results);
@@ -20,14 +22,7 @@ const Feed = async () => {
               className="object-cover rounded-t"
               priority
             />
-            <div
-              className={`absolute -bottom-5 left-6 transform -translate-x-1/2 w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm bg-neutral-700 ${getColorByPercentage(
-                movie.vote_average * 10
-              )}`}
-            >
-              {formRating(movie.vote_average)}
-              <span className="text-[8px]">%</span>
-            </div>
+            <RatingBadge movie={movie} />
           </div>
           <div className="pt-6 px-2 py-2">
             <p className="font-bold">{movie.title}</p>

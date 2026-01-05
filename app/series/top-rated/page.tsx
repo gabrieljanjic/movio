@@ -1,4 +1,4 @@
-import SeriesCardComponent from "@/components/SeriesCardComponent";
+import SeriesCardComponent from "@/components/Series/SeriesCardComponent";
 
 const TopRatedSeriesFirstPage = () => {
   return <SeriesCardComponent page={1} link="top_rated" />;

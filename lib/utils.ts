@@ -27,3 +27,8 @@ export const formatTime = (time: number) => {
   const minutes = time % 60;
   return `${hours}h ${minutes}min`;
 };
+
+export const formatYear = (date: string) => {
+  const year = date.split("-")[0];
+  return year;
+};

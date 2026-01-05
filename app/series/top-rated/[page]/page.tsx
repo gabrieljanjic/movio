@@ -1,4 +1,4 @@
-import SeriesCardComponent from "@/components/SeriesCardComponent";
+import SeriesCardComponent from "@/components/Series/SeriesCardComponent";
 
 const TopRatedSeriesOtherPages = ({ params }: { params: { page: number } }) => {
   const page = Number(params.page);

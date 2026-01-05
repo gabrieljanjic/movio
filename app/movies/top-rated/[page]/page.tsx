@@ -1,4 +1,4 @@
-import MovieCardComponent from "../../../../components/MovieCardComponent";
+import MovieCardComponent from "../../../../components/Movies/MovieCardComponent";
 
 const TopRatedOtherPages = ({ params }: { params: { page: number } }) => {
   const page = Number(params.page);
