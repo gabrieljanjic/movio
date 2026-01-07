@@ -33,8 +33,8 @@ const navLinks: NavLinksType[] = [
   },
   {
     id: 4,
-    name: "Actor",
-    list: [{ id: 1, name: "Popular", href: "/actor/popular" }],
+    name: "Person",
+    list: [{ id: 1, name: "Popular", href: "/person" }],
   },
   {
     id: 5,

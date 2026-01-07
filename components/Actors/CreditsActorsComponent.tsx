@@ -5,9 +5,11 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 const CreditsActors = ({
   dataCredits,
   id,
+  type,
 }: {
   dataCredits: any;
   id: string;
+  type: string;
 }) => {
   return (
     <div className="flex flex-col p-6">
@@ -19,21 +21,24 @@ const CreditsActors = ({
             className="flex flex-col  min-w-[120px] max-w-[120px] custom-box-shadow-sm ms-2 p-1 rounded"
           >
             <Image
-              src={`https://image.tmdb.org/t/p/w300${actor.profile_path}`}
+              src={`${process.env.TMDB_POSTER_PATH}/w300${actor.profile_path}`}
               alt={actor.name}
               width={300}
               height={300}
             />
-            <p className="px-1 font-semibold">{actor.name}</p>
+            <Link href={`/person/${actor.id}`}>
+              <p className="px-1 font-semibold hover:underline">{actor.name}</p>
+            </Link>
             <p className="px-1 text-sm">{actor.character}</p>
           </div>
         ))}
         <div className="flex items-center justify-center ">
           <Link
-            href={`/movies/${id}/credits`}
+            href={`/${type}/${id}/credits`}
             className="flex items-center whitespace-nowrap"
           >
-            View more <IoIosArrowRoundForward className="ms-1 text-xl" />
+            View more{" "}
+            <IoIosArrowRoundForward className="ms-1 text-xl hover:underline" />
           </Link>
         </div>
       </div>

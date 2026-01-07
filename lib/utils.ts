@@ -1,3 +1,27 @@
+import sharp from "sharp";
+
+export type DominantColor = {
+  r: number;
+  g: number;
+  b: number;
+};
+
+export const getDominantColor = async (
+  imageUrl: string
+): Promise<DominantColor> => {
+  const res = await fetch(imageUrl);
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch image");
+  }
+
+  const buffer = Buffer.from(await res.arrayBuffer());
+
+  const { dominant } = await sharp(buffer).stats();
+
+  return dominant;
+};
+
 export const formatDate = (rawDate: string) => {
   if (!rawDate) return "-";
   const [year, month, day] = rawDate.split("-");

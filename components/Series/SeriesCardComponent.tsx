@@ -1,22 +1,10 @@
-import getSeries from "@/lib/api/external/getSeries";
+import getSeries from "@/lib/api/external/series/getSeries";
 import Image from "next/image";
 import Link from "next/link";
-import { formatDate, formRating, getColorByPercentage } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 import RatingBadge from "@/components/RatingBadge";
 
-type SeriesCategory = "popular" | "top_rated";
-
-export default async function SeriesCardComponent({
-  page,
-  link,
-}: {
-  page: number;
-  link: SeriesCategory;
-}) {
-  const data = await getSeries(link, page);
-  const paginationLink = link.split("_").join("-");
-  const totalPages = data.total_pages;
-
+export default function SeriesCardComponent({ data }: { data: any }) {
   return (
     <section>
       <div className="grid gap-y-6 gap-x-2 mb-8 justify-center [grid-template-columns:repeat(auto-fit,minmax(200px,1fr))]">
@@ -25,19 +13,18 @@ export default async function SeriesCardComponent({
             key={series.id}
             className="w-44 rounded custom-box-shadow relative cursor-pointer"
           >
-            <Link
-              key={series.id}
-              href={`/series/${series.id}`}
-              className="w-44"
-            >
+            <Link href={`/series/${series.id}`} className="w-44">
               <div className="relative w-44 h-72">
                 <Image
-                  src={`https://image.tmdb.org/t/p/w500${series.poster_path}`}
+                  src={
+                    series.poster_path
+                      ? `${process.env.TMDB_POSTER_PATH}/w500${series.poster_path}`
+                      : "/images/portrait-placeholder.jpg"
+                  }
                   alt={series.title}
                   fill
                   sizes="200px"
                   className="object-cover rounded-t"
-                  priority
                 />
                 <RatingBadge movie={series} />
               </div>
@@ -48,31 +35,6 @@ export default async function SeriesCardComponent({
             </Link>
           </div>
         ))}
-      </div>
-      <div className="flex gap-4 justify-center items-center mt-6 mb-8">
-        {page > 1 && (
-          <Link
-            href={
-              page === 2
-                ? `/series/${paginationLink}`
-                : `/series/${paginationLink}/${page - 1}`
-            }
-            className="px-3 py-1 bg-gray-200 rounded"
-          >
-            Prev
-          </Link>
-        )}
-        <span className="px-3 py-1">
-          Page {page} / {totalPages}
-        </span>
-        {page < totalPages && (
-          <Link
-            href={`/series/${paginationLink}/${page + 1}`}
-            className="px-3 py-1 bg-gray-200 rounded"
-          >
-            Next
-          </Link>
-        )}
       </div>
     </section>
   );

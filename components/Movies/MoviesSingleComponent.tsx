@@ -1,12 +1,26 @@
-import { formatDate, formatTime } from "@/lib/utils";
+import { formatDate, formatTime, getDominantColor } from "@/lib/utils";
 import Image from "next/image";
+import { FiEye } from "react-icons/fi";
+import Tooltip from "../Tooltip";
+import { FaHeart, FaRegStickyNote } from "react-icons/fa";
 
-const MoviesSingleComponent = ({ data }: { data: any }) => {
+const MoviesSingleComponent = async ({ data }: { data: any }) => {
+  const posterUrl = `${process.env.TMDB_POSTER_PATH}/w300${data.poster_path}`;
+  const dominantColor = await getDominantColor(posterUrl);
+
+  const backgroundStyle = {
+    background: `linear-gradient(
+      0deg,
+      rgb(${dominantColor.r}, ${dominantColor.g}, ${dominantColor.b}) 0%,
+      rgba(0,0,0,0.85) 70%
+    )`,
+  };
+
   return (
-    <div className="flex gap-8 p-6">
+    <div className="flex gap-8 p-8 rounded text-white" style={backgroundStyle}>
       <div className="w-[266px] shrink-0">
         <Image
-          src={`https://image.tmdb.org/t/p/w300${data.poster_path}`}
+          src={posterUrl}
           alt={data.title}
           width={266}
           height={400}
@@ -17,7 +31,25 @@ const MoviesSingleComponent = ({ data }: { data: any }) => {
       </div>
       <div>
         <div>
-          <h1 className="text-3xl font-bold mb-4">{data.title}</h1>
+          <div className="flex justify-between">
+            <h1 className="text-4xl font-bold mb-3">{data.title}</h1>
+            <div className="flex gap-2 items-center">
+              <div className="relative inline-block group bg-black/40 rounded-full cursor-pointer hover:scale-110 transition">
+                <FaRegStickyNote className="text-white m-2" />
+                <Tooltip text="Share your thoughts" />
+              </div>
+
+              <div className="relative inline-block group bg-black/40 rounded-full cursor-pointer hover:scale-110 transition">
+                <FaHeart className="text-white m-2" />
+                <Tooltip text="Add to favorites" />
+              </div>
+
+              <div className="relative inline-block group bg-black/40 rounded-full cursor-pointer hover:scale-110 transition">
+                <FiEye className="text-white m-2" />
+                <Tooltip text="Add to watch list" />
+              </div>
+            </div>
+          </div>
           <div className="flex gap-2 mb-2">
             {data.release_date && <span>{formatDate(data.release_date)}</span>}
             {data.release_date && <span>•</span>}

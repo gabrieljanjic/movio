@@ -1,7 +1,23 @@
 import MovieCardComponent from "@/components/Movies/MovieCardComponent";
+import Pagination from "@/components/Pagination";
+import getMovies from "@/lib/api/external/movies/getMovies";
 
-const PopularFirstMovie = () => {
-  return <MovieCardComponent page={1} link="popular" />;
+const PopularFirstMovie = async () => {
+  const link = "popular";
+  const pageNum = 1;
+  const data = await getMovies(link, pageNum);
+  const totalPages = data.total_pages;
+  return (
+    <>
+      <MovieCardComponent data={data} />
+      <Pagination
+        pageNum={pageNum}
+        totalPages={totalPages}
+        path1="/movies/popular"
+        path2="/movies/popular"
+      />
+    </>
+  );
 };
 
 export default PopularFirstMovie;

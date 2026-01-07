@@ -1,4 +1,4 @@
-import getMovies from "@/lib/api/external/getMovies";
+import getMovies from "@/lib/api/external/movies/getMovies";
 import Image from "next/image";
 import { formatDate } from "@/lib/utils";
 import RatingBadge from "@/components/RatingBadge";
@@ -15,7 +15,7 @@ const Feed = async () => {
         >
           <div className="relative w-44 h-72">
             <Image
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              src={`${process.env.TMDB_POSTER_PATH}/w500${movie.poster_path}`}
               alt={movie.title}
               fill
               sizes="200px"

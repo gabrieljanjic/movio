@@ -1,5 +1,5 @@
 import SpoilerText from "@/components/SpoilerText";
-import getExactSeason from "@/lib/api/external/getExactSeason";
+import getExactSeason from "@/lib/api/external/series/getExactSeason";
 import Image from "next/image";
 
 const SingleSeasonView = async ({
@@ -21,8 +21,8 @@ const SingleSeasonView = async ({
             <SpoilerText text={episode.overview} />
             <p>{episode.runtime}</p>
             <Image
-              src={`https://image.tmdb.org/t/p/w500${episode.still_path}`}
-              alt={episode.still_path}
+              src={`${process.env.TMDB_POSTER_PATH}/w500${episode.still_path}`}
+              alt={episode.name}
               width={200}
               height={150}
             />

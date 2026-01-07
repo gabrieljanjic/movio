@@ -1,20 +1,32 @@
-import CreditsActors from "@/components/Actors/CreditsActors";
+import CreditsActors from "@/components/Actors/CreditsActorsComponent";
 import AllSeasonsComponent from "@/components/Series/AllSeasonsComponent";
+import SeriesRecommendations from "@/components/Series/SeriesRecommendations";
 import SeriesSingleComponent from "@/components/Series/SeriesSingleComponent";
-import getExactSeries from "@/lib/api/external/getExactSeries";
-import getExactSeriesCast from "@/lib/api/external/getExactSeriesCast";
+import getExactSeries from "@/lib/api/external/series/getExactSeries";
+import getExactSeriesCast from "@/lib/api/external/series/getExactSeriesCast";
+import getSeriesRecommendations from "@/lib/api/external/series/getSeriesRecommendations";
 
 const SingleSeriesView = async ({ params }: { params: { id: string } }) => {
   const data = await getExactSeries(params.id);
-  console.log(data);
   const dataCredits = await getExactSeriesCast(params.id);
+  const dataRecommendations = await getSeriesRecommendations(params.id);
   return (
     <section>
       <SeriesSingleComponent data={data} />
-      <hr className="border-1 mt-3 mb-1 border-gray-300"></hr>
-      <CreditsActors dataCredits={dataCredits} id={params.id} />
-      <hr className="border-1 mt-3 mb-1 border-gray-300"></hr>
+      <hr className="border-1 mt-8  border-gray-300"></hr>
+      {dataCredits.cast.length > 0 && (
+        <>
+          <CreditsActors
+            dataCredits={dataCredits}
+            id={params.id}
+            type="series"
+          />
+          <hr className="border-1 mt-3 mb-1 border-gray-300"></hr>
+        </>
+      )}
       <AllSeasonsComponent data={data} />
+      <hr className="border-1 mt-3 mb-1 border-gray-300"></hr>
+      <SeriesRecommendations dataRecommendations={dataRecommendations} />
     </section>
   );
 };

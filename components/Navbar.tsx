@@ -23,7 +23,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="px-1 py-4 w-full bg-blue-900 mb-8">
+    <nav className="px-1 py-4 w-full bg-blue-900 mb-4">
       <div className="flex justify-between items-center  text-white max-w-6xl mx-auto">
         <h3 className="text-2xl">Movio</h3>
         <ul className="flex justify-between gap-7">
@@ -53,12 +53,14 @@ const Navbar = () => {
                         <ul>
                           {link.list.map((item) => {
                             return (
-                              <li
-                                key={item.id}
-                                className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
-                              >
-                                <Link href={item.href}>{item.name}</Link>
-                              </li>
+                              <Link href={item.href}>
+                                <li
+                                  key={item.id}
+                                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                                >
+                                  {item.name}
+                                </li>
+                              </Link>
                             );
                           })}
                         </ul>
