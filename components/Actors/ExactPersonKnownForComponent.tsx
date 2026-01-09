@@ -21,13 +21,14 @@ const ExactPersonKnownForComponent = ({
       <h2 className="text-2xl font-semibold mb-3">Known for</h2>
       <div className="flex gap-6 overflow-x-scroll">
         {sortedByPopularity.map((cast: any) => {
+          console.log("cccc", cast);
           return (
             <div key={cast.id} className="min-w-28">
               <Image
                 src={
                   cast.poster_path
                     ? `${process.env.TMDB_POSTER_PATH}/w500/${cast.poster_path}`
-                    : "/images/portrait-placeholder.jpg"
+                    : "/images/no-image-placeholder.png"
                 }
                 alt={cast.title || cast.name}
                 width={112}

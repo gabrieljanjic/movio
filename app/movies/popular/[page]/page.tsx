@@ -8,7 +8,7 @@ const PopularOtherPages = async ({ params }: { params: { page: string } }) => {
   const data = await getMovies(link, pageNum);
   const totalPages = data.total_pages;
   return (
-    <>
+    <section className="mt-8">
       <MovieCardComponent data={data} />
       <Pagination
         pageNum={pageNum}
@@ -16,7 +16,7 @@ const PopularOtherPages = async ({ params }: { params: { page: string } }) => {
         path1="/movies/now-playing"
         path2="/movies/now-playing"
       />
-    </>
+    </section>
   );
 };
 

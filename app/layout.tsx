@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="theme-color">
         <Navbar />
-        <main className="max-w-6xl mx-auto">{children}</main>
+        <main className="max-w-6xl mx-auto mt-8">{children}</main>
       </body>
     </html>
   );

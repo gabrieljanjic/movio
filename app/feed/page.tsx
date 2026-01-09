@@ -7,7 +7,7 @@ const Feed = async () => {
   const data = await getMovies("popular", 1);
   console.log(data.results);
   return (
-    <section className="grid gap-y-6 gap-x-2 [grid-template-columns:repeat(auto-fit,minmax(180px,1fr))]">
+    <section className="grid gap-y-6 gap-x-2 [grid-template-columns:repeat(auto-fill,minmax(180px,180px))]">
       {data.results.map((movie: any) => (
         <div
           key={movie.id}

@@ -7,11 +7,11 @@ import RatingBadge from "@/components/RatingBadge";
 export default function SeriesCardComponent({ data }: { data: any }) {
   return (
     <section>
-      <div className="grid gap-y-6 gap-x-2 mb-8 justify-center [grid-template-columns:repeat(auto-fit,minmax(200px,1fr))]">
+      <div className="grid gap-y-6 gap-x-2 mb-8 justify-center [grid-template-columns:repeat(auto-fill,minmax(200px,200px))]">
         {data.results.map((series: any) => (
           <div
             key={series.id}
-            className="w-44 rounded custom-box-shadow relative cursor-pointer"
+            className="w-44 rounded bg-white custom-box-shadow relative cursor-pointer transform transition hover:scale-102 custom-hover-box-shadow"
           >
             <Link href={`/series/${series.id}`} className="w-44">
               <div className="relative w-44 h-72">
@@ -19,7 +19,7 @@ export default function SeriesCardComponent({ data }: { data: any }) {
                   src={
                     series.poster_path
                       ? `${process.env.TMDB_POSTER_PATH}/w500${series.poster_path}`
-                      : "/images/portrait-placeholder.jpg"
+                      : "/images/no-image-placeholder.png"
                   }
                   alt={series.title}
                   fill

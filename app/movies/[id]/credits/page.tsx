@@ -1,9 +1,15 @@
 import AllCreditsActorsComponent from "@/components/Actors/AllCreditsActorsComponent";
+import getExactMovie from "@/lib/api/external/movies/getExactMovie";
 import getExactMovieCast from "@/lib/api/external/movies/getExactMovieCast";
 
-const AllCreditsActors = async ({ params }: { params: { id: string } }) => {
+const AllMoviesCreditsActors = async ({
+  params,
+}: {
+  params: { id: string };
+}) => {
   const data = await getExactMovieCast(params.id);
-  return <AllCreditsActorsComponent data={data} />;
+  const movie = await getExactMovie(params.id);
+  return <AllCreditsActorsComponent data={data} movie={movie} />;
 };
 
-export default AllCreditsActors;
+export default AllMoviesCreditsActors;

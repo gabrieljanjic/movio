@@ -8,7 +8,7 @@ const PopularSeriesFirstPage = async () => {
   const data = await getSeries(link, pageNum);
   const totalPages = data.total_pages;
   return (
-    <>
+    <section className="mt-8">
       <SeriesCardComponent data={data} />
       <Pagination
         pageNum={pageNum}
@@ -16,7 +16,7 @@ const PopularSeriesFirstPage = async () => {
         path1="/series/popular"
         path2="/series/popular"
       />
-    </>
+    </section>
   );
 };
 

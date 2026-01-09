@@ -4,7 +4,7 @@ import Link from "next/link";
 const AllActorsComponent = async ({ data }: { data: any }) => {
   return (
     <section>
-      <div className="grid justify-items-center gap-y-6 px-6 mt-2 [grid-template-columns:repeat(auto-fit,minmax(200px,1fr))]">
+      <div className="grid justify-items-center gap-y-6 px-6 mt-2 [grid-template-columns:repeat(auto-fill,minmax(200px,200px))]">
         {data.results.map((person: any) => {
           return (
             <div className="custom-box-shadow max-w-48 rounded overflow-x-hidden h-full">

@@ -21,11 +21,11 @@ const SingleSeriesView = async ({ params }: { params: { id: string } }) => {
             id={params.id}
             type="series"
           />
-          <hr className="border-1 mt-3 mb-1 border-gray-300"></hr>
+          <hr className="border-1 mt-3 mb-5 border-gray-300"></hr>
         </>
       )}
       <AllSeasonsComponent data={data} />
-      <hr className="border-1 mt-3 mb-1 border-gray-300"></hr>
+      <hr className="border-1 mt-3 mb-3 border-gray-300"></hr>
       <SeriesRecommendations dataRecommendations={dataRecommendations} />
     </section>
   );

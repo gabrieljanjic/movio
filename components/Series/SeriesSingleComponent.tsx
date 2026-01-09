@@ -6,17 +6,28 @@ import Tooltip from "../Tooltip";
 import { getDominantColor } from "@/lib/utils";
 
 const SeriesSingleComponent = async ({ data }: { data: any }) => {
-  const posterUrl = `${process.env.TMDB_POSTER_PATH}/w300${data.poster_path}`;
-
-  const dominantColor = await getDominantColor(posterUrl);
-
-  const backgroundStyle = {
-    background: `linear-gradient(
-      0deg,
-      rgb(${dominantColor.r}, ${dominantColor.g}, ${dominantColor.b}) 0%,
-      rgba(0,0,0,0.85) 70%
-    )`,
+  let backgroundStyle = {
+    background:
+      "linear-gradient(0deg, rgb(255,255,255) 0%, rgba(0,0,0,0.85) 70%)",
   };
+  let posterUrl = "";
+
+  if (data.poster_path) {
+    posterUrl = `${process.env.TMDB_POSTER_PATH}/w300${data.poster_path}`;
+
+    try {
+      const dominantColor = await getDominantColor(posterUrl);
+      backgroundStyle = {
+        background: `linear-gradient(
+          0deg,
+          rgb(${dominantColor.r}, ${dominantColor.g}, ${dominantColor.b}) 0%,
+          rgba(0,0,0,0.85) 70%
+        )`,
+      };
+    } catch (error) {
+      console.error("Failed to get dominant color:", error);
+    }
+  }
 
   return (
     <div className="flex gap-8 p-8 rounded text-white" style={backgroundStyle}>

@@ -8,7 +8,7 @@ const PopularFirstMovie = async () => {
   const data = await getMovies(link, pageNum);
   const totalPages = data.total_pages;
   return (
-    <>
+    <section className="mt-8">
       <MovieCardComponent data={data} />
       <Pagination
         pageNum={pageNum}
@@ -16,7 +16,7 @@ const PopularFirstMovie = async () => {
         path1="/movies/popular"
         path2="/movies/popular"
       />
-    </>
+    </section>
   );
 };
 

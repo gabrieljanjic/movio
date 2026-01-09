@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .theme-color {
-  background-color: #f8f7f5;
+  background-color: #efefef;
 }
 
 .border-rating-90 {
@@ -43,4 +43,7 @@
 }
 .custom-box-shadow-sm {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+.custom-hover-box-shadow:hover {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
 }

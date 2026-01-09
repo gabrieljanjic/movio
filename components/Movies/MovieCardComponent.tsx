@@ -6,12 +6,12 @@ import RatingBadge from "@/components/RatingBadge";
 export default function MovieCardComponent({ data }: { data: any }) {
   return (
     <section>
-      <div className="grid gap-y-6 gap-x-2 mb-8 justify-center [grid-template-columns:repeat(auto-fit,minmax(200px,1fr))]">
+      <div className="grid gap-y-6 gap-x-2 mb-8 justify-center [grid-template-columns:repeat(auto-fill,minmax(200px,200px))]">
         {data.results.map((movie: any) => {
           return (
             <div
               key={movie.id}
-              className="w-44 rounded custom-box-shadow relative cursor-pointer"
+              className="w-44 rounded bg-white custom-box-shadow relative cursor-pointer transform transition hover:scale-102 custom-hover-box-shadow"
             >
               <Link href={`/movies/${movie.id}`}>
                 <div className="relative w-44 h-72">
@@ -19,7 +19,7 @@ export default function MovieCardComponent({ data }: { data: any }) {
                     src={
                       movie.poster_path
                         ? `${process.env.TMDB_POSTER_PATH}/w500${movie.poster_path}`
-                        : "/images/portrait-placeholder.jpg"
+                        : "/images/no-image-placeholder.png"
                     }
                     alt={movie.title}
                     fill
