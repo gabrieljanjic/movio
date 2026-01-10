@@ -8,7 +8,7 @@ const SeriesRecommendations = ({
   dataRecommendations: any;
 }) => {
   return (
-    <div className="p-4">
+    <div className="p-4 bg-white">
       <h1 className="text-2xl mb-4 font-semibold">Recommendations</h1>
       <div className="flex overflow-x-auto">
         {dataRecommendations.results.slice(0, 10).map((series: any) => {

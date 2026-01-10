@@ -23,7 +23,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="px-1 py-4 w-full bg-blue-900">
+    <nav className="px-1 py-4 w-full bg-blue-900 relative z-50">
       <div className="flex justify-between items-center  text-white max-w-6xl mx-auto">
         <h3 className="text-2xl">Movio</h3>
         <ul className="flex justify-between gap-7">

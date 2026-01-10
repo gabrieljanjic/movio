@@ -4,14 +4,14 @@ import Link from "next/link";
 
 const ExactPersonAllCreditsComponent = ({ data }: { data: any }) => {
   return (
-    <div className="flex gap-10 mb-6">
+    <div className="flex gap-10 mb-6 mt-4">
       <div className="w-1/2">
         <h1 className="text-2xl font-semibold mb-3">Cast</h1>
-        <div className="w-full custom-box-shadow rounded-lg">
+        <div className="w-full custom-box-shadow-md rounded-lg">
           {data.cast.map((cast: any) => (
             <div
               key={cast.id}
-              className="border-b-[1px] border-gray-600 last:border-b-0"
+              className="border-b-[1px] border-slate-400 last:border-b-0 px-2 py-1"
             >
               <div className="px-2 py-1 flex gap-2">
                 <p className="font-bold">-</p>
@@ -56,7 +56,7 @@ const ExactPersonAllCreditsComponent = ({ data }: { data: any }) => {
       {data.crew.length > 0 && (
         <div className=" w-1/2">
           <h1 className="text-2xl font-semibold mb-3">Crew</h1>
-          <div className="w-full custom-box-shadow rounded-lg">
+          <div className="w-full custom-box-shadow-md rounded-lg">
             {data.crew.map((crew: any) => (
               <div
                 key={crew.id}

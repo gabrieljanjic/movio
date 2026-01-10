@@ -30,7 +30,10 @@ const SeriesSingleComponent = async ({ data }: { data: any }) => {
   }
 
   return (
-    <div className="flex gap-8 p-8 rounded text-white" style={backgroundStyle}>
+    <div
+      className="flex gap-8 p-8 rounded-tr-lg rounded-tl-lg text-white"
+      style={backgroundStyle}
+    >
       <div className="w-[266px] shrink-0">
         <Image
           src={posterUrl}

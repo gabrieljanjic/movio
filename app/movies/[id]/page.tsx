@@ -8,7 +8,7 @@ const SingleMovieView = async ({ params }: { params: { id: string } }) => {
   const dataCredits = await getExactMovieCast(params.id);
   console.log(dataCredits.cast);
   return (
-    <section>
+    <section className="mt-6">
       <MoviesSingleComponent data={data} />
       <AllCreditsActorsComponent
         dataCredits={dataCredits}

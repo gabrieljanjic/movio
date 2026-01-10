@@ -24,12 +24,8 @@ const ExactPersonBioComponent = ({ data }: { data: any }) => {
           {data.birthday && <p>•</p>}
           {data.place_of_birth && <p>{data.place_of_birth}</p>}
         </div>
-        {data.biography && (
-          <div>
-            <h2 className="text-xl font-semibold mb-1">Biography</h2>
-            <p>{data.biography}</p>
-          </div>
-        )}
+        <h2 className="text-xl font-semibold mb-1">Biography</h2>
+        <div>{data.biography ? <p>{data.biography}</p> : <p>-</p>}</div>
       </div>
     </div>
   );

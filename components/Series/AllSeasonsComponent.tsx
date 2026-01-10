@@ -30,7 +30,7 @@ const AllSeasonsComponent = async ({ data }: { data: any }) => {
     }
   }
   return (
-    <div className="flex flex-col gap-3 p-6 rounded" style={backgroundStyle}>
+    <div className="flex flex-col gap-3 p-6" style={backgroundStyle}>
       <h1 className="text-2xl font-semibold mb-1 text-white">All seasons</h1>
       {data.seasons.reverse().map((season: any) => {
         return (

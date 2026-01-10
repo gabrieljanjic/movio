@@ -17,13 +17,13 @@ const ExactPersonKnownForComponent = ({
     .sort((a: any, b: any) => b.popularity - a.popularity)
     .slice(0, 10);
   return (
-    <div className="py-8">
+    <div className="py-6">
       <h2 className="text-2xl font-semibold mb-3">Known for</h2>
       <div className="flex gap-6 overflow-x-scroll">
         {sortedByPopularity.map((cast: any) => {
           console.log("cccc", cast);
           return (
-            <div key={cast.id} className="min-w-28">
+            <div key={cast.id} className="min-w-28 mb-2">
               <Image
                 src={
                   cast.poster_path

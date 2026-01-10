@@ -11,21 +11,12 @@ const SingleSeriesView = async ({ params }: { params: { id: string } }) => {
   const dataCredits = await getExactSeriesCast(params.id);
   const dataRecommendations = await getSeriesRecommendations(params.id);
   return (
-    <section>
+    <section className="mt-6">
       <SeriesSingleComponent data={data} />
-      <hr className="border-1 mt-8  border-gray-300"></hr>
       {dataCredits.cast.length > 0 && (
-        <>
-          <CreditsActors
-            dataCredits={dataCredits}
-            id={params.id}
-            type="series"
-          />
-          <hr className="border-1 mt-3 mb-5 border-gray-300"></hr>
-        </>
+        <CreditsActors dataCredits={dataCredits} id={params.id} type="series" />
       )}
       <AllSeasonsComponent data={data} />
-      <hr className="border-1 mt-3 mb-3 border-gray-300"></hr>
       <SeriesRecommendations dataRecommendations={dataRecommendations} />
     </section>
   );

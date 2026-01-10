@@ -1,21 +1,23 @@
 import Link from "next/link";
 
-const Pagination = ({
+const PaginationQuery = ({
   pageNum,
   totalPages,
   path1,
   path2,
+  query,
 }: {
   pageNum: number;
   totalPages: number;
   path1: string;
   path2?: string;
+  query: string;
 }) => {
   return (
     <div className="flex gap-4 justify-center items-center mt-6 pb-4">
       {pageNum > 1 && (
         <Link
-          href={pageNum === 2 ? `${path1}` : `${path2}/${pageNum - 1}`}
+          href={`${path1}?page=${pageNum - 1}&query=${query}`}
           className="px-3 py-1 bg-gray-200 rounded"
         >
           Prev
@@ -26,7 +28,7 @@ const Pagination = ({
       </span>
       {pageNum < totalPages && (
         <Link
-          href={`${path2}/${pageNum + 1}`}
+          href={`${path1}?page=${pageNum + 1}&query=${query}`}
           className="px-3 py-1 bg-gray-200 rounded"
         >
           Next
@@ -36,4 +38,4 @@ const Pagination = ({
   );
 };
 
-export default Pagination;
+export default PaginationQuery;
