@@ -1,7 +1,7 @@
-const getSeriesSearch = async (query: string, page: number) => {
+const getSeriesSearch = async (query: string, page: number, type: string) => {
   const fullQuery = `page=${page}&query=${query}`;
   const res = await fetch(
-    `${process.env.TMDB_SEARCH_SERIES_URI}?${fullQuery}`,
+    `${process.env.TMDB_SEARCH_URI}/${type}?${fullQuery}`,
     {
       method: "GET",
       headers: {

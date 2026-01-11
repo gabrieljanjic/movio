@@ -1,16 +1,15 @@
 import getAllGenres from "@/lib/api/external/getAllGenres";
+import { CiSearch } from "react-icons/ci";
 
-const SearchFormComponent = async ({
+const SearchFormComponent = ({
   query,
   type,
 }: {
   query?: string;
   type?: string;
 }) => {
-  const data = await getAllGenres();
-
   return (
-    <div className="w-full flex flex-col md:flex-row items-start md:items-center gap-4 px-8 mb-6">
+    <div className="w-full flex flex-col">
       <form
         className="flex flex-1 w-full md:w-auto"
         action={`/${type}`}
@@ -20,31 +19,16 @@ const SearchFormComponent = async ({
           type="text"
           name="query"
           defaultValue={query || ""}
-          className="flex-1 px-4 py-2 rounded-l-md shadow-md border focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="flex-1 px-4 py-1 border rounded-bl-lg rounded-tl-lg focus:outline-none text-black"
           placeholder="Search"
         />
         <button
           type="submit"
-          className="px-4 py-2 bg-blue-600 text-white rounded-r-md hover:bg-blue-700 transition-colors"
+          className="px-4 py-2 bg-white rounded-br-lg rounded-tr-lg"
         >
-          Search
+          <CiSearch className="text-black" />
         </button>
       </form>
-
-      <div className="flex flex-col w-full md:w-64">
-        <select
-          id="genre"
-          name="genre"
-          className="px-4 py-2 rounded shadow-md border focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          <option value="">All Genres</option>
-          {data.genres.map((item: any) => (
-            <option key={item.id} value={item.id}>
-              {item.name}
-            </option>
-          ))}
-        </select>
-      </div>
     </div>
   );
 };

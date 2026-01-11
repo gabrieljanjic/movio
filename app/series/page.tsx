@@ -1,25 +1,31 @@
 import PaginationQuery from "@/components/PaginationQuery";
+import SearchCategories from "@/components/SearchCategories";
 import SeriesCardComponent from "@/components/Series/SeriesCardComponent";
 import getSeriesSearch from "@/lib/api/external/movies/getSeriesSearch";
 import { SearchProps } from "@/types/types";
-import SearchFormComponent from "@/components/SearchFormComponent";
 
 const SeriesSearch = async ({ searchParams }: SearchProps) => {
   const pageNum = Number(searchParams.page) || 1;
   const query = searchParams.query?.trim() || "";
-  const data = await getSeriesSearch(query, pageNum);
-  const totalPages = data.total_pages;
+  const dataSeries = await getSeriesSearch(query, pageNum, "tv");
+  const totalPages = dataSeries.total_pages;
   return (
-    <section className="mt-6">
-      <SearchFormComponent type="series" query={query} />
-      <SeriesCardComponent data={data} />
-      <PaginationQuery
-        pageNum={pageNum}
-        totalPages={totalPages}
-        path1="/series"
-        path2="/series"
+    <section className="mt-6 flex gap-2">
+      <SearchCategories
+        searchParams={searchParams}
         query={query}
+        type={"tv"}
+        pageNum={pageNum}
       />
+      <div className="w-4/5">
+        <SeriesCardComponent data={dataSeries} />
+        <PaginationQuery
+          pageNum={pageNum}
+          totalPages={totalPages}
+          path1="/series"
+          query={query}
+        />
+      </div>
     </section>
   );
 };

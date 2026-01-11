@@ -1,24 +1,33 @@
+import PaginationQuery from "@/components/PaginationQuery";
+import { SearchProps } from "@/types/types";
+import getPersonSearch from "@/lib/api/external/person/getPersonSearch";
 import AllActorsComponent from "@/components/Actors/AllActorsComponent";
-import Pagination from "@/components/Pagination";
-import SearchFormComponent from "@/components/SearchFormComponent";
-import getPopularPeople from "@/lib/api/external/person/getPopularPeople";
+import SearchCategories from "@/components/SearchCategories";
 
-const PopularPeopleFirstPage = async () => {
-  const pageNum = 1;
-  const data = await getPopularPeople(pageNum);
-  const totalPages = data.total_pages;
+const FamousPersonSearch = async ({ searchParams }: SearchProps) => {
+  const pageNum = Number(searchParams.page) || 1;
+  const query = searchParams.query?.trim() || "";
+  const dataPeople = await getPersonSearch(query, pageNum, "person");
+  const totalPages = dataPeople.total_pages;
   return (
-    <section className="mt-6 ">
-      <SearchFormComponent type="person/famous-person" />
-      <AllActorsComponent data={data} />
-      <Pagination
+    <section className="mt-6 flex gap-2">
+      <SearchCategories
+        searchParams={searchParams}
+        query={query}
+        type={"person"}
         pageNum={pageNum}
-        totalPages={totalPages}
-        path1="/person"
-        path2="/person/page"
       />
+      <div className="w-4/5">
+        <AllActorsComponent data={dataPeople} />
+        <PaginationQuery
+          pageNum={pageNum}
+          totalPages={totalPages}
+          path1="/person"
+          query={query}
+        />
+      </div>
     </section>
   );
 };
 
-export default PopularPeopleFirstPage;
+export default FamousPersonSearch;

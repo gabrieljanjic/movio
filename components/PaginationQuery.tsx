@@ -4,13 +4,11 @@ const PaginationQuery = ({
   pageNum,
   totalPages,
   path1,
-  path2,
   query,
 }: {
   pageNum: number;
   totalPages: number;
   path1: string;
-  path2?: string;
   query: string;
 }) => {
   return (

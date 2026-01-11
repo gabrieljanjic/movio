@@ -8,14 +8,15 @@ type NavLinksType = {
   id: number;
   name: string;
   list?: NavLinksArrayType[];
-  href?: string;
+  defaultPath: string;
 };
 
 const navLinks: NavLinksType[] = [
-  { id: 1, name: "Feed", href: "/feed" },
+  { id: 1, name: "Feed", defaultPath: "/feed" },
   {
     id: 2,
     name: "Movies",
+    defaultPath: "/movies/popular",
     list: [
       { id: 1, name: "Popular", href: "/movies/popular" },
       { id: 2, name: "Best Rated", href: "/movies/top-rated" },
@@ -26,6 +27,7 @@ const navLinks: NavLinksType[] = [
   {
     id: 3,
     name: "Series",
+    defaultPath: "/series/popular",
     list: [
       { id: 1, name: "Popular", href: "/series/popular" },
       { id: 2, name: "Best Rated", href: "/series/top-rated" },
@@ -34,14 +36,15 @@ const navLinks: NavLinksType[] = [
   {
     id: 4,
     name: "Person",
-    list: [{ id: 1, name: "Popular", href: "/person" }],
+    defaultPath: "/person/popular",
+    list: [{ id: 1, name: "Popular", href: "/person/popular" }],
   },
   {
     id: 5,
-    name: "Watch list",
-    href: "/watch-list",
+    name: "Watchlist",
+    defaultPath: "/watch-list",
   },
-  { id: 6, name: "Chat", href: "/chat" },
+  //{ id: 6, name: "Chat", href: "/chat" },
 ];
 
 export default navLinks;

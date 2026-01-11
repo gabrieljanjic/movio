@@ -1,23 +1,24 @@
 import SeriesCardComponent from "@/components/Series/SeriesCardComponent";
 import Pagination from "@/components/Pagination";
 import getSeries from "@/lib/api/external/series/getSeries";
-import SearchFormComponent from "@/components/SearchFormComponent";
+import navLinks from "@/data/navLinks";
+import SubNavbar from "@/components/SubNavbar";
 
 const TopRatedSeriesFirstPage = async () => {
   const link = "top_rated";
+  const nowLink = "/series/top-rated";
+  const name = "Series";
+  const subNavBarItem = navLinks.find((item) => item.name === name);
   const pageNum = 1;
   const data = await getSeries(link, pageNum);
   const totalPages = data.total_pages;
   return (
-    <section className="mt-6">
-      <SearchFormComponent type="series" />
-      <SeriesCardComponent data={data} />
-      <Pagination
-        pageNum={pageNum}
-        totalPages={totalPages}
-        path1="/series/top-rated"
-        path2="/series/top-rated"
-      />
+    <section className="custom-card-box-shadow">
+      <SubNavbar subNavBarItem={subNavBarItem} nowLink={nowLink} />
+      <div className="pt-6 bg-white">
+        <SeriesCardComponent data={data} />
+        <Pagination pageNum={pageNum} totalPages={totalPages} path1={nowLink} />
+      </div>
     </section>
   );
 };

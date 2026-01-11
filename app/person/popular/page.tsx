@@ -1,26 +1,25 @@
-import SeriesCardComponent from "@/components/Series/SeriesCardComponent";
+import AllActorsComponent from "@/components/Actors/AllActorsComponent";
 import Pagination from "@/components/Pagination";
-import getSeries from "@/lib/api/external/series/getSeries";
 import SubNavbar from "@/components/SubNavbar";
 import navLinks from "@/data/navLinks";
+import getPopularPeople from "@/lib/api/external/person/getPopularPeople";
 
-const PopularSeriesFirstPage = async () => {
-  const link = "popular";
-  const nowLink = "/series/popular";
-  const name = "Series";
+const PopularPeopleFirstPage = async () => {
+  const nowLink = "/person/popular";
+  const name = "Person";
   const subNavBarItem = navLinks.find((item) => item.name === name);
   const pageNum = 1;
-  const data = await getSeries(link, pageNum);
+  const data = await getPopularPeople(pageNum);
   const totalPages = data.total_pages;
   return (
     <section className="custom-card-box-shadow">
       <SubNavbar subNavBarItem={subNavBarItem} nowLink={nowLink} />
       <div className="pt-6 bg-white">
-        <SeriesCardComponent data={data} />
+        <AllActorsComponent data={data} />
         <Pagination pageNum={pageNum} totalPages={totalPages} path1={nowLink} />
       </div>
     </section>
   );
 };
 
-export default PopularSeriesFirstPage;
+export default PopularPeopleFirstPage;
