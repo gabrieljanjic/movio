@@ -21,7 +21,11 @@ const CreditsActors = ({
             className="flex flex-col min-w-[120px] max-w-[120px] custom-box-shadow-sm ms-2 mb-1 rounded"
           >
             <Image
-              src={`${process.env.TMDB_POSTER_PATH}/w300${actor.profile_path}`}
+              src={
+                actor.profile_path
+                  ? `${process.env.TMDB_POSTER_PATH}/w300${actor.profile_path}`
+                  : "/images/portrait-placeholder.jpg"
+              }
               alt={actor.name}
               width={300}
               height={300}

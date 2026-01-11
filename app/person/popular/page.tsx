@@ -1,4 +1,4 @@
-import AllActorsComponent from "@/components/Actors/AllActorsComponent";
+import ActorCardComponent from "@/components/Actors/ActorCardComponent";
 import Pagination from "@/components/Pagination";
 import SubNavbar from "@/components/SubNavbar";
 import navLinks from "@/data/navLinks";
@@ -15,7 +15,7 @@ const PopularPeopleFirstPage = async () => {
     <section className="custom-card-box-shadow">
       <SubNavbar subNavBarItem={subNavBarItem} nowLink={nowLink} />
       <div className="pt-6 bg-white">
-        <AllActorsComponent data={data} />
+        <ActorCardComponent data={data} />
         <Pagination pageNum={pageNum} totalPages={totalPages} path1={nowLink} />
       </div>
     </section>

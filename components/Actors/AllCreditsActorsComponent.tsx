@@ -11,7 +11,7 @@ const AllCreditsActorsComponent = ({
   movie?: any;
 }) => {
   return (
-    <div>
+    <div className="mt-4">
       <h1 className="text-3xl font-semibold">{movie?.title ?? series?.name}</h1>
       {series && (
         <div className="flex gap-2">

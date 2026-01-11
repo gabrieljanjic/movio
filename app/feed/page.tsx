@@ -15,7 +15,11 @@ const Feed = async () => {
         >
           <div className="relative w-44 h-72">
             <Image
-              src={`${process.env.TMDB_POSTER_PATH}/w500${movie.poster_path}`}
+              src={
+                movie.poster_path
+                  ? `${process.env.TMDB_POSTER_PATH}/w500${movie.poster_path}`
+                  : "/images/portrait-placeholder.jpg"
+              }
               alt={movie.title}
               fill
               sizes="200px"

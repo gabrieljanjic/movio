@@ -1,7 +1,7 @@
 import PaginationQuery from "@/components/PaginationQuery";
 import { SearchProps } from "@/types/types";
 import getPersonSearch from "@/lib/api/external/person/getPersonSearch";
-import AllActorsComponent from "@/components/Actors/AllActorsComponent";
+import ActorCardComponent from "@/components/Actors/ActorCardComponent";
 import SearchCategories from "@/components/SearchCategories";
 
 const FamousPersonSearch = async ({ searchParams }: SearchProps) => {
@@ -18,7 +18,7 @@ const FamousPersonSearch = async ({ searchParams }: SearchProps) => {
         pageNum={pageNum}
       />
       <div className="w-4/5">
-        <AllActorsComponent data={dataPeople} />
+        <ActorCardComponent data={dataPeople} />
         <PaginationQuery
           pageNum={pageNum}
           totalPages={totalPages}

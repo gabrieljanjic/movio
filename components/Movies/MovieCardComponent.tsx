@@ -11,10 +11,10 @@ export default function MovieCardComponent({ data }: { data: any }) {
           return (
             <div
               key={movie.id}
-              className="w-44 rounded bg-white custom-box-shadow relative cursor-pointer transform transition hover:scale-102 custom-hover-box-shadow"
+              className="w-48 rounded bg-white custom-box-shadow relative cursor-pointer transform transition hover:scale-102 custom-hover-box-shadow"
             >
               <Link href={`/movies/${movie.id}`}>
-                <div className="relative w-44 h-72">
+                <div className="relative w-48 h-72">
                   <Image
                     src={
                       movie.poster_path

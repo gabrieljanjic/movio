@@ -11,10 +11,10 @@ export default function SeriesCardComponent({ data }: { data: any }) {
         {data.results.map((series: any) => (
           <div
             key={series.id}
-            className="w-44 rounded bg-white custom-box-shadow relative cursor-pointer transform transition hover:scale-102 custom-hover-box-shadow"
+            className="w-48 rounded bg-white custom-box-shadow relative cursor-pointer transform transition hover:scale-102 custom-hover-box-shadow"
           >
             <Link href={`/series/${series.id}`} className="w-44">
-              <div className="relative w-44 h-72">
+              <div className="relative w-48 h-72">
                 <Image
                   src={
                     series.poster_path

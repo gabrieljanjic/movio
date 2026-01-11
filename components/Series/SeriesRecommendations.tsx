@@ -17,11 +17,15 @@ const SeriesRecommendations = ({
               className="max-w-[170] custom-box-shadow my-2 mx-2 rounded"
               key={series.id}
             >
-              <div className="relative min-w-[170px] " key={series.id}>
+              <div className="relative min-w-[178px] " key={series.id}>
                 <Image
-                  src={`${process.env.TMDB_POSTER_PATH}/w200/${series.backdrop_path}`}
-                  width={170}
-                  height={110}
+                  src={
+                    series.backdrop_path
+                      ? `${process.env.TMDB_POSTER_PATH}/w200/${series.backdrop_path}`
+                      : "/images/no-image-found-horizontal-16-9.jpg"
+                  }
+                  width={178}
+                  height={100}
                   alt={series.name}
                   className="rounded-tl rounded-tr"
                 />
