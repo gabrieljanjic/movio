@@ -1,5 +1,5 @@
 const getAllGenres = async () => {
-  const res = await fetch(`${process.env.TMDB_DEFAULT_URI}/genre/movie/list`, {
+  const res = await fetch(`${process.env.TMDB_DEFAULT_URL}/genre/movie/list`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${process.env.TMDB_API_TOKEN}`,

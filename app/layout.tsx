@@ -20,10 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="theme-color">
-        <Navbar />
-        <main className="max-w-6xl mx-auto mb-4">{children}</main>
-      </body>
+      <body className="theme-color">{children}</body>
     </html>
   );
 }

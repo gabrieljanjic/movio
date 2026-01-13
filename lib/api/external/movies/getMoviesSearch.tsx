@@ -1,7 +1,7 @@
 const getMoviesSearch = async (query: string, page: number, type: string) => {
   const fullQuery = `page=${page}&query=${query}`;
   const res = await fetch(
-    `${process.env.TMDB_SEARCH_URI}/${type}?${fullQuery}`,
+    `${process.env.TMDB_SEARCH_URL}/${type}?${fullQuery}`,
     {
       method: "GET",
       headers: {

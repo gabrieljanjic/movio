@@ -1,6 +1,6 @@
 const getExactSeason = async (id: string, seasonNumber: string) => {
   const res = await fetch(
-    `${process.env.TMDB_SERIES_URI}/${id}/season/${seasonNumber}`,
+    `${process.env.TMDB_SERIES_URL}/${id}/season/${seasonNumber}`,
     {
       method: "GET",
       headers: {

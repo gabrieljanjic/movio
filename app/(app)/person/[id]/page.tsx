@@ -6,7 +6,6 @@ import getExactPersonKnowFor from "@/lib/api/external/person/getExactPersonKnowF
 const ExactPerson = async ({ params }: { params: { id: string } }) => {
   const data = await getExactPersonBio(params.id);
   const dataKnownFor = await getExactPersonKnowFor(params.id);
-  console.log(dataKnownFor);
   return (
     <section className="mt-6 p-6 bg-white custom-card-box-shadow rounded-lg">
       <ExactPersonBioComponent data={data} />

@@ -2,7 +2,7 @@ type MovieCategory = "popular" | "now_playing" | "top_rated" | "upcoming";
 
 const getMovies = async (category: MovieCategory, page: number) => {
   const res = await fetch(
-    `${process.env.TMDB_MOVIES_URI}/${category}?page=${page}`,
+    `${process.env.TMDB_MOVIES_URL}/${category}?page=${page}`,
     {
       method: "GET",
       headers: {

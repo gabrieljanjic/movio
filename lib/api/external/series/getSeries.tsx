@@ -2,7 +2,7 @@ type SeriesCategory = "popular" | "top_rated";
 
 const getSeries = async (category: SeriesCategory, page: number) => {
   const res = await fetch(
-    `${process.env.TMDB_SERIES_URI}/${category}?page=${page}`,
+    `${process.env.TMDB_SERIES_URL}/${category}?page=${page}`,
     {
       method: "GET",
       headers: {

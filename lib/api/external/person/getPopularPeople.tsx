@@ -1,6 +1,6 @@
 const getPopularPeople = async (page: number) => {
   const res = await fetch(
-    `${process.env.TMDB_DEFAULT_URI}/person/popular?page=${page}`,
+    `${process.env.TMDB_DEFAULT_URL}/person/popular?page=${page}`,
     {
       method: "GET",
       headers: {

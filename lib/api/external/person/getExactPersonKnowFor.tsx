@@ -1,6 +1,6 @@
 const getExactPersonKnowFor = async (id: string) => {
   const res = await fetch(
-    `${process.env.TMDB_DEFAULT_URI}/person/${id}/combined_credits`,
+    `${process.env.TMDB_DEFAULT_URL}/person/${id}/combined_credits`,
     {
       method: "GET",
       headers: {

@@ -1,5 +1,5 @@
 const getExactMovieCast = async (id: string) => {
-  const res = await fetch(`${process.env.TMDB_MOVIES_URI}/${id}/credits`, {
+  const res = await fetch(`${process.env.TMDB_MOVIES_URL}/${id}/credits`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${process.env.TMDB_API_TOKEN}`,

@@ -9,7 +9,6 @@ const SingleSeasonView = async ({
   params: { id: string; seasonNumber: string };
 }) => {
   const data = await getExactSeason(params.id, params.seasonNumber);
-  console.log("ssss", data);
   return (
     <div className="p-6 bg-white custom-card-box-shadow flex flex-col gap-4 overflow-hidden">
       <h1 className="text-2xl font-semibold">{data.name}</h1>

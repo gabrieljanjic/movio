@@ -1,6 +1,6 @@
 const getSeriesRecommendations = async (id: string) => {
   const res = await fetch(
-    `${process.env.TMDB_SERIES_URI}/${id}/recommendations`,
+    `${process.env.TMDB_SERIES_URL}/${id}/recommendations`,
     {
       method: "GET",
       headers: {

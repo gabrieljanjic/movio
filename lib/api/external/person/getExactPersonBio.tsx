@@ -1,5 +1,5 @@
 const getExactPersonBio = async (id: string) => {
-  const res = await fetch(`${process.env.TMDB_DEFAULT_URI}/person/${id}`, {
+  const res = await fetch(`${process.env.TMDB_DEFAULT_URL}/person/${id}`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${process.env.TMDB_API_TOKEN}`,
