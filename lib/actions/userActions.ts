@@ -5,6 +5,7 @@ import { User } from "../models/User";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export const registerUser = async (formData: FormData) => {
   const email = formData.get("email") as string;
@@ -74,4 +75,14 @@ export const loginUser = async (formData: FormData) => {
 
   revalidatePath("/feed");
   return { firstName: user.firstName, lastName: user.lastName };
+};
+
+export const signoutUser = async () => {
+  cookies().set("token", "", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "strict",
+    maxAge: 0,
+  });
+  redirect("/feed");
 };

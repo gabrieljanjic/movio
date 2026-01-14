@@ -2,7 +2,7 @@ import { formatDate, formatTime, getDominantColor } from "@/lib/utils";
 import Image from "next/image";
 import { FiEye } from "react-icons/fi";
 import Tooltip from "../Tooltip";
-import { FaHeart, FaRegStickyNote } from "react-icons/fa";
+import { FaRegHeart, FaRegStickyNote } from "react-icons/fa";
 
 const MoviesSingleComponent = async ({ data }: { data: any }) => {
   let backgroundStyle = {
@@ -29,7 +29,10 @@ const MoviesSingleComponent = async ({ data }: { data: any }) => {
   }
 
   return (
-    <div className="flex gap-8 p-8 rounded text-white" style={backgroundStyle}>
+    <div
+      className="flex gap-8 p-8 rounded-tl rounded-tr text-white"
+      style={backgroundStyle}
+    >
       <div className="w-[266px] shrink-0">
         {data.poster_path && (
           <Image
@@ -56,7 +59,7 @@ const MoviesSingleComponent = async ({ data }: { data: any }) => {
               </div>
 
               <div className="relative inline-block group bg-black/40 rounded-full cursor-pointer hover:scale-110 transition">
-                <FaHeart className="text-white m-2" />
+                <FaRegHeart className="text-white m-2" />
                 <Tooltip text="Add to favorites" />
               </div>
 

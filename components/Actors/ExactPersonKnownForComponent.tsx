@@ -52,7 +52,7 @@ const ExactPersonKnownForComponent = ({
             href={`/person/${id}/all-credits`}
             className="flex items-center whitespace-nowrap hover:underline"
           >
-            View more <IoIosArrowRoundForward className="ms-1 text-xl " />
+            View more <IoIosArrowRoundForward className="ms-1 text-xl" />
           </Link>
         </div>
       </div>

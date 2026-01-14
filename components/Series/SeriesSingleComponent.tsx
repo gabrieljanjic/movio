@@ -1,6 +1,6 @@
 import { formRating, getColorByPercentage } from "@/lib/utils";
 import { FiEye } from "react-icons/fi";
-import { FaRegStickyNote, FaHeart } from "react-icons/fa";
+import { FaRegHeart, FaRegStickyNote } from "react-icons/fa";
 import Image from "next/image";
 import Tooltip from "../Tooltip";
 import { getDominantColor } from "@/lib/utils";
@@ -57,7 +57,7 @@ const SeriesSingleComponent = async ({ data }: { data: any }) => {
             </div>
 
             <div className="relative inline-block group bg-black/40 rounded-full cursor-pointer hover:scale-110 transition">
-              <FaHeart className="text-white m-2" />
+              <FaRegHeart className="text-white m-2" />
               <Tooltip text="Add to favorites" />
             </div>
 

@@ -39,12 +39,6 @@ const navLinks: NavLinksType[] = [
     defaultPath: "/person/popular",
     list: [{ id: 1, name: "Popular", href: "/person/popular" }],
   },
-  {
-    id: 5,
-    name: "Watchlist",
-    defaultPath: "/watch-list",
-  },
-  //{ id: 6, name: "Chat", href: "/chat" },
 ];
 
 export default navLinks;
