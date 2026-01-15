@@ -14,9 +14,10 @@ const SingleMovieView = async ({ params }: { params: { id: string } }) => {
   const cookieStore = cookies();
   const token = cookieStore.get("token")?.value;
   const user = token ? await getUserFromToken(token) : null;
-
+  console.log("User", user);
+  const slice = true;
   return (
-    <section className="mt-6">
+    <section className="mt-6 px-3">
       <MoviesSingleComponent data={data} />
       <AllCreditsActorsComponent
         dataCredits={dataCredits}
@@ -24,14 +25,21 @@ const SingleMovieView = async ({ params }: { params: { id: string } }) => {
         type="movies"
       />
       {user && (
-        <CreatePostComponent
-          contentId={params.id}
-          userId={user._id}
-          userFirstName={user.firstName}
-          title={data.title}
-        />
+        <>
+          <CreatePostComponent
+            contentId={params.id}
+            userId={user._id}
+            userName={user.userName}
+            title={data.title}
+          />
+          <ListAllPostsComponent
+            id={data.id}
+            userId={user._id}
+            slice={slice}
+            type={"movies"}
+          />
+        </>
       )}
-      {user && <ListAllPostsComponent id={data.id} userId={user._id} />}
     </section>
   );
 };

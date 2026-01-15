@@ -25,15 +25,21 @@ const RegisterPage = () => {
       >
         <h1 className="text-3xl font-bold text-center mb-4">Sign up</h1>
         <input
-          type="first-name"
+          type="text"
           name="first-name"
           placeholder="First name"
           className="border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
         <input
-          type="last-name"
+          type="text"
           name="last-name"
           placeholder="Last name"
+          className="border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+        <input
+          type="text"
+          name="username"
+          placeholder="Username"
           className="border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
         <input
@@ -56,9 +62,9 @@ const RegisterPage = () => {
           SIGN UP
         </button>
         <div className="flex gap-2 text-sm text-gray-600 justify-center mt-4">
-          <p>Don't have an account?</p>
-          <Link href="/register" className="text-blue-500 hover:underline">
-            Sign up
+          <p>You have an account?</p>
+          <Link href="/login" className="text-blue-500 hover:underline">
+            Log in
           </Link>
         </div>
       </form>

@@ -5,6 +5,7 @@ import { connectDB } from "../db";
 import { Post } from "../models/Post";
 import { revalidatePath } from "next/cache";
 import { Like } from "@/lib/models/Like";
+import { Comment } from "../models/Comment";
 
 interface CreatePostInput {
   contentId: string;
@@ -45,5 +46,19 @@ export const likePostActions = async (postId: string, userId: string) => {
   } catch (err: any) {
     console.error("Like error:", err);
     throw new Error(err.message || "Failed to like post");
+  }
+};
+
+export const commentPostActions = async (
+  postId: string,
+  userId: string,
+  message: string
+) => {
+  try {
+    await Comment.create({ postId, userId, message });
+    revalidatePath(`/post/${postId}`);
+    return { success: true };
+  } catch (err: any) {
+    return { success: false };
   }
 };

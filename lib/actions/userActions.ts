@@ -8,19 +8,24 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export const registerUser = async (formData: FormData) => {
-  const email = formData.get("email") as string;
-  const password = formData.get("password") as string;
   const firstName = formData.get("first-name") as string;
   const lastName = formData.get("last-name") as string;
+  const userName = formData.get("username") as string;
+  const email = formData.get("email") as string;
+  const password = formData.get("password") as string;
 
   if (!firstName || !lastName || !email || !password)
-    throw new Error("Email and password required");
+    throw new Error("All field are required");
 
   await connectDB();
 
-  const existingUser = await User.findOne({ email });
-  if (existingUser) {
-    throw new Error("User already exists");
+  const existingEmail = await User.findOne({ email });
+  if (existingEmail) {
+    throw new Error("Email already exists");
+  }
+  const existingUsername = await User.findOne({ userName });
+  if (existingUsername) {
+    throw new Error("Username already exists");
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -28,6 +33,7 @@ export const registerUser = async (formData: FormData) => {
   const user = await User.create({
     firstName,
     lastName,
+    userName,
     email,
     password: hashedPassword,
   });

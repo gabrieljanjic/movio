@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 
 const CommentSchema = new mongoose.Schema({
-  postId: { type: Number, required: true },
-  userId: { type: Number, required: true },
+  postId: { type: mongoose.Schema.Types.ObjectId, ref: "Post", required: true },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   message: { type: String, required: true },
-  createdAt: { type: Date },
+  createdAt: { type: Date, default: () => new Date() },
   deletedAt: { type: Date },
 });
 
