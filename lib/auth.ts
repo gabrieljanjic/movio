@@ -9,11 +9,12 @@ export const getUserFromToken = async (token: string) => {
   if (!decoded) return null;
   await connectDB();
   const rawUser = await User.findById(decoded.id).select(
-    "firstName lastName userName _id"
+    "firstName lastName userName avatar"
   );
   if (!rawUser) throw new Error("User not found");
   const user = {
     firstName: rawUser.firstName,
+    avatar: rawUser.avatar,
     lastName: rawUser.lastName,
     userName: rawUser.userName,
     _id: rawUser._id.toString(),

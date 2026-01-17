@@ -2,7 +2,15 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    remotePatterns: [{ protocol: "https", hostname: "image.tmdb.org" }],
+    remotePatterns: [
+      { protocol: "https", hostname: "image.tmdb.org" },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        port: "",
+        pathname: "/**",
+      },
+    ],
   },
 };
 

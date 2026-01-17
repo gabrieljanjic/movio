@@ -16,14 +16,18 @@ const AllPosts = async ({ params }: { params: { id: string } }) => {
         <CreatePostComponent
           contentId={params.id}
           userId={user._id}
+          avatar={user.avatar}
           userName={user.userName}
           title={data.title}
+          wholeContent={data}
+          contentType="movie"
         />
       )}
       {user && (
         <ListAllPostsComponent
           id={data.id}
           userId={user._id}
+          avatar={user.avatar}
           slice={slice}
           type={"movies"}
         />

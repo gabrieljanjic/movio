@@ -1,6 +1,6 @@
 "use client";
 
-import { commentPostActions } from "@/lib/actions/createPostActions";
+import { commentPostActions } from "@/lib/actions/postActions";
 import { useState } from "react";
 
 const CommentComponent = ({

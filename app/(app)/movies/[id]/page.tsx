@@ -2,6 +2,8 @@ import AllCreditsActorsComponent from "@/components/Actors/CreditsActorsComponen
 import CreatePostComponent from "@/components/CreatePostComponent";
 import ListAllPostsComponent from "@/components/ListAllPostsComponent";
 import MoviesSingleComponent from "@/components/Movies/MoviesSingleComponent";
+import { checkIsInFavorites } from "@/lib/actions/favoritesActions";
+import { checkIsInWatchlist } from "@/lib/actions/watchlistActions";
 import getExactMovie from "@/lib/api/external/movies/getExactMovie";
 import getExactMovieCast from "@/lib/api/external/movies/getExactMovieCast";
 import { getUserFromToken } from "@/lib/auth";
@@ -11,14 +13,21 @@ const SingleMovieView = async ({ params }: { params: { id: string } }) => {
   const data = await getExactMovie(params.id);
   const dataCredits = await getExactMovieCast(params.id);
 
+  const isInFavorites = await checkIsInFavorites(params.id);
+  const isInWatchlist = await checkIsInWatchlist(params.id);
+
   const cookieStore = cookies();
   const token = cookieStore.get("token")?.value;
   const user = token ? await getUserFromToken(token) : null;
-  console.log("User", user);
+
   const slice = true;
   return (
     <section className="mt-6 px-3">
-      <MoviesSingleComponent data={data} />
+      <MoviesSingleComponent
+        data={data}
+        isInFavorites={isInFavorites}
+        isInWatchlist={isInWatchlist}
+      />
       <AllCreditsActorsComponent
         dataCredits={dataCredits}
         id={params.id}
@@ -29,12 +38,16 @@ const SingleMovieView = async ({ params }: { params: { id: string } }) => {
           <CreatePostComponent
             contentId={params.id}
             userId={user._id}
+            avatar={user.avatar}
             userName={user.userName}
             title={data.title}
+            wholeContent={data}
+            contentType="movie"
           />
           <ListAllPostsComponent
             id={data.id}
             userId={user._id}
+            avatar={user.avatar}
             slice={slice}
             type={"movies"}
           />

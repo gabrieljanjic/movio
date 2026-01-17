@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import "./globals.css";
 import { Metadata } from "next";
+import ToastProvider from "@/components/ToastProvider";
 
 export const metadata: Metadata = {
   title: "Movio - Discover, Search & Comment Movies",
@@ -20,7 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="theme-color">{children}</body>
+      <body className="theme-color">
+        {children}
+        <ToastProvider />
+      </body>
     </html>
   );
 }

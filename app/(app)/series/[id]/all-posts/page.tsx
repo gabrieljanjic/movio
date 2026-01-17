@@ -17,13 +17,17 @@ const AllPosts = async ({ params }: { params: { id: string } }) => {
           contentId={params.id}
           userId={user._id}
           userName={user.userName}
+          avatar={user.avatar}
           title={data.name}
+          wholeContent={data}
+          contentType="tv"
         />
       )}
       {user && (
         <ListAllPostsComponent
           id={data.id}
           userId={user._id}
+          avatar={user.avatar}
           slice={slice}
           type={"series"}
         />

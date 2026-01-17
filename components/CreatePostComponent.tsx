@@ -1,20 +1,28 @@
 "use client";
 
 import { useState } from "react";
-import { createPostActions } from "@/lib/actions/createPostActions";
+import { createPostActions } from "@/lib/actions/postActions";
+import Image from "next/image";
+import Link from "next/link";
 
 interface CreatePostComponentProps {
   contentId: string;
   userId: string;
+  avatar: string;
   userName: string;
   title: string;
+  contentType: "movie" | "tv";
+  wholeContent: any;
 }
 
 const CreatePostComponent = ({
   contentId,
   userId,
+  avatar,
   userName,
   title,
+  contentType,
+  wholeContent,
 }: CreatePostComponentProps) => {
   const [postContent, setPostContent] = useState("");
   const [rating, setRating] = useState<number | "">("");
@@ -35,7 +43,9 @@ const CreatePostComponent = ({
     setLoading(true);
     try {
       await createPostActions({
+        wholeContent,
         contentId,
+        contentType,
         postContent,
         rating,
         createdBy: userId,
@@ -51,11 +61,23 @@ const CreatePostComponent = ({
   return (
     <div className="p-6 bg-white border-y border-gray-200 rounded">
       <div className="flex items-center gap-3 mb-4">
-        <div className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-lg">
-          {userName[0].toUpperCase()}
-        </div>
+        {avatar ? (
+          <Image
+            src={avatar}
+            alt={userName}
+            width={50}
+            height={50}
+            className="rounded-full"
+          />
+        ) : (
+          <div className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-lg">
+            {userName[0].toUpperCase()}
+          </div>
+        )}
         <div>
-          <p className="font-semibold text-gray-800">{userName}</p>
+          <Link href={`/user/${userName}`} className="hover:underline">
+            <p className="font-semibold text-gray-800">{userName}</p>
+          </Link>
           <p className="text-sm text-gray-500">{title}</p>
         </div>
       </div>

@@ -10,11 +10,13 @@ const ListAllPostsComponent = async ({
   userId,
   slice,
   type,
+  avatar,
 }: {
   id: number;
   userId: string;
   slice: boolean;
   type: string;
+  avatar: string;
 }) => {
   const posts = await getPostsByContentId(id, userId, slice);
   return (

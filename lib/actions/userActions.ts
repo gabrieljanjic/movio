@@ -6,6 +6,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { error } from "console";
 
 export const registerUser = async (formData: FormData) => {
   const firstName = formData.get("first-name") as string;
@@ -91,4 +92,42 @@ export const signoutUser = async () => {
     maxAge: 0,
   });
   redirect("/feed");
+};
+
+export const updateUserBio = async (formData: any) => {
+  try {
+    await connectDB();
+
+    const checkUserName = await User.findOne({
+      userName: formData.userName,
+    });
+    if (checkUserName) {
+      throw new Error("Username is already taken");
+    }
+
+    const checkEmail = await User.findOne({
+      email: formData.email,
+    });
+    if (checkEmail) {
+      throw new Error("Email is already taken");
+    }
+
+    const updatedUser = await User.findOneAndUpdate(
+      {
+        _id: formData._id,
+      },
+      {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        userName: formData.userName,
+        email: formData.email,
+      },
+      { new: true }
+    );
+    console.log(updatedUser);
+    revalidatePath(`/user/${updatedUser.userName}`);
+    return { success: true, userName: updatedUser.userName };
+  } catch (err: any) {
+    return { success: false, message: err.message };
+  }
 };

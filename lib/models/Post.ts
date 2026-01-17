@@ -1,9 +1,17 @@
 import mongoose from "mongoose";
 
 const PostSchema = new mongoose.Schema({
+  tmdbRefId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Content",
+    required: true,
+  },
   contentId: {
     type: String,
     required: true,
+  },
+  contentType: {
+    type: String,
   },
   postContent: { type: String, required: true },
   rating: { type: Number },

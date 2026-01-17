@@ -1,11 +1,17 @@
 import { formRating, getColorByPercentage } from "@/lib/utils";
-import { FiEye } from "react-icons/fi";
-import { FaRegHeart, FaRegStickyNote } from "react-icons/fa";
 import Image from "next/image";
-import Tooltip from "../Tooltip";
 import { getDominantColor } from "@/lib/utils";
+import FavoritesWatchListComponent from "../FavoritesWatchlistComponent";
 
-const SeriesSingleComponent = async ({ data }: { data: any }) => {
+const SeriesSingleComponent = async ({
+  data,
+  isInFavorites,
+  isInWatchlist,
+}: {
+  data: any;
+  isInFavorites: any;
+  isInWatchlist: any;
+}) => {
   let backgroundStyle = {
     background:
       "linear-gradient(0deg, rgb(255,255,255) 0%, rgba(0,0,0,0.85) 70%)",
@@ -49,25 +55,12 @@ const SeriesSingleComponent = async ({ data }: { data: any }) => {
       <div className="flex-1">
         <div className="flex justify-between">
           <h1 className="text-4xl font-bold mb-3">{data.name}</h1>
-
-          <div className="flex gap-2 items-center">
-            <div className="relative inline-block group bg-black/40 rounded-full cursor-pointer hover:scale-110 transition">
-              <FaRegStickyNote className="text-white m-2" />
-              <Tooltip text="Share your thoughts" />
-            </div>
-
-            <div className="relative inline-block group bg-black/40 rounded-full cursor-pointer hover:scale-110 transition">
-              <FaRegHeart className="text-white m-2" />
-              <Tooltip text="Add to favorites" />
-            </div>
-
-            <div className="relative inline-block group bg-black/40 rounded-full cursor-pointer hover:scale-110 transition">
-              <FiEye className="text-white m-2" />
-              <Tooltip text="Add to watch list" />
-            </div>
-          </div>
+          <FavoritesWatchListComponent
+            wholeContent={data}
+            isInFavorites={isInFavorites.success}
+            isInWatchlist={isInWatchlist.success}
+          />
         </div>
-
         <div className="flex mb-4 gap-2">
           {data.genres?.map((genre: any) => (
             <span

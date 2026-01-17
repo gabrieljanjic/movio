@@ -1,10 +1,16 @@
 import { formatDate, formatTime, getDominantColor } from "@/lib/utils";
 import Image from "next/image";
-import { FiEye } from "react-icons/fi";
-import Tooltip from "../Tooltip";
-import { FaRegHeart, FaRegStickyNote } from "react-icons/fa";
+import FavoritesWatchListComponent from "../FavoritesWatchlistComponent";
 
-const MoviesSingleComponent = async ({ data }: { data: any }) => {
+const MoviesSingleComponent = async ({
+  data,
+  isInFavorites,
+  isInWatchlist,
+}: {
+  data: any;
+  isInFavorites: any;
+  isInWatchlist: any;
+}) => {
   let backgroundStyle = {
     background:
       "linear-gradient(0deg, rgb(255,255,255) 0%, rgba(0,0,0,0.85) 70%)",
@@ -52,22 +58,11 @@ const MoviesSingleComponent = async ({ data }: { data: any }) => {
             <h1 className="text-4xl font-bold mb-3">
               {data.title || data.original_name}
             </h1>
-            <div className="flex gap-2 items-center">
-              <div className="relative inline-block group bg-black/40 rounded-full cursor-pointer hover:scale-110 transition">
-                <FaRegStickyNote className="text-white m-2" />
-                <Tooltip text="Share your thoughts" />
-              </div>
-
-              <div className="relative inline-block group bg-black/40 rounded-full cursor-pointer hover:scale-110 transition">
-                <FaRegHeart className="text-white m-2" />
-                <Tooltip text="Add to favorites" />
-              </div>
-
-              <div className="relative inline-block group bg-black/40 rounded-full cursor-pointer hover:scale-110 transition">
-                <FiEye className="text-white m-2" />
-                <Tooltip text="Add to watch list" />
-              </div>
-            </div>
+            <FavoritesWatchListComponent
+              wholeContent={data}
+              isInFavorites={isInFavorites.success}
+              isInWatchlist={isInWatchlist.success}
+            />
           </div>
           <div className="flex gap-2 mb-2">
             {data.release_date && <span>{formatDate(data.release_date)}</span>}

@@ -9,11 +9,13 @@ import { CgProfile } from "react-icons/cg";
 import { FaRegHeart } from "react-icons/fa";
 import { IoChatboxOutline } from "react-icons/io5";
 import { BiLogIn } from "react-icons/bi";
+import { getUserFromToken } from "@/lib/auth";
+import { cookies } from "next/headers";
 
 const NavbarProfileDropdown = ({
   user,
 }: {
-  user: { firstName: string } | null;
+  user: { firstName: string; userName: string } | null;
 }) => {
   const [open, setOpen] = useState(false);
   return (
@@ -38,52 +40,55 @@ const NavbarProfileDropdown = ({
           </div>
           {open && (
             <div className="absolute right-0 w-40 mt-2 bg-white flex flex-col z-50 rounded">
-              <div className="hover:bg-slate-300 px-4 py-2  hover:rounded-tl hover:rounded-tr">
-                <Link href={"/profile"} className="text-black">
-                  <div className="flex gap-2 items-center">
-                    <CgProfile />
-                    Profile
-                  </div>
-                </Link>
-              </div>
+              <Link
+                href={`/user/${user.userName}`}
+                className="text-black"
+                onClick={() => setOpen(false)}
+              >
+                <div className="flex gap-2 items-center hover:bg-slate-300 px-4 py-2  hover:rounded-tl hover:rounded-tr">
+                  <CgProfile />
+                  Profile
+                </div>
+              </Link>
 
-              <div className="hover:bg-slate-300 px-4 py-2 border-b border-gray-300">
-                <Link href={"/chat"} className="text-black">
-                  <div className="flex gap-2 items-center">
-                    <IoChatboxOutline />
-                    Chat
-                  </div>
-                </Link>
-              </div>
-              <div className="hover:bg-slate-300 px-4 py-2">
-                <Link href={"/watch-list"} className="text-black">
-                  <div className="flex gap-2 items-center">
-                    <FiEye />
-                    Watch list
-                  </div>
-                </Link>
-              </div>
-              <div className="hover:bg-slate-300 px-4 py-2 border-b border-gray-300">
-                <Link href={"/favorites"} className="text-black ">
-                  <div className="flex gap-2 items-center">
-                    <FaRegHeart />
-                    Favorites
-                  </div>
-                </Link>
-              </div>
-              <div className="hover:bg-slate-300 px-4 py-2 text-left hover:rounded-bl hover:rounded-br">
-                <button
-                  className="text-red-500 font-semibold"
-                  onClick={async () => {
-                    await signoutUser();
-                  }}
+              <Link
+                href={"/chat"}
+                className="text-black"
+                onClick={() => setOpen(false)}
+              >
+                <div className="flex gap-2 items-center hover:bg-slate-300 px-4 py-2 border-b border-gray-300">
+                  <IoChatboxOutline />
+                  Chat
+                </div>
+              </Link>
+              <Link
+                href={"/watch-list"}
+                className="text-black"
+                onClick={() => setOpen(false)}
+              >
+                <div className="flex gap-2 items-center hover:bg-slate-300 px-4 py-2">
+                  <FiEye />
+                  Watch list
+                </div>
+              </Link>
+              <Link href={"/favorites"} className="text-black ">
+                <div
+                  className="flex gap-2 items-center hover:bg-slate-300 px-4 py-2 border-b border-gray-300"
+                  onClick={() => setOpen(false)}
                 >
-                  <div className="flex gap-2 items-center">
-                    <IoIosLogOut />
-                    Sign out
-                  </div>
-                </button>
-              </div>
+                  <FaRegHeart />
+                  Favorites
+                </div>
+              </Link>
+              <button
+                className="flex gap-2 items-center hover:bg-slate-300 px-4 py-2 text-left hover:rounded-bl hover:rounded-br text-red-500 font-semibold"
+                onClick={async () => {
+                  await signoutUser();
+                }}
+              >
+                <IoIosLogOut />
+                Sign out
+              </button>
             </div>
           )}
         </div>

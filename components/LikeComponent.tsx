@@ -1,6 +1,6 @@
 "use client";
 
-import { likePostActions } from "@/lib/actions/createPostActions";
+import { likePostActions } from "@/lib/actions/postActions";
 import { useState } from "react";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 

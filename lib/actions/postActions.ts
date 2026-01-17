@@ -6,28 +6,61 @@ import { Post } from "../models/Post";
 import { revalidatePath } from "next/cache";
 import { Like } from "@/lib/models/Like";
 import { Comment } from "../models/Comment";
+import { Content } from "../models/Content";
 
 interface CreatePostInput {
+  wholeContent: any;
   contentId: string;
   postContent: string;
   rating: number;
   createdBy: string;
+  contentType: "movie" | "tv";
 }
 
 export const createPostActions = async (data: CreatePostInput) => {
-  const { contentId, postContent, rating, createdBy } = data;
-
+  const {
+    wholeContent,
+    contentId,
+    postContent,
+    rating,
+    createdBy,
+    contentType,
+  } = data;
   if (!contentId || !postContent) {
     throw new Error("All fields are required");
   }
   await connectDB();
+
+  let content = await Content.findOne({ tmdbId: contentId });
+
+  if (!content) {
+    const isMovie = contentType === "movie";
+    content = await Content.create({
+      tmdbId: contentId,
+      contentType: contentType,
+      overview: wholeContent.overview,
+      posterPath: wholeContent.poster_path,
+      title: isMovie ? wholeContent.title : wholeContent.name,
+      voteAverage: wholeContent.vote_average,
+      releaseDate: isMovie
+        ? wholeContent.release_date
+        : wholeContent.first_air_date,
+    });
+  }
+
   await Post.create({
-    contentId,
+    tmdbRefId: content._id,
+    contentId: contentId,
+    contentType,
     postContent,
     rating,
     createdBy: new mongoose.Types.ObjectId(createdBy),
   });
-  revalidatePath(`/movies/${contentId}`);
+  if (contentType === "movie") {
+    revalidatePath(`/movies/${contentId}`);
+  } else {
+    revalidatePath(`/series/${contentId}`);
+  }
 };
 
 export const likePostActions = async (postId: string, userId: string) => {

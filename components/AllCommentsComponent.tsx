@@ -32,7 +32,9 @@ const AllCommentsComponent = ({ comments }: { comments: any }) => {
           })}
         </div>
       ) : (
-        <div className="mt-6 text-center">No comments yet be the first now</div>
+        <div className="mt-6 text-center mb-4">
+          No comments yet be the first now
+        </div>
       )}
     </div>
   );
