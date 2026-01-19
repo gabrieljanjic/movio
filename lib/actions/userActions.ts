@@ -7,6 +7,7 @@ import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { error } from "console";
+import { Follow } from "../models/Follow";
 
 export const registerUser = async (formData: FormData) => {
   const firstName = formData.get("first-name") as string;
@@ -122,11 +123,92 @@ export const updateUserBio = async (formData: any) => {
         userName: formData.userName,
         email: formData.email,
       },
-      { new: true }
+      { new: true },
     );
     console.log(updatedUser);
     revalidatePath(`/user/${updatedUser.userName}`);
     return { success: true, userName: updatedUser.userName };
+  } catch (err: any) {
+    return { success: false, message: err.message };
+  }
+};
+
+export const checkFollow = async (userId: string, myUsedId: string | null) => {
+  if (!myUsedId || !userId) {
+    return { success: false };
+  }
+  if (myUsedId === userId) {
+    return { success: false };
+  }
+  const checkFollow = await Follow.findOne({
+    followerId: myUsedId,
+    followingId: userId,
+  });
+  if (checkFollow) {
+    return { success: true };
+  }
+  return { success: false };
+};
+
+export const followUser = async (userId: string, myUsedId: string | null) => {
+  try {
+    await connectDB();
+    if (!myUsedId || !userId) {
+      return { success: false, message: "Something went wrong" };
+    }
+    if (myUsedId === userId) {
+      return { success: false, message: "You can not follow yourself" };
+    }
+
+    const checkFollow = await Follow.findOne({
+      followerId: myUsedId,
+      followingId: userId,
+    });
+
+    if (checkFollow) {
+      return { success: false, message: "You already follow that user" };
+    }
+
+    const revalidatePathUser = await User.findOne({ _id: userId });
+
+    const newFollow = await Follow.create({
+      followerId: myUsedId,
+      followingId: userId,
+    });
+    revalidatePath(`user/${revalidatePathUser.username}`);
+    return { success: true, message: "User successfully followed" };
+  } catch (err: any) {
+    return { success: false, message: err.message };
+  }
+};
+
+export const unfollowUser = async (userId: string, myUsedId: string | null) => {
+  try {
+    await connectDB();
+    if (!myUsedId || !userId) {
+      return { success: false, message: "Something went wrong" };
+    }
+    if (myUsedId === userId) {
+      return { success: false, message: "You can not unfollow yourself" };
+    }
+
+    const checkFollow = await Follow.findOne({
+      followerId: myUsedId,
+      followingId: userId,
+    });
+
+    if (!checkFollow) {
+      return { success: false, message: "You do not follow that user" };
+    }
+
+    const revalidatePathUser = await User.findOne({ _id: userId });
+
+    const deleteFollow = await Follow.deleteOne({
+      followerId: myUsedId,
+      followingId: userId,
+    });
+    revalidatePath(`user/${revalidatePathUser.username}`);
+    return { success: true, message: "User successfully unfollowed" };
   } catch (err: any) {
     return { success: false, message: err.message };
   }

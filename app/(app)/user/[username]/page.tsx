@@ -11,6 +11,9 @@ import { getPersonProfile } from "@/lib/queries/user.queries";
 import { getAllFavorites } from "@/lib/queries/watchlist.queries";
 import { getUserFromToken } from "@/lib/auth";
 import { getAllWatchlist } from "@/lib/queries/favorite.queries";
+import FollowComponent from "@/components/FollowComponent";
+import { checkFollow } from "@/lib/actions/userActions";
+import UnFollowComponent from "@/components/UnfollowComponent";
 
 const UserProfile = async ({ params }: { params: { username: string } }) => {
   const cookieStore = cookies();
@@ -18,6 +21,11 @@ const UserProfile = async ({ params }: { params: { username: string } }) => {
   const myUser = token ? await getUserFromToken(token) : null;
 
   const user = await getPersonProfile(params.username);
+  const checkFollowing = await checkFollow(
+    user._id.toString(),
+    myUser?._id.toString() || "",
+  );
+
   const allPosts = await getAllPostsById(user._id);
   /*const allFavorites = await getAllFavorites(user._id);
   const allWatchlist = await getAllWatchlist(user._id);*/
@@ -29,7 +37,21 @@ const UserProfile = async ({ params }: { params: { username: string } }) => {
   return (
     <section className="mt-10 rounded-xl bg-white p-6 custom-box-shadow-sm">
       <div className="custom-box-shadow-sm p-6 mb-6 rounded-lg">
-        <h2 className="mb-4 text-xl font-semibold text-gray-800">Profile</h2>
+        <div className="flex justify-between items-center">
+          <h2 className="mb-4 text-xl font-semibold text-gray-800">Profile</h2>
+          {!isOwnProfile &&
+            (checkFollowing.success ? (
+              <UnFollowComponent
+                userId={user._id.toString()}
+                myUsedId={myUser?._id.toString() || ""}
+              />
+            ) : (
+              <FollowComponent
+                userId={user._id.toString()}
+                myUsedId={myUser?._id.toString() || ""}
+              />
+            ))}
+        </div>
         <div className="flex gap-8 mb-4 items-center">
           {isOwnProfile ? (
             <AvatarUpload
@@ -61,10 +83,6 @@ const UserProfile = async ({ params }: { params: { username: string } }) => {
               <div className="flex gap-2 items-center text-[16px]">
                 <p>Username: </p>
                 <p>{user.userName}</p>
-              </div>
-              <div className="flex gap-2 items-center text-[16px]">
-                <p>Email: </p>
-                <p>{user.email}</p>
               </div>
               <div className="flex gap-2 items-center text-[16px]">
                 <p>
