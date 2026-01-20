@@ -13,7 +13,7 @@ const SpoilerText = ({ text }: SpoilerTextProps) => {
     <div className="relative">
       <p
         className={`
-          transition-all duration-300
+          transition-all duration-300 text-gray-800
           ${revealed ? "blur-0 opacity-100" : "blur-sm opacity-70"}
         `}
       >

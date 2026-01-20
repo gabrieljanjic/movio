@@ -6,14 +6,14 @@ import { Comment } from "../models/Comment";
 export async function getPostsByContentId(
   contentId: number,
   userId: string,
-  slice: boolean
+  slice: boolean,
 ) {
   await connectDB();
 
   const posts = await Post.find({ contentId })
     .sort({ createdAt: -1 })
     /*.populate("tmdbRefId")*/
-    .populate("createdBy", "userName avatar")
+    .populate("createdBy", "userName avatar firstName")
     .lean();
 
   const postIds = posts.map((p: any) => p._id);
@@ -54,6 +54,7 @@ export async function getPostsByContentId(
       createdBy: {
         _id: post.createdBy._id.toString(),
         userName: post.createdBy.userName,
+        firstName: post.createdBy.firstName,
         avatar: post.createdBy.avatar,
       },
       iLikedIt: likedPostsIds.has(postIdStr),
@@ -67,7 +68,7 @@ export async function getExactPostByContentId(postId: string, userId: string) {
   await connectDB();
   const post = await Post.findOne({ _id: postId }).populate(
     "createdBy",
-    "userName"
+    "userName",
   );
 
   const didILikeIt = await Like.findOne({
@@ -126,7 +127,7 @@ export async function getAllPostsById(userId: string) {
   await connectDB();
   const posts = await Post.find({ createdBy: userId }).populate(
     "createdBy",
-    "-password"
+    "-password",
   );
 
   const postIds = posts.map((p: any) => p._id);

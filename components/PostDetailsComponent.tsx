@@ -1,7 +1,9 @@
+import { formRating, getColorByPercentage, getTimeAgo } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
 const PostDetailsComponent = ({ post }: { post: any }) => {
+  console.log(post.createdBy);
   return (
     <>
       <div className="flex items-center justify-between mb-3">
@@ -22,19 +24,17 @@ const PostDetailsComponent = ({ post }: { post: any }) => {
           <div>
             <Link href={`/user/${post.createdBy.userName}`}>
               <p className="font-semibold text-gray-800 hover:underline">
-                {post.createdBy.userName}
+                {post.createdBy.firstName}
               </p>
             </Link>
             <p className="text-xs text-gray-400">
-              {new Date(post.createdAt).toLocaleDateString()}
+              {getTimeAgo(new Date(post.createdAt))}
             </p>
           </div>
         </div>
-        <div className="px-3 py-1 rounded-full bg-blue-100 text-blue-700 font-semibold text-sm">
-          {post.rating}/10
-        </div>
       </div>
-      <p className="text-gray-700 leading-relaxed">{post.postContent}</p>
+      <span className="text-gray-700">Rating: {post.rating}/10</span>
+      <p className="text-gray-800 leading-relaxed">{post.postContent}</p>
     </>
   );
 };

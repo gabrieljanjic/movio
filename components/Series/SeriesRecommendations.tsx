@@ -14,7 +14,7 @@ const SeriesRecommendations = ({
         {dataRecommendations.results.slice(0, 10).map((series: any) => {
           return (
             <div
-              className="max-w-[170] custom-box-shadow my-2 mx-2 rounded"
+              className="max-w-[170] border border-gray-200 bg-gray-50 my-2 mx-2 rounded"
               key={series.id}
             >
               <div className="relative min-w-[178px] " key={series.id}>
@@ -31,7 +31,7 @@ const SeriesRecommendations = ({
                 />
                 <div
                   className={`absolute left-2 -bottom-5  w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm bg-neutral-700 ${getColorByPercentage(
-                    series.vote_average * 10
+                    series.vote_average * 10,
                   )}`}
                 >
                   <p className="text-[12px]">
@@ -41,7 +41,9 @@ const SeriesRecommendations = ({
                 </div>
               </div>
               <Link href={`/series/${series.id}`}>
-                <p className="ml-2 mt-6 hover:underline mb-2">{series.name}</p>
+                <p className="text-gray-800 ml-2 mt-6 hover:text-blue-500 transition duration-300 mb-2">
+                  {series.name}
+                </p>
               </Link>
             </div>
           );

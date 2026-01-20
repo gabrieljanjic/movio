@@ -9,18 +9,18 @@ const SingleSeasonView = async ({
   params: { id: string; seasonNumber: string };
 }) => {
   const data = await getExactSeason(params.id, params.seasonNumber);
-  return (
-    <div className="p-6 bg-white custom-card-box-shadow flex flex-col gap-4 overflow-hidden">
-      <h1 className="text-2xl font-semibold">{data.name}</h1>
-      <hr className="border-1 my-1  border-gray-300"></hr>
 
-      {data.episodes.reverse().map((episode: any) => {
-        return (
-          <div
-            className="flex gap-2 custom-card-box-shadow rounded overflow-hidden"
+  return (
+    <div className="p-6 bg-white rounded-lg shadow-lg">
+      <h1 className="text-2xl font-bold text-gray-900 mb-4">{data.name}</h1>
+      <hr className="border-gray-300 mb-6" />
+      <div className="space-y-4 ">
+        {data.episodes.reverse().map((episode: any) => (
+          <article
+            className="flex gap-4 rounded-lg overflow-hidden border border-gray-200 bg-gray-50"
             key={episode.id}
           >
-            <div className="relative w-[267px] h-[150px] flex-shrink-0">
+            <div className="relative w-full md:w-[300px] h-[200px] md:h-[169px] flex-shrink-0">
               <Image
                 src={
                   episode.still_path
@@ -29,31 +29,49 @@ const SingleSeasonView = async ({
                 }
                 alt={episode.name}
                 fill
-                sizes="267px"
+                sizes="(max-width: 768px) 100vw, 300px"
+                className="object-cover"
               />
             </div>
-            <div className="p-1">
-              <div className="flex gap-1">
-                <h3 className="text-xl">{episode.episode_number}</h3>
-                <p>-</p>
-                <h3 className="text-xl">{episode.name}</h3>
+            <div className="flex-1 p-2">
+              <div className="flex items-baseline gap-2 mb-2">
+                <span className="text-xl font-semibold text-gray-900">
+                  {episode.episode_number}
+                </span>
+                <span className="text-gray-400">•</span>
+                <h2 className="text-xl font-semibold text-gray-900">
+                  {episode.name}
+                </h2>
               </div>
-              <div className="mb-2 px-2 text-white bg-slate-600 w-fit flex rounded">
-                <p className="text-[12px]">
-                  {formRating(episode.vote_average)}
-                  <span className="text-[11px]">%</span>
-                </p>
+              <div className="flex items-center gap-2 mb-3 flex-wrap">
+                <div className="bg-gray-700 px-2 py-1 flex text-white items-baseline rounded">
+                  <p className="text-[12px]">
+                    {formRating(episode.vote_average)}
+                  </p>
+                  <span className="text-[8px]">%</span>
+                </div>
+                {episode.air_date && (
+                  <>
+                    <span className="text-gray-400">•</span>
+                    <span className="text-sm text-gray-600">
+                      {formatYear(episode.air_date)}
+                    </span>
+                  </>
+                )}
+                {episode.runtime && (
+                  <>
+                    <span className="text-gray-400">•</span>
+                    <span className="text-sm text-gray-600">
+                      {episode.runtime} mins
+                    </span>
+                  </>
+                )}
               </div>
-              <div className="flex gap-2">
-                {episode.air_date && <p>{formatYear(episode.air_date)}</p>}
-                {episode.episode_number && <p>•</p>}
-                {episode.runtime && <p>{episode.runtime} mins</p>}
-              </div>
-              <SpoilerText text={episode.overview} />
+              {episode.overview && <SpoilerText text={episode.overview} />}
             </div>
-          </div>
-        );
-      })}
+          </article>
+        ))}
+      </div>
     </div>
   );
 };

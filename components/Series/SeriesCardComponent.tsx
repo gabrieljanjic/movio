@@ -11,9 +11,9 @@ export default function SeriesCardComponent({ data }: { data: any }) {
         {data.results.map((series: any) => (
           <div
             key={series.id}
-            className="w-48 rounded bg-white custom-box-shadow relative cursor-pointer transform transition hover:scale-102 custom-hover-box-shadow"
+            className="w-48 rounded bg-gray-50 border border-gray-300 relative cursor-pointer transform transition-all duration-300 hover:scale-102 overflow-hidden"
           >
-            <Link href={`/series/${series.id}`} className="w-44">
+            <Link href={`/series/${series.id}`} className="w-44 group">
               <div className="relative w-48 h-72">
                 <Image
                   src={
@@ -29,7 +29,9 @@ export default function SeriesCardComponent({ data }: { data: any }) {
                 <RatingBadge movie={series} />
               </div>
               <div className="pt-6 px-2 py-2">
-                <p className="font-bold">{series.name}</p>
+                <p className="font-bold group-hover:text-blue-500">
+                  {series.name}
+                </p>
                 <p className="text-xs">{formatDate(series.first_air_date)}</p>
               </div>
             </Link>

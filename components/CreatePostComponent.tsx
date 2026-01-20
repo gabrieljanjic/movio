@@ -7,9 +7,7 @@ import Link from "next/link";
 
 interface CreatePostComponentProps {
   contentId: string;
-  userId: string;
-  avatar: string;
-  userName: string;
+  user: any;
   title: string;
   contentType: "movie" | "tv";
   wholeContent: any;
@@ -17,9 +15,7 @@ interface CreatePostComponentProps {
 
 const CreatePostComponent = ({
   contentId,
-  userId,
-  avatar,
-  userName,
+  user,
   title,
   contentType,
   wholeContent,
@@ -48,7 +44,7 @@ const CreatePostComponent = ({
         contentType,
         postContent,
         rating,
-        createdBy: userId,
+        createdBy: user._id,
       });
       setPostContent("");
       setRating("");
@@ -61,24 +57,24 @@ const CreatePostComponent = ({
   return (
     <div className="p-6 bg-white border-y border-gray-200 rounded">
       <div className="flex items-center gap-3 mb-4">
-        {avatar ? (
+        {user.avatar ? (
           <Image
-            src={avatar}
-            alt={userName}
+            src={user.avatar}
+            alt={user.userName}
             width={50}
             height={50}
             className="rounded-full"
           />
         ) : (
           <div className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-lg">
-            {userName[0].toUpperCase()}
+            {user.userName[0].toUpperCase()}
           </div>
         )}
         <div>
-          <Link href={`/user/${userName}`} className="hover:underline">
-            <p className="font-semibold text-gray-800">{userName}</p>
+          <Link href={`/user/${user.userName}`} className="hover:underline">
+            <p className="font-semibold text-gray-800">{user.firstName}</p>
           </Link>
-          <p className="text-sm text-gray-500">{title}</p>
+          <p className="text-sm text-gray-500">{user.userName}</p>
         </div>
       </div>
       <div className="flex flex-col gap-3">

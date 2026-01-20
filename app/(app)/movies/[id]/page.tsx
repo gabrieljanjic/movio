@@ -37,9 +37,7 @@ const SingleMovieView = async ({ params }: { params: { id: string } }) => {
         <>
           <CreatePostComponent
             contentId={params.id}
-            userId={user._id}
-            avatar={user.avatar}
-            userName={user.userName}
+            user={user}
             title={data.title}
             wholeContent={data}
             contentType="movie"

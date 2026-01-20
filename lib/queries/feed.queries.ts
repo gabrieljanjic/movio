@@ -1,6 +1,7 @@
 import { connectDB } from "../db";
 import { Follow } from "../models/Follow";
 import { Post } from "../models/Post";
+import { Content } from "../models/Content";
 
 export const getAllFollows = async (userId: string) => {
   await connectDB();
@@ -13,7 +14,7 @@ export const getAllFollows = async (userId: string) => {
   const posts = await Post.find({
     createdBy: { $in: followingIds },
   })
-    .populate("createdBy", "firstName userName")
+    .populate("createdBy", "firstName userName avatar")
     .populate("tmdbRefId")
     .sort({ createdAt: -1 });
 

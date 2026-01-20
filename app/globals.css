@@ -1,7 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 .theme-color {
   background-color: #efefef;
 }
@@ -30,12 +36,11 @@
 .border-rating-20 {
   border: 2px solid #ff9900;
 }
-.border-rating-20 {
+.border-rating-10 {
   border: 2px solid #ff6600;
 }
-
 .border-rating-0 {
-  border: 2px solid #ff0000;
+  background-color: 2px solid #ff0000;
 }
 
 .custom-box-shadow {

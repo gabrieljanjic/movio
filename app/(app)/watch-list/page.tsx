@@ -10,13 +10,23 @@ const WatchList = async () => {
   const myUser = token ? await getUserFromToken(token) : null;
   if (!myUser) {
     return (
-      <GeneralCenterComponent text="You have to be logged in to see your watch list" />
+      <GeneralCenterComponent
+        text="You have to be logged in to see your watch list"
+        login={true}
+      />
     );
   }
   const allWatchlist = await getAllWatchlist(myUser._id);
-  console.log(allWatchlist);
+  if (allWatchlist.length < 1) {
+    return (
+      <GeneralCenterComponent
+        text="You do not have anything in your watch list"
+        login={true}
+      />
+    );
+  }
   return (
-    <section className="mt-10 space-y-6">
+    <section className="p-2 bg-white custom-box-shadow-sm rounded-lg mt-4">
       {allWatchlist.map((item: any) => {
         return <FavoritesWatchlistSoloComponent item={item} />;
       })}

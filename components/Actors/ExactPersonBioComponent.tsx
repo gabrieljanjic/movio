@@ -20,12 +20,26 @@ const ExactPersonBioComponent = ({ data }: { data: any }) => {
       <div>
         <h1 className="text-2xl font-semibold mb-1">{data.name}</h1>
         <div className="flex gap-2 mb-5">
-          {data.birthday && <p>{formatDate(data.birthday)}</p>}
-          {data.birthday && <p>•</p>}
-          {data.place_of_birth && <p>{data.place_of_birth}</p>}
+          {data.birthday && (
+            <p className="text-gray-600 text-sm">{formatDate(data.birthday)}</p>
+          )}
+          {data.birthday && <p className="text-gray-600 text-sm">•</p>}
+          {data.place_of_birth && (
+            <p className="text-gray-600 text-sm">{data.place_of_birth}</p>
+          )}
         </div>
-        <h2 className="text-xl font-semibold mb-1">Biography</h2>
-        <div>{data.biography ? <p>{data.biography}</p> : <p>-</p>}</div>
+        <h2 className="text-xl font-semibold mb-1 text-gray-800 mb-2">
+          Biography
+        </h2>
+        <div>
+          {data.biography ? (
+            <p className="text-gray-700 whitespace-pre-line">
+              {data.biography}
+            </p>
+          ) : (
+            <p>-</p>
+          )}
+        </div>
       </div>
     </div>
   );

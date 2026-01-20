@@ -20,7 +20,7 @@ const ListAllPostsComponent = async ({
 }) => {
   const posts = await getPostsByContentId(id, userId, slice);
   return (
-    <section className="bg-white flex flex-col gap-3 p-4">
+    <section className="bg-white flex flex-col gap-3 p-4 pb-8">
       {posts.length ? (
         posts.map((post: any) => (
           <div
@@ -49,7 +49,7 @@ const ListAllPostsComponent = async ({
           No posts yet. Be the first one
         </p>
       )}
-      {posts.length < 4 && posts.length > 0 && slice && (
+      {posts.length > 2 && slice && (
         <div className="flex justify-center w-full">
           <Link
             href={`/${type}/${id}/all-posts`}

@@ -39,9 +39,7 @@ const SingleSeriesView = async ({ params }: { params: { id: string } }) => {
         <>
           <CreatePostComponent
             contentId={params.id}
-            userId={user._id}
-            userName={user.userName}
-            avatar={user.avatar}
+            user={user}
             title={data.name}
             wholeContent={data}
             contentType="tv"

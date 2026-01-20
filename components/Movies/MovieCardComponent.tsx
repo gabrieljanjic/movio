@@ -11,9 +11,9 @@ export default function MovieCardComponent({ data }: { data: any }) {
           return (
             <div
               key={movie.id}
-              className="w-48 rounded bg-white custom-box-shadow relative cursor-pointer transform transition hover:scale-102 custom-hover-box-shadow"
+              className="w-48 rounded bg-gray-50 border border-gray-300 relative cursor-pointer transform transition-all duration-300 hover:scale-102 overflow-hidden"
             >
-              <Link href={`/movies/${movie.id}`}>
+              <Link href={`/movies/${movie.id}`} className="group">
                 <div className="relative w-48 h-72">
                   <Image
                     src={
@@ -29,7 +29,9 @@ export default function MovieCardComponent({ data }: { data: any }) {
                   <RatingBadge movie={movie} />
                 </div>
                 <div className="pt-6 px-2 py-2">
-                  <p className="font-bold">{movie.title}</p>
+                  <p className="font-bold group-hover:text-blue-500">
+                    {movie.title}
+                  </p>
                   <p className="text-xs">{formatDate(movie.release_date)}</p>
                 </div>
               </Link>

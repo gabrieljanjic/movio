@@ -10,7 +10,10 @@ const WatchList = async () => {
   const myUser = token ? await getUserFromToken(token) : null;
   if (!myUser) {
     return (
-      <GeneralCenterComponent text="You have to be logged in to see your watch list" />
+      <GeneralCenterComponent
+        text="You have to be logged in to see your favorites"
+        login={true}
+      />
     );
   }
   const allFavorites = await getAllFavorites(myUser._id);

@@ -18,11 +18,15 @@ const ExactPost = async ({ params }: { params: { id: string } }) => {
   const cookieStore = cookies();
   const token = cookieStore.get("token")?.value;
   if (!token) {
-    return <GeneralCenterComponent text={"You have to logged in "} />;
+    return (
+      <GeneralCenterComponent text={"You have to logged in "} login={true} />
+    );
   }
   const user = await getUserFromToken(token);
   if (!user) {
-    return <GeneralCenterComponent text={"You have to logged in "} />;
+    return (
+      <GeneralCenterComponent text={"You have to logged in "} login={true} />
+    );
   }
 
   const post = await getExactPostByContentId(postId, user._id);

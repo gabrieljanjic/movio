@@ -6,19 +6,19 @@ const ExactPersonAllCreditsComponent = ({ data }: { data: any }) => {
   return (
     <div className="flex gap-10 mb-6 mt-4">
       <div className="w-1/2">
-        <h1 className="text-2xl font-semibold mb-3">Cast</h1>
-        <div className="w-full custom-box-shadow-md rounded-lg">
+        <h1 className="text-2xl font-semibold mb-3 ml-2">Cast</h1>
+        <div className="w-full rounded-lg flex flex-col gap-1">
           {data.cast.map((cast: any) => (
             <div
               key={cast.id}
-              className="border-b-[1px] border-slate-400 last:border-b-0 px-2 py-1"
+              className="px-2 py-1 bg-gray-50 border border-gray-200 rounded-lg"
             >
-              <div className="px-2 py-1 flex gap-2">
-                <p className="font-bold">-</p>
+              <div className="px-3 py-2 flex gap-2">
+                <span className="text-gray-400 font-bold">•</span>
                 <div>
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 items-center">
                     <Link
-                      className="hover:underline"
+                      className="text-gray-900 hover:text-blue-600 transition-all"
                       href={
                         cast.name ? `/series/${cast.id}` : `/movies/${cast.id}`
                       }
@@ -27,21 +27,27 @@ const ExactPersonAllCreditsComponent = ({ data }: { data: any }) => {
                         {cast.title || cast.name}
                       </h3>
                     </Link>
-                    <p>•</p>
+                    <span className="text-gray-400">•</span>
                     {cast.first_air_date && (
-                      <p>{formatYear(cast.first_air_date)}</p>
+                      <span className="text-sm text-gray-600">
+                        {formatYear(cast.first_air_date)}
+                      </span>
                     )}
                     {cast.release_date && (
-                      <p>{formatYear(cast.release_date)}</p>
+                      <span className="text-sm text-gray-600">
+                        {formatYear(cast.release_date)}
+                      </span>
                     )}
                   </div>
                   <div>
-                    <p>as {cast.character}</p>
+                    <p className="text-sm text-gray-600">as {cast.character}</p>
                   </div>
-                  <div className="flex gap-2">
-                    {cast.episode_count && <p>•</p>}
+                  <div className="flex gap-2 items-center">
                     {cast.episode_count && (
-                      <p>
+                      <p className="text-sm text-gray-600">•</p>
+                    )}
+                    {cast.episode_count && (
+                      <p className="text-sm text-gray-600">
                         {cast.episode_count}{" "}
                         {cast.episode_count === 1 ? "episode" : "episodes"}
                       </p>
@@ -54,28 +60,39 @@ const ExactPersonAllCreditsComponent = ({ data }: { data: any }) => {
         </div>
       </div>
       {data.crew.length > 0 && (
-        <div className=" w-1/2">
-          <h1 className="text-2xl font-semibold mb-3">Crew</h1>
-          <div className="w-full custom-box-shadow-md rounded-lg">
+        <div className="w-1/2">
+          <h1 className="text-2xl font-semibold mb-3 ml-2">Crew</h1>
+          <div className="w-full rounded-lg flex flex-col gap-1">
             {data.crew.map((crew: any) => (
               <div
                 key={crew.id}
-                className="border-b-[1px] border-gray-600 last:border-b-0"
+                className="px-2 py-1 bg-gray-50 border border-gray-200 rounded-lg"
               >
-                <div className="flex gap-2 px-2 py-1">
-                  <p className="font-bold">-</p>
+                <div className="px-3 py-2 flex gap-2">
+                  <span className="text-gray-400 font-bold">•</span>
                   <div>
-                    <Link href={`/person/${crew.id}`}>
-                      <h3 className=" font-semibold">
-                        {crew.title || crew.name}
-                      </h3>
-                    </Link>
-                    <div className="flex gap-2">
-                      {crew.release_date && (
-                        <p>{formatYear(crew.release_date)}</p>
+                    <div className="flex flex-col ">
+                      <div className="flex gap-2 items-center">
+                        <Link
+                          href={`/person/${crew.id}`}
+                          className=" text-gray-900 hover:text-blue-600 transition-all"
+                        >
+                          <h3 className="font-semibold">
+                            {crew.title || crew.name}
+                          </h3>
+                        </Link>
+                        {crew.release_date && (
+                          <p className="text-sm text-gray-600">•</p>
+                        )}
+                        {crew.release_date && (
+                          <p className="text-sm text-gray-600">
+                            {formatYear(crew.release_date)}
+                          </p>
+                        )}
+                      </div>
+                      {crew.job && (
+                        <p className="text-sm text-gray-600">{crew.job}</p>
                       )}
-                      {crew.release_date && crew.job && <p>•</p>}
-                      {crew.job && <p>{crew.job}</p>}
                     </div>
                   </div>
                 </div>

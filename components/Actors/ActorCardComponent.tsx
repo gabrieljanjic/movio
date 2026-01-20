@@ -7,8 +7,8 @@ const ActorCardComponent = async ({ data }: { data: any }) => {
       <div className="grid justify-center gap-x-4 gap-y-6 px-6 mt-2 [grid-template-columns:repeat(auto-fill,minmax(200px,200px))]">
         {data.results.map((person: any) => {
           return (
-            <div className="custom-box-shadow max-w-48 rounded overflow-x-hidden h-full cursor-pointer transform transition hover:scale-102 custom-hover-box-shadow">
-              <Link href={`/person/${person.id}`}>
+            <div className="bg-gray-50 border border-gray-200 max-w-48 rounded-lg overflow-x-hidden h-full cursor-pointer transform transition duration-300 hover:scale-102 ">
+              <Link href={`/person/${person.id}`} className="group">
                 <div className="w-48 h-72 relative">
                   <Image
                     src={
@@ -23,7 +23,7 @@ const ActorCardComponent = async ({ data }: { data: any }) => {
                   />
                 </div>
                 <div className="bg-white">
-                  <p className="p-2 pb-4 font-semibold hover:underline">
+                  <p className="p-2 pb-4 font-semibold group-hover:text-blue-500">
                     {person.name}
                   </p>
                 </div>
