@@ -24,7 +24,7 @@ const SearchCategories = async ({
   const totalResultsPeople = dataPeople.total_results;
   return (
     <div className="w-1/5">
-      <div className="bg-blue-900 rounded-tl rounder-tr p-3">
+      <div className="bg-blue-900 rounded-tl rounded-tr p-3">
         <h3 className="text-xl font-semibold text-white">Search Results</h3>
       </div>
       <ul className=" h-fit bg-white rounded-bl rounder-br">
@@ -75,7 +75,7 @@ const SearchCategories = async ({
             className={type === "person" ? "font-semibold  " : ""}
           >
             <div className="flex justify-between items-center">
-              <p> People</p>
+              <p>People</p>
               <div className="px-2 py-1 bg-slate-100 w-fit flex rounded-xl">
                 <span className="text-[12px]">{totalResultsPeople}</span>
               </div>

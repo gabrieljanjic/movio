@@ -14,8 +14,16 @@ import { getAllWatchlist } from "@/lib/queries/favorite.queries";
 import FollowComponent from "@/components/FollowComponent";
 import { checkFollow } from "@/lib/actions/userActions";
 import UnFollowComponent from "@/components/UnfollowComponent";
+import PaginationQuery from "@/components/PaginationQuery";
 
-const UserProfile = async ({ params }: { params: { username: string } }) => {
+const UserProfile = async ({
+  params,
+  searchParams,
+}: {
+  params: { username: string };
+  searchParams: { page: string };
+}) => {
+  const page = Number(searchParams.page) || 1;
   const cookieStore = cookies();
   const token = cookieStore.get("token")?.value;
   const myUser = token ? await getUserFromToken(token) : null;
@@ -26,7 +34,7 @@ const UserProfile = async ({ params }: { params: { username: string } }) => {
     myUser?._id.toString() || "",
   );
 
-  const allPosts = await getAllPostsById(user._id);
+  const allPosts = await getAllPostsById(user._id, page);
   /*const allFavorites = await getAllFavorites(user._id);
   const allWatchlist = await getAllWatchlist(user._id);*/
 
@@ -94,9 +102,9 @@ const UserProfile = async ({ params }: { params: { username: string } }) => {
           )}
         </div>
       </div>
-      {allPosts.length > 0 ? (
+      {allPosts.posts.length > 0 ? (
         <div>
-          {allPosts.map((post: any) => (
+          {allPosts.posts.map((post: any) => (
             <div
               key={post._id}
               className="bg-white rounded-lg p-4 px-3 custom-box-shadow-sm mb-4"
@@ -118,6 +126,11 @@ const UserProfile = async ({ params }: { params: { username: string } }) => {
               </div>
             </div>
           ))}
+          <PaginationQuery
+            pageNum={page}
+            totalPages={allPosts.pagination.totalPages}
+            path1={`/user/${params.username}`}
+          />
         </div>
       ) : (
         <div className="mt-12 w-full">

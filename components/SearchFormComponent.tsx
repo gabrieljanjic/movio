@@ -9,7 +9,7 @@ const SearchFormComponent = ({
   type?: string;
 }) => {
   return (
-    <div className="w-full flex flex-col">
+    <div className="px-6 mt-4 w-full md:p-0 md:m-0">
       <form
         className="flex flex-1 w-full md:w-auto"
         action={`/${type}`}

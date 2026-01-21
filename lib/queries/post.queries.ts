@@ -123,12 +123,20 @@ export async function getAllCommentsByContentId(postId: string) {
   }));
 }
 
-export async function getAllPostsById(userId: string) {
+export async function getAllPostsById(userId: string, page: number) {
+  const limit = 10;
+  const skip = (page - 1) * limit;
   await connectDB();
-  const posts = await Post.find({ createdBy: userId }).populate(
-    "createdBy",
-    "-password",
-  );
+
+  const total = await Post.countDocuments({
+    createdBy: userId,
+  });
+  const totalPages = Math.ceil(total / limit);
+  const posts = await Post.find({ createdBy: userId })
+    .populate("createdBy", "-password")
+    .sort({ createdAt: -1 })
+    .skip(skip)
+    .limit(limit);
 
   const postIds = posts.map((p: any) => p._id);
   const allLikes = await Like.find({
@@ -154,7 +162,7 @@ export async function getAllPostsById(userId: string) {
     commentsCountMap.set(postIdStr, (commentsCountMap.get(postIdStr) || 0) + 1);
   });
 
-  return posts.map((post: any) => {
+  const postsData = posts.map((post: any) => {
     const postIdStr = post._id.toString();
     return {
       _id: postIdStr,
@@ -170,6 +178,12 @@ export async function getAllPostsById(userId: string) {
       commentsCount: commentsCountMap.get(postIdStr) || 0,
     };
   });
+  return {
+    posts: postsData,
+    pagination: {
+      totalPages,
+    },
+  };
 }
 /*const allLikes = await Like.find({
     postId,

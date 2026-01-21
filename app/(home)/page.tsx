@@ -7,6 +7,7 @@ import getSeries from "@/lib/api/external/series/getSeries";
 import Image from "next/image";
 import Link from "next/link";
 import MovieCarouselComponent from "@/components/MovieCarouselComponent";
+import { getColorByPercentage } from "@/lib/utils";
 
 const Home = async () => {
   const moviesOfTheWeek = await getAllOfTheWeek();
@@ -46,9 +47,16 @@ const Home = async () => {
               More Info
             </Link>
             <div className="flex items-center gap-2 text-white">
-              <span className="font-bold">
-                {heroMovie.vote_average.toFixed(1)}
-              </span>
+              <div
+                className={`w-9 h-9 rounded-full bg-neutral-700 flex items-center justify-center text-white font-bold text-sm border-2 ${getColorByPercentage(
+                  heroMovie.vote_average.toFixed(1) * 10,
+                )}`}
+              >
+                <p className="text-[12px]">
+                  {heroMovie.vote_average.toFixed(1) * 10}
+                </p>
+                <span className="text-[7px]">%</span>
+              </div>
             </div>
           </div>
         </div>

@@ -26,7 +26,7 @@ const SingleSeriesView = async ({ params }: { params: { id: string } }) => {
 
   const slice = true;
   return (
-    <section className="mt-6">
+    <section className="mt-6 px-2 sm:px-4 md:px-6">
       <SeriesSingleComponent
         data={data}
         isInFavorites={isInFavorites}

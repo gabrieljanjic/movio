@@ -5,16 +5,23 @@ import RatingBadge from "@/components/RatingBadge";
 
 export default function MovieCardComponent({ data }: { data: any }) {
   return (
-    <section>
-      <div className="grid gap-y-6 gap-x-2 mb-8 justify-center [grid-template-columns:repeat(auto-fill,minmax(200px,200px))]">
+    <section className="px-3 sm:px-4">
+      <div
+        className="grid gap-4 sm:gap-5 lg:gap-6 mb-8 
+                      grid-cols-2 
+                      sm:grid-cols-3 
+                      md:grid-cols-4 
+                      lg:grid-cols-5 
+                      xl:grid-cols-6"
+      >
         {data.results.map((movie: any) => {
           return (
             <div
               key={movie.id}
-              className="w-48 rounded bg-gray-50 border border-gray-300 relative cursor-pointer transform transition-all duration-300 hover:scale-102 overflow-hidden"
+              className="w-full rounded bg-gray-50 border border-gray-300 relative cursor-pointer transform transition-all duration-300 hover:scale-105 overflow-hidden shadow-sm hover:shadow-md"
             >
               <Link href={`/movies/${movie.id}`} className="group">
-                <div className="relative w-48 h-72">
+                <div className="relative w-full aspect-[2/3]">
                   <Image
                     src={
                       movie.poster_path
@@ -23,16 +30,18 @@ export default function MovieCardComponent({ data }: { data: any }) {
                     }
                     alt={movie.title}
                     fill
-                    sizes="200px"
+                    sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, (max-width: 1280px) 20vw, 200px"
                     className="object-cover rounded-t"
                   />
                   <RatingBadge movie={movie} />
                 </div>
-                <div className="pt-6 px-2 py-2">
-                  <p className="font-bold group-hover:text-blue-500">
+                <div className="mt-3 md:mt-2 p-2 sm:p-3">
+                  <p className="font-bold text-sm sm:text-base line-clamp-2 group-hover:text-blue-500">
                     {movie.title}
                   </p>
-                  <p className="text-xs">{formatDate(movie.release_date)}</p>
+                  <p className="text-xs text-gray-600 mt-1">
+                    {formatDate(movie.release_date)}
+                  </p>
                 </div>
               </Link>
             </div>

@@ -20,7 +20,7 @@ const PopularSeriesOtherPages = async ({
   return (
     <section className="custom-card-box-shadow">
       <SubNavbar subNavBarItem={subNavBarItem} nowLink={nowLink} />
-      <div className="pt-6 bg-white">
+      <div className="pt-6 bg-white px-2 sm:px-4 md:px-6">
         <SeriesCardComponent data={data} />
         <Pagination pageNum={pageNum} totalPages={totalPages} path1={nowLink} />
       </div>

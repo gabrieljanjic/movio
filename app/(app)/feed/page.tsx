@@ -3,8 +3,10 @@ import { getUserFromToken } from "@/lib/auth";
 import GeneralCenterComponent from "@/components/GeneralCenterComponent";
 import { getAllFollows } from "@/lib/queries/feed.queries";
 import FeedPostComponent from "@/components/FeedPostComponent";
+import PaginationQuery from "@/components/PaginationQuery";
 
-const Feed = async () => {
+const Feed = async ({ searchParams }: { searchParams: { page?: string } }) => {
+  const page = Number(searchParams.page) || 1;
   const cookieStore = cookies();
   const token = cookieStore.get("token")?.value;
   const user = token ? await getUserFromToken(token) : null;
@@ -16,13 +18,18 @@ const Feed = async () => {
       />
     );
   }
-
-  const feedPosts = await getAllFollows(user._id);
+  const feedPosts = await getAllFollows(user._id, page);
+  console.log(feedPosts);
   return (
     <section className="mt-6 px-4">
-      {feedPosts.map((item) => {
+      {feedPosts.posts.map((item) => {
         return <FeedPostComponent post={item} />;
       })}
+      <PaginationQuery
+        pageNum={page}
+        totalPages={feedPosts.pagination.totalPages}
+        path1={"/feed"}
+      />
     </section>
   );
 };

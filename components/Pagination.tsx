@@ -22,7 +22,7 @@ const Pagination = ({
       {pageNum > 1 && (
         <Link
           href={pageNum === 2 ? `${path1}` : `${path1}/${pageNum - 1}`}
-          className="px-3 py-1 bg-gray-200 rounded"
+          className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition"
         >
           <div className="flex gap-1 items-center">
             <IoArrowBack />
@@ -34,8 +34,10 @@ const Pagination = ({
         <Link
           key={num}
           href={num === 1 ? `${path1}` : `${path1}/${num}`}
-          className={`px-3 py-1 rounded ${
-            num === pageNum ? "bg-blue-500 text-white" : "bg-gray-200"
+          className={`px-3 py-1 rounded transition ${
+            num === pageNum
+              ? "bg-blue-900 text-white"
+              : "bg-gray-200 hover:bg-gray-300"
           }`}
         >
           {num}
@@ -44,7 +46,7 @@ const Pagination = ({
       {pageNum < totalPages && (
         <Link
           href={`${path1}/${pageNum + 1}`}
-          className="px-3 py-1 bg-gray-200 rounded"
+          className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition"
         >
           <div className="flex gap-1 items-center">
             Next

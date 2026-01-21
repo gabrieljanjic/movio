@@ -2,15 +2,13 @@
 
 import { signoutUser } from "@/lib/actions/userActions";
 import Link from "next/link";
-import { FiEye } from "react-icons/fi";
 import { useState } from "react";
+import { FiEye } from "react-icons/fi";
 import { IoIosLogOut } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
 import { FaRegHeart } from "react-icons/fa";
 import { IoChatboxOutline } from "react-icons/io5";
 import { BiLogIn } from "react-icons/bi";
-import { getUserFromToken } from "@/lib/auth";
-import { cookies } from "next/headers";
 
 const NavbarProfileDropdown = ({
   user,

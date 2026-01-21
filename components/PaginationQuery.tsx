@@ -10,10 +10,9 @@ const PaginationQuery = ({
   pageNum: number;
   totalPages: number;
   path1: string;
-  query: string;
+  query?: string;
 }) => {
   const pageNumbers: number[] = [];
-
   for (let i = pageNum - 2; i <= pageNum + 2; i++) {
     if (i > 0 && i <= totalPages) {
       pageNumbers.push(i);
@@ -23,8 +22,12 @@ const PaginationQuery = ({
     <div className="flex gap-4 justify-center items-center mt-6 pb-4">
       {pageNum > 1 && (
         <Link
-          href={`${path1}?page=${pageNum - 1}&query=${query}`}
-          className="px-3 py-1 bg-gray-200 rounded"
+          href={
+            query
+              ? `${path1}?page=${pageNum - 1}&query=${query}`
+              : `${path1}?page=${pageNum - 1}`
+          }
+          className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition"
         >
           <div className="flex gap-1 items-center">
             <IoArrowBack />
@@ -35,9 +38,15 @@ const PaginationQuery = ({
       {pageNumbers.map((num) => (
         <Link
           key={num}
-          href={`${path1}?page=${num}&query=${query}`}
-          className={`px-3 py-1 rounded ${
-            num === pageNum ? "bg-blue-500 text-white" : "bg-gray-200"
+          href={
+            query
+              ? `${path1}?page=${num}&query=${query}`
+              : `${path1}?page=${num}`
+          }
+          className={`px-3 py-1 rounded transition ${
+            num === pageNum
+              ? "bg-blue-900 text-white"
+              : "bg-gray-200 hover:bg-gray-300"
           }`}
         >
           {num}
@@ -45,8 +54,12 @@ const PaginationQuery = ({
       ))}
       {pageNum < totalPages && (
         <Link
-          href={`${path1}?page=${pageNum + 1}&query=${query}`}
-          className="px-3 py-1 bg-gray-200 rounded"
+          href={
+            query
+              ? `${path1}?page=${pageNum + 1}&query=${query}`
+              : `${path1}?page=${pageNum + 1}`
+          }
+          className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition"
         >
           <div className="flex gap-1 items-center">
             Next
