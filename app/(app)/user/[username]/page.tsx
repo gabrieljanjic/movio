@@ -8,9 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getAllPostsById } from "@/lib/queries/post.queries";
 import { getPersonProfile } from "@/lib/queries/user.queries";
-import { getAllFavorites } from "@/lib/queries/watchlist.queries";
 import { getUserFromToken } from "@/lib/auth";
-import { getAllWatchlist } from "@/lib/queries/favorite.queries";
 import FollowComponent from "@/components/FollowComponent";
 import { checkFollow } from "@/lib/actions/userActions";
 import UnFollowComponent from "@/components/UnfollowComponent";
@@ -35,8 +33,6 @@ const UserProfile = async ({
   );
 
   const allPosts = await getAllPostsById(user._id, page);
-  /*const allFavorites = await getAllFavorites(user._id);
-  const allWatchlist = await getAllWatchlist(user._id);*/
 
   const isOwnProfile = myUser
     ? user._id.toString() === myUser._id.toString()
