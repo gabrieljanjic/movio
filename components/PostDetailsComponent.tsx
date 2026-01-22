@@ -9,13 +9,14 @@ const PostDetailsComponent = ({ post }: { post: any }) => {
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-3">
           {post.createdBy.avatar ? (
-            <Image
-              src={post.createdBy.avatar}
-              alt={post.createdBy.userName}
-              width={50}
-              height={50}
-              className="rounded-full"
-            />
+            <div className="relative w-10 h-10 sm:w-12 md:h-12">
+              <Image
+                src={post.createdBy.avatar}
+                fill
+                alt={post.createdBy.userName}
+                className="rounded-full"
+              />
+            </div>
           ) : (
             <div className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-lg">
               {post.createdBy.userName[0].toUpperCase()}

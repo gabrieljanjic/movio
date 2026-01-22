@@ -11,6 +11,9 @@ const config: Config = {
       scale: {
         102: "1.02",
       },
+      screens: {
+        xs: "480px",
+      },
     },
   },
   plugins: [],

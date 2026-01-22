@@ -22,7 +22,7 @@ const SingleMovieView = async ({ params }: { params: { id: string } }) => {
 
   const slice = true;
   return (
-    <section className="mt-6 px-3">
+    <section className="mt-4 md:mt-6 px-4 md:px-6">
       <MoviesSingleComponent
         data={data}
         isInFavorites={isInFavorites}

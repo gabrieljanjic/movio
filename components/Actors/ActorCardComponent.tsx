@@ -4,12 +4,21 @@ import Link from "next/link";
 const ActorCardComponent = async ({ data }: { data: any }) => {
   return (
     <section>
-      <div className="grid justify-center gap-x-4 gap-y-6 px-6 mt-2 [grid-template-columns:repeat(auto-fill,minmax(200px,200px))]">
+      <div
+        className="grid justify-center place-items-center gap-6
+    [grid-template-columns:repeat(auto-fit,8rem)]
+    sm:[grid-template-columns:repeat(auto-fit,10rem)]
+    md:[grid-template-columns:repeat(auto-fit,12rem)]
+  "
+      >
         {data.results.map((person: any) => {
           return (
-            <div className="bg-gray-50 border border-gray-200 max-w-48 rounded-lg overflow-x-hidden h-full cursor-pointer transform transition duration-300 hover:scale-102 ">
+            <div
+              key={person.id}
+              className="w-fit h-full rounded bg-gray-50 border border-gray-300 relative cursor-pointer transform transition-all duration-300 hover:scale-102 sm:hover:scale-105 overflow-hidden shadow-sm hover:shadow-md"
+            >
               <Link href={`/person/${person.id}`} className="group">
-                <div className="w-48 h-72 relative">
+                <div className="relative w-32 h-48 sm:w-40 sm:h-60 md:w-48 md:h-72">
                   <Image
                     src={
                       person.profile_path
@@ -17,13 +26,12 @@ const ActorCardComponent = async ({ data }: { data: any }) => {
                         : "/images/portrait-placeholder.jpg"
                     }
                     fill
-                    sizes="200px"
                     alt={person.name}
                     className="object-cover"
                   />
                 </div>
-                <div className="bg-white">
-                  <p className="p-2 pb-4 font-semibold group-hover:text-blue-500">
+                <div className=" p-2 sm:p-3">
+                  <p className="font-semibold text-xs sm:text-sm md:text-base group-hover:text-blue-500">
                     {person.name}
                   </p>
                 </div>

@@ -1,10 +1,10 @@
 import { connectDB } from "../db";
-import { Watchlist } from "../models/Watchlist";
+import { Favorite } from "../models/Favorite";
 
-export const getAllWatchlist = async (userId: string) => {
+export const getAllFavorites = async (userId: string) => {
   await connectDB();
-  const allWatchlist = await Watchlist.find({
+  const allFavorites = await Favorite.find({
     userId,
   }).populate("contentId");
-  return allWatchlist;
+  return allFavorites;
 };

@@ -1,8 +1,8 @@
 import { cookies } from "next/headers";
 import { getUserFromToken } from "@/lib/auth";
-import { getAllWatchlist } from "@/lib/queries/favorite.queries";
 import GeneralCenterComponent from "@/components/GeneralCenterComponent";
 import FavoritesWatchlistSoloComponent from "@/components/FavoritesWatchlistSoloComponent";
+import { getAllWatchlist } from "@/lib/queries/watchlist.queries";
 
 const WatchList = async () => {
   const cookieStore = cookies();
@@ -21,12 +21,12 @@ const WatchList = async () => {
     return (
       <GeneralCenterComponent
         text="You do not have anything in your watch list"
-        login={true}
+        login={false}
       />
     );
   }
   return (
-    <section className="p-2 bg-white custom-box-shadow-sm rounded-lg mt-4">
+    <section className="p-2 bg-white custom-box-shadow-sm rounded-lg mt-4 mx-4">
       {allWatchlist.map((item: any) => {
         return <FavoritesWatchlistSoloComponent item={item} />;
       })}

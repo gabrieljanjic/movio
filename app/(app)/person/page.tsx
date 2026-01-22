@@ -17,7 +17,7 @@ const FamousPersonSearch = async ({ searchParams }: SearchProps) => {
         type={"person"}
         pageNum={pageNum}
       />
-      <div className="w-4/5">
+      <div className="px-4">
         <ActorCardComponent data={dataPeople} />
         <PaginationQuery
           pageNum={pageNum}

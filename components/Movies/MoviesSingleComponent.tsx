@@ -39,7 +39,7 @@ const MoviesSingleComponent = async ({
       className="flex flex-col md:flex-row gap-4 sm:gap-6 lg:gap-8 p-4 sm:p-6 lg:p-8 rounded-tl rounded-tr text-white"
       style={backgroundStyle}
     >
-      <div className="relative w-32 h-48 md:w-48 md:h-72 mx-auto md:mx-0">
+      <div className="relative w-40 h-60 sm:w-48 sm:h-72 mx-auto md:mx-0">
         {data.poster_path && (
           <Image
             src={posterUrl}

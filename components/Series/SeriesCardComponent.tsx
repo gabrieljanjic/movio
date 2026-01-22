@@ -1,4 +1,3 @@
-import getSeries from "@/lib/api/external/series/getSeries";
 import Image from "next/image";
 import Link from "next/link";
 import { formatDate } from "@/lib/utils";
@@ -8,20 +7,19 @@ export default function SeriesCardComponent({ data }: { data: any }) {
   return (
     <section className="px-3 sm:px-4">
       <div
-        className="grid gap-4 sm:gap-5 lg:gap-6 mb-8 
-                      grid-cols-2 
-                      sm:grid-cols-3 
-                      md:grid-cols-4 
-                      lg:grid-cols-5 
-                      xl:grid-cols-6"
+        className="grid justify-center place-items-center gap-6
+    [grid-template-columns:repeat(auto-fit,8rem)]
+    sm:[grid-template-columns:repeat(auto-fit,10rem)]
+    md:[grid-template-columns:repeat(auto-fit,12rem)]
+  "
       >
         {data.results.map((series: any) => (
           <div
             key={series.id}
-            className="w-full rounded bg-gray-50 border border-gray-300 relative cursor-pointer transform transition-all duration-300 hover:scale-105 overflow-hidden shadow-sm hover:shadow-md"
+            className="w-fit h-full rounded bg-gray-50 border border-gray-300 relative cursor-pointer transform transition-all duration-300 hover:scale-102 sm:hover:scale-105 overflow-hidden shadow-sm hover:shadow-md"
           >
             <Link href={`/series/${series.id}`} className="group">
-              <div className="relative w-full aspect-[2/3]">
+              <div className="relative w-32 h-48 sm:w-40 sm:h-60 md:w-48 md:h-72">
                 <Image
                   src={
                     series.poster_path
@@ -30,7 +28,6 @@ export default function SeriesCardComponent({ data }: { data: any }) {
                   }
                   alt={series.name}
                   fill
-                  sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, (max-width: 1280px) 20vw, 200px"
                   className="object-cover rounded-t"
                 />
                 <RatingBadge movie={series} />

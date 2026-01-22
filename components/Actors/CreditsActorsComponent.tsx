@@ -12,13 +12,15 @@ const CreditsActors = ({
   type: string;
 }) => {
   return (
-    <div className="flex flex-col p-6 bg-white">
-      <h1 className="text-2xl font-semibold mb-2">Top Billed Cast</h1>
-      <div className="flex gap-2 overflow-x-auto py-2">
+    <div className="flex flex-col p-4 sm:p-6 bg-white">
+      <h1 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">
+        Top Billed Cast
+      </h1>
+      <div className="flex gap-3 overflow-x-auto py-2 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
         {dataCredits.cast.slice(0, 10).map((actor: any) => (
           <div
             key={actor.id}
-            className="flex flex-col min-w-[120px] max-w-[120px] custom-box-shadow-sm ms-2 mb-1 rounded"
+            className="flex flex-col flex-shrink-0 w-[110px] sm:w-[120px] custom-box-shadow-sm rounded"
           >
             <Image
               src={
@@ -29,25 +31,26 @@ const CreditsActors = ({
               alt={actor.name}
               width={300}
               height={300}
-              className="rounded"
+              className="rounded-t w-full h-auto"
             />
             <div className="p-2">
               <Link href={`/person/${actor.id}`}>
-                <p className="text-gray-900 text-sm font-semibold hover:text-blue-600 transition-all duration-300">
+                <p className="text-gray-900 text-xs sm:text-sm font-semibold hover:text-blue-600 transition-all duration-300 line-clamp-2">
                   {actor.name}
                 </p>
               </Link>
-              <p className="text-sm text-gray-600">{actor.character}</p>
+              <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">
+                {actor.character}
+              </p>
             </div>
           </div>
         ))}
-        <div className="flex items-center justify-center ">
+        <div className="flex items-center justify-center flex-shrink-0">
           <Link
             href={`/${type}/${id}/credits`}
-            className="ml-2 flex gap-1 items-center px-2 py-1 text-gray-900 hover:text-blue-600 transition-all duration-300 text-nowrap"
+            className="flex gap-1 items-center px-3 py-2 text-sm sm:text-base text-gray-900 hover:text-blue-600 transition-all duration-300 whitespace-nowrap"
           >
-            View more{" "}
-            <IoIosArrowRoundForward className="ms-1 text-xl hover:underline" />
+            View more <IoIosArrowRoundForward className="text-xl sm:text-2xl" />
           </Link>
         </div>
       </div>

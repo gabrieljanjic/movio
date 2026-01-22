@@ -64,7 +64,7 @@ const MovieCarouselComponent = ({
               <Link
                 key={item.id}
                 href={`/${type === "mixed" ? (item.media_type === "movie" ? "movies" : "series") : type === "movie" ? "movies" : "series"}/${item.id}`}
-                className="group cursor-pointer transform hover:scale-105 transition-transform duration-200"
+                className="group cursor-pointer transform hover:scale-102 sm:hover:scale-105 transition-transform duration-200"
               >
                 <div className="rounded-lg bg-gray-100 border border-gray-300 h-full flex flex-col">
                   <div className="relative w-48 h-72 flex-shrink-0">

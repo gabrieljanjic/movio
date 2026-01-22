@@ -25,7 +25,7 @@ const NavbarResponsiveComponent = ({ user }: { user: any }) => {
         </div>
       )}
       <div
-        className={`${open ? "flex flex-col" : "hidden"} md:flex flex-row justify-between items-center gap-5 text-white max-w-6xl mx-auto`}
+        className={`${open ? "flex flex-col" : "hidden"} md:flex flex-row justify-between items-center gap-3 md:gap-5 text-white max-w-6xl mx-auto`}
       >
         <div className="hidden md:block">
           <Link href={"/"}>
@@ -33,7 +33,7 @@ const NavbarResponsiveComponent = ({ user }: { user: any }) => {
           </Link>
         </div>
         <SearchFormComponent type="movies" />
-        <ul className="flex flex-col md:flex-row justify-between gap-7">
+        <ul className="flex flex-col md:flex-row justify-between items-center gap-3 md:gap-7">
           {navLinks.map((link) => {
             return (
               <li key={link.id} className="cursor-pointer">

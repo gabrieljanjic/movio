@@ -7,30 +7,28 @@ export default function MovieCardComponent({ data }: { data: any }) {
   return (
     <section className="px-3 sm:px-4">
       <div
-        className="grid gap-4 sm:gap-5 lg:gap-6 mb-8 
-                      grid-cols-2 
-                      sm:grid-cols-3 
-                      md:grid-cols-4 
-                      lg:grid-cols-5 
-                      xl:grid-cols-6"
+        className="grid justify-center place-items-center gap-6
+    [grid-template-columns:repeat(auto-fit,8rem)]
+    sm:[grid-template-columns:repeat(auto-fit,10rem)]
+    md:[grid-template-columns:repeat(auto-fit,12rem)]
+  "
       >
         {data.results.map((movie: any) => {
           return (
             <div
               key={movie.id}
-              className="w-full rounded bg-gray-50 border border-gray-300 relative cursor-pointer transform transition-all duration-300 hover:scale-105 overflow-hidden shadow-sm hover:shadow-md"
+              className="w-fit h-full rounded bg-gray-50 border border-gray-300 relative cursor-pointer transform transition-all duration-300 hover:scale-102 sm:hover:scale-105 overflow-hidden shadow-sm hover:shadow-md"
             >
               <Link href={`/movies/${movie.id}`} className="group">
-                <div className="relative w-full aspect-[2/3]">
+                <div className="relative w-32 h-48 sm:w-40 sm:h-60 md:w-48 md:h-72">
                   <Image
                     src={
                       movie.poster_path
                         ? `${process.env.TMDB_POSTER_PATH}/w500${movie.poster_path}`
                         : "/images/no-image-placeholder.png"
                     }
-                    alt={movie.title}
                     fill
-                    sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, (max-width: 1280px) 20vw, 200px"
+                    alt={movie.title}
                     className="object-cover rounded-t"
                   />
                   <RatingBadge movie={movie} />

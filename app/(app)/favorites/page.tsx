@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import { getUserFromToken } from "@/lib/auth";
 import GeneralCenterComponent from "@/components/GeneralCenterComponent";
 import FavoritesWatchlistSoloComponent from "@/components/FavoritesWatchlistSoloComponent";
-import { getAllFavorites } from "@/lib/queries/watchlist.queries";
+import { getAllFavorites } from "@/lib/queries/favorite.queries";
 
 const WatchList = async () => {
   const cookieStore = cookies();
@@ -17,9 +17,17 @@ const WatchList = async () => {
     );
   }
   const allFavorites = await getAllFavorites(myUser._id);
-  console.log(allFavorites);
+
+  if (allFavorites.length < 1) {
+    return (
+      <GeneralCenterComponent
+        text="You do not have anything in your favorites"
+        login={false}
+      />
+    );
+  }
   return (
-    <section className="mt-10 space-y-6">
+    <section className="p-2 bg-white custom-box-shadow-sm rounded-lg mt-4">
       {allFavorites.map((item: any) => {
         return <FavoritesWatchlistSoloComponent item={item} />;
       })}

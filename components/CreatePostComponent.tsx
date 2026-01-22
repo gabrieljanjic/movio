@@ -58,13 +58,14 @@ const CreatePostComponent = ({
     <div className="p-6 bg-white border-y border-gray-200 rounded">
       <div className="flex items-center gap-3 mb-4">
         {user.avatar ? (
-          <Image
-            src={user.avatar}
-            alt={user.userName}
-            width={50}
-            height={50}
-            className="rounded-full"
-          />
+          <div className="relative w-10 h-10 sm:w-12 sm:h-12">
+            <Image
+              src={user.avatar}
+              alt={user.userName}
+              fill
+              className="rounded-full"
+            />
+          </div>
         ) : (
           <div className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-lg">
             {user.userName[0].toUpperCase()}
@@ -83,20 +84,20 @@ const CreatePostComponent = ({
           type="number"
           min={1}
           max={10}
-          className="w-32 border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-32 border text-sm sm:text-base border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
           placeholder="Rating (1-10)"
           value={rating}
           onChange={(e) => handleRatingChange(Number(e.target.value))}
         />
         <textarea
           rows={5}
-          className="w-full border border-gray-300 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-full border text-sm sm:text-base border-gray-300 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
           placeholder="Write your post..."
           value={postContent}
           onChange={(e) => setPostContent(e.target.value)}
         />
         <button
-          className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition"
+          className="bg-blue-500 text-white py-1 md:py-2 px-2 md:px-4 rounded-md hover:bg-blue-600 transition"
           onClick={handleCreatePost}
           disabled={loading}
         >

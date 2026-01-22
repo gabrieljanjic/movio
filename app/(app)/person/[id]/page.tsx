@@ -7,7 +7,7 @@ const ExactPerson = async ({ params }: { params: { id: string } }) => {
   const data = await getExactPersonBio(params.id);
   const dataKnownFor = await getExactPersonKnowFor(params.id);
   return (
-    <section className="mt-6 p-6 bg-white custom-card-box-shadow rounded-lg">
+    <section className="md:mt-6 md:p-6 bg-white custom-card-box-shadow rounded-lg">
       <ExactPersonBioComponent data={data} />
       <hr className="border-1 mt-8  border-gray-300"></hr>
       <ExactPersonKnownForComponent data={dataKnownFor} id={params.id} />

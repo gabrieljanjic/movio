@@ -20,15 +20,15 @@ const ListAllPostsComponent = async ({
 }) => {
   const posts = await getPostsByContentId(id, userId, slice);
   return (
-    <section className="bg-white flex flex-col gap-3 p-4 pb-8">
+    <section className="bg-white flex flex-col gap-3 p-4 pb-6 md:pb-8">
       {posts.length ? (
         posts.map((post: any) => (
           <div
             key={post._id}
-            className="bg-white rounded-lg p-4 px-3 custom-box-shadow-sm"
+            className="bg-white rounded-lg p-3 md:p-4 px-3 custom-box-shadow-sm"
           >
             <PostDetailsComponent post={post} />
-            <div className="flex items-center gap-1 mt-5">
+            <div className="flex items-center gap-1 mt-2 md:mt-5">
               <LikeComponent
                 postId={post._id}
                 userId={userId}

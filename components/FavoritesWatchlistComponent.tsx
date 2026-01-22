@@ -57,10 +57,6 @@ const FavoritesWatchListComponent = ({
   };
   return (
     <div className="flex gap-2 items-center">
-      <div className="relative inline-block group bg-black/40 rounded-full cursor-pointer hover:scale-110 transition">
-        <FaRegStickyNote className="text-white m-2" />
-        <Tooltip text="Share your thoughts" />
-      </div>
       {isInFavorites ? (
         <div
           className="relative inline-block group bg-black/40 rounded-full cursor-pointer hover:scale-110 transition"
