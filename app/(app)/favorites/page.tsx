@@ -28,9 +28,7 @@ const WatchList = async () => {
   }
   return (
     <section className="p-2 bg-white custom-box-shadow-sm rounded-lg mt-4">
-      {allFavorites.map((item: any) => {
-        return <FavoritesWatchlistSoloComponent item={item} />;
-      })}
+      <FavoritesWatchlistSoloComponent allData={allFavorites} />
     </section>
   );
 };
