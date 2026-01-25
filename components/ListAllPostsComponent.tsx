@@ -4,7 +4,7 @@ import { getPostsByContentId } from "@/lib/queries/post.queries";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { FaRegCommentDots } from "react-icons/fa";
 import PostDetailsComponent from "./PostDetailsComponent";
-import { ExtendedPost, Post } from "@/types/types";
+import { ExtendedPost } from "@/types/types";
 
 const ListAllPostsComponent = async ({
   id,

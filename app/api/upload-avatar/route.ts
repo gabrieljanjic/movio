@@ -20,7 +20,6 @@ type CloudinaryUploadResult = {
   url: string;
   secure_url: string;
   original_filename: string;
-  [key: string]: any;
 };
 
 export async function POST(request: NextRequest) {
@@ -81,7 +80,7 @@ export async function POST(request: NextRequest) {
       publicId: uploadResult.public_id,
       success: true,
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Upload failed" }, { status: 500 });
   }
 }

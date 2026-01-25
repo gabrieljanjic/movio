@@ -1,10 +1,9 @@
 import Image from "next/image";
-import { formatYear, formRating, getDominantColor } from "@/lib/utils";
+import { formatYear, formRating } from "@/lib/utils";
 import Link from "next/link";
 import { SeriesDetail } from "@/types/types";
 
 const AllSeasonsComponent = async ({ data }: { data: SeriesDetail }) => {
-  console.log("SSSS", data);
   return (
     <div className="flex flex-col gap-3 p-4 sm:p-6 bg-white border-y border-gray-200">
       {data.seasons !== undefined && (

@@ -366,6 +366,12 @@ export type SeriesCardProps = {
   total_pages: number;
   total_results: number;
 };
+export type MovieCardProps = {
+  page: number;
+  results: MovieDetail[];
+  total_pages: number;
+  total_results: number;
+};
 
 export type Creator = {
   id: number;

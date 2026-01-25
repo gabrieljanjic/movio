@@ -66,21 +66,16 @@ export const createPostActions = async (data: CreatePostInput) => {
 };
 
 export const likePostActions = async (postId: string, userId: string) => {
-  try {
-    await connectDB();
-    const existingLike = await Like.findOne({ postId, userId });
-    if (existingLike) {
-      await Like.deleteOne({ postId, userId });
-      revalidatePath(`/posts/${postId}`);
-      return { success: true, action: "unliked" };
-    } else {
-      await Like.create({ postId, userId });
-      revalidatePath(`/posts/${postId}`);
-      return { success: true, action: "liked" };
-    }
-  } catch (err: any) {
-    console.error("Like error:", err);
-    throw new Error(err.message || "Failed to like post");
+  await connectDB();
+  const existingLike = await Like.findOne({ postId, userId });
+  if (existingLike) {
+    await Like.deleteOne({ postId, userId });
+    revalidatePath(`/posts/${postId}`);
+    return { success: true, action: "unliked" };
+  } else {
+    await Like.create({ postId, userId });
+    revalidatePath(`/posts/${postId}`);
+    return { success: true, action: "liked" };
   }
 };
 

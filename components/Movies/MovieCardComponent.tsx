@@ -2,8 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { formatDate } from "@/lib/utils";
 import RatingBadge from "@/components/RatingBadge";
+import { MovieCardProps } from "@/types/types";
 
-export default function MovieCardComponent({ data }: { data: any }) {
+export default function MovieCardComponent({ data }: { data: MovieCardProps }) {
   return (
     <section className="px-3 sm:px-4">
       <div
@@ -13,7 +14,7 @@ export default function MovieCardComponent({ data }: { data: any }) {
     md:[grid-template-columns:repeat(auto-fit,12rem)]
   "
       >
-        {data.results.map((movie: any) => {
+        {data.results.map((movie) => {
           return (
             <div
               key={movie.id}
@@ -31,15 +32,17 @@ export default function MovieCardComponent({ data }: { data: any }) {
                     alt={movie.title}
                     className="object-cover rounded-t"
                   />
-                  <RatingBadge voteAverage={movie.vote_average} />
+                  <RatingBadge voteAverage={movie.vote_average || 0} />
                 </div>
                 <div className="mt-3 md:mt-2 p-2 sm:p-3">
                   <p className="font-bold text-sm sm:text-base line-clamp-2 group-hover:text-blue-500">
                     {movie.title}
                   </p>
-                  <p className="text-xs text-gray-600 mt-1">
-                    {formatDate(movie.release_date)}
-                  </p>
+                  {movie.release_date && (
+                    <p className="text-xs text-gray-600 mt-1">
+                      {formatDate(movie.release_date)}
+                    </p>
+                  )}
                 </div>
               </Link>
             </div>

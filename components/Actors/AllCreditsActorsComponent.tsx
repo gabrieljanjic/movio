@@ -1,10 +1,4 @@
-import { formatYear } from "@/lib/utils";
-import {
-  AllCredits,
-  CrewMember,
-  MovieDetail,
-  SeriesDetail,
-} from "@/types/types";
+import { AllCredits, MovieDetail, SeriesDetail } from "@/types/types";
 import Image from "next/image";
 import Link from "next/link";
 

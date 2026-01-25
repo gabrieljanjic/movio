@@ -68,7 +68,7 @@ const MovieCarouselComponent = ({
         </button>
         <div ref={scrollRef} className="overflow-x-auto scrollbar-hide px-10">
           <div className="flex gap-4 pb-4">
-            {items.slice(0, 20).map((item: any) => (
+            {items.slice(0, 20).map((item) => (
               <Link
                 key={item.id}
                 href={`/${type === "mixed" ? (item.media_type === "movie" ? "movies" : "series") : type === "movie" ? "movies" : "series"}/${item.id}`}
@@ -87,12 +87,12 @@ const MovieCarouselComponent = ({
                       className="absolute left-2 -bottom-5 w-9 h-9 rounded-full bg-neutral-700 flex items-center justify-center text-white font-bold text-sm border-2"
                       style={{
                         borderColor: getColorByPercentage2(
-                          item.vote_average.toFixed(1) * 10,
+                          Number(item.vote_average.toFixed(1)) * 10,
                         ),
                       }}
                     >
                       <p className="text-[12px]">
-                        {item.vote_average.toFixed(1) * 10}
+                        {Number(item.vote_average.toFixed(1)) * 10}
                       </p>
                       <span className="text-[7px]">%</span>
                     </div>

@@ -3,7 +3,6 @@ import { connectDB } from "../db";
 import { Like } from "../models/Like";
 import { Comment } from "../models/Comment";
 import "../models";
-import { AllPostsById } from "@/types/types";
 
 export async function getPostsByContentId(
   contentId: number,
