@@ -2,6 +2,7 @@ import CreatePostComponent from "@/components/CreatePostComponent";
 import ListAllPostsComponent from "@/components/ListAllPostsComponent";
 import getExactMovie from "@/lib/api/external/movies/getExactMovie";
 import { getUserFromToken } from "@/lib/auth";
+import { User } from "@/types/types";
 import { cookies } from "next/headers";
 
 const AllPosts = async ({ params }: { params: { id: string } }) => {
