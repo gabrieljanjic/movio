@@ -422,11 +422,9 @@ export type Navbar = {
   id: number;
   name: string;
   defaultPath: string;
-  list: [
-    {
-      id: number;
-      name: string;
-      href: string;
-    },
-  ];
+  list?: {
+    id: number;
+    name: string;
+    href: string;
+  }[];
 };
