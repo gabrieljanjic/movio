@@ -5,7 +5,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  console.log("APP LAYOUT SE RENDERA");
   return (
     <>
       <Navbar />

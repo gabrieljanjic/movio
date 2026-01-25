@@ -2,7 +2,7 @@
 import { revalidatePath } from "next/cache";
 import { connectDB } from "../db";
 import { User } from "../models/User";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
