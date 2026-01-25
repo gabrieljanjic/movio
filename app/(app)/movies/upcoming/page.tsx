@@ -8,7 +8,7 @@ const UpcomingFirstPage = async () => {
   const link = "upcoming";
   const nowLink = "/movies/upcoming";
   const name = "Movies";
-  const subNavBarItem = navLinks.find((item) => item.name === name);
+  const subNavBarItem = navLinks.find((item) => item.name === name)!;
   const pageNum = 1;
   const data = await getMovies(link, pageNum);
   const totalPages = data.total_pages;

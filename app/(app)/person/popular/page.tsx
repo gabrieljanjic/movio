@@ -8,7 +8,7 @@ import { PeopleResponse } from "@/types/types";
 const PopularPeopleFirstPage = async () => {
   const nowLink = "/person/popular";
   const name = "Person";
-  const subNavBarItem = navLinks.find((item) => item.name === name);
+  const subNavBarItem = navLinks.find((item) => item.name === name)!;
   const pageNum = 1;
   const data: PeopleResponse = await getPopularPeople(pageNum);
   const totalPages = data.total_pages;

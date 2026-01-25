@@ -8,7 +8,7 @@ const TopRatedOtherPages = async ({ params }: { params: { page: number } }) => {
   const link = "top_rated";
   const nowLink = "/movies/top-rated";
   const name = "Movies";
-  const subNavBarItem = navLinks.find((item) => item.name === name);
+  const subNavBarItem = navLinks.find((item) => item.name === name)!;
   const pageNum = Number(params.page);
   const data = await getMovies(link, pageNum);
   const totalPages = data.total_pages;

@@ -8,7 +8,7 @@ const PopularOtherPages = async ({ params }: { params: { page: string } }) => {
   const link = "popular";
   const nowLink = "/movies/popular";
   const name = "Movies";
-  const subNavBarItem = navLinks.find((item) => item.name === name);
+  const subNavBarItem = navLinks.find((item) => item.name === name)!;
   const pageNum = Number(params.page);
   const data = await getMovies(link, pageNum);
   const totalPages = data.total_pages;

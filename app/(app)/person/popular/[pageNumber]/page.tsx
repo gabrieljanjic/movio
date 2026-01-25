@@ -12,7 +12,7 @@ const PopularPeopleOtherPages = async ({
 }) => {
   const nowLink = "/person/popular";
   const name = "Person";
-  const subNavBarItem = navLinks.find((item) => item.name === name);
+  const subNavBarItem = navLinks.find((item) => item.name === name)!;
   const pageNum = Number(params.pageNumber);
   const data: PeopleResponse = await getPopularPeople(pageNum);
   const totalPages = data.total_pages;

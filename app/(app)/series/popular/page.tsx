@@ -8,7 +8,7 @@ const PopularSeriesFirstPage = async () => {
   const link = "popular";
   const nowLink = "/series/popular";
   const name = "Series";
-  const subNavBarItem = navLinks.find((item) => item.name === name);
+  const subNavBarItem = navLinks.find((item) => item.name === name)!;
   const pageNum = 1;
   const data = await getSeries(link, pageNum);
   const totalPages = data.total_pages;
