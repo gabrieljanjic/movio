@@ -9,7 +9,7 @@ import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { User } from "@/types/types";
 
-const NavbarResponsiveComponent = ({ user }: { user: User }) => {
+const NavbarResponsiveComponent = ({ user }: { user: User | null }) => {
   const [open, setOpen] = useState(false);
   return (
     <nav className="px-1 py-3 w-full bg-blue-900">

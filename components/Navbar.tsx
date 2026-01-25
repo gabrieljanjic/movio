@@ -7,9 +7,7 @@ const Navbar = async () => {
   const token = cookieStore.get("token")?.value;
 
   const user = token ? await getUserFromToken(token) : null;
-  if (user) {
-    return <NavbarResponsiveComponent user={user} />;
-  }
+  return <NavbarResponsiveComponent user={user} />;
 };
 
 export default Navbar;
