@@ -101,6 +101,8 @@ export async function getExactPostByContentId(postId: string, userId: string) {
     createdBy: {
       _id: post.createdBy._id.toString(),
       userName: post.createdBy.userName,
+      firstName: post.createdBy.firstName,
+      avatar: post.createdBy.avatar || "",
     },
     iLikedIt: !!didILikeIt,
     likesCount: likesCounter,

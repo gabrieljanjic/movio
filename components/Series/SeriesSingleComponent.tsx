@@ -1,4 +1,5 @@
 import { formRating, getColorByPercentage } from "@/lib/utils";
+
 import Image from "next/image";
 import { getDominantColor } from "@/lib/utils";
 import FavoritesWatchListComponent from "../FavoritesWatchlistComponent";

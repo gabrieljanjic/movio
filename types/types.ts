@@ -406,7 +406,7 @@ export type WholeContent = {
   id: number;
   title?: string;
   name?: string;
-  poster_path?: string;
+  poster_path?: string | null;
   release_date?: string;
   first_air_date?: string;
   overview?: string;
