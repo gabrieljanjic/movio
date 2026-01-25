@@ -1,11 +1,12 @@
 "use client";
 
 import { updateUserBio } from "@/lib/actions/userActions";
+import { User } from "@/types/types";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { MdOutlineEdit } from "react-icons/md";
 
-const UserProfileBio = ({ user }: { user: any }) => {
+const UserProfileBio = ({ user }: { user: User }) => {
   const router = useRouter();
 
   const [openFirstName, setOpenFirstName] = useState(false);
@@ -33,7 +34,7 @@ const UserProfileBio = ({ user }: { user: any }) => {
       router.push(`/user/${res.userName}`);
       router.refresh();
     } else {
-      setError(res.message);
+      setError(res.message || "");
     }
   };
   const resetEditOpen = () => {

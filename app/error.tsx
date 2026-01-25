@@ -1,6 +1,6 @@
 "use client";
 
-const Error = ({ error, reset }: { error: Error; reset: () => void }) => {
+const Error = ({ reset }: { reset: () => void }) => {
   return (
     <div className="w-full min-h-screen flex justify-center items-center px-4 py-16 bg-gray-50">
       <div className="text-center max-w-md space-y-5">

@@ -16,7 +16,6 @@ const AllPosts = async ({ params }: { params: { id: string } }) => {
         <CreatePostComponent
           contentId={params.id}
           user={user}
-          title={data.title}
           wholeContent={data}
           contentType="movie"
         />
@@ -25,7 +24,6 @@ const AllPosts = async ({ params }: { params: { id: string } }) => {
         <ListAllPostsComponent
           id={data.id}
           userId={user._id}
-          avatar={user.avatar}
           slice={slice}
           type={"movies"}
         />

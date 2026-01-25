@@ -1,9 +1,9 @@
-import { formRating, getColorByPercentage, getTimeAgo } from "@/lib/utils";
+import { getTimeAgo } from "@/lib/utils";
+import { ExtendedPost } from "@/types/types";
 import Image from "next/image";
 import Link from "next/link";
 
-const PostDetailsComponent = ({ post }: { post: any }) => {
-  console.log(post.createdBy);
+const PostDetailsComponent = ({ post }: { post: ExtendedPost }) => {
   return (
     <>
       <div className="flex items-center justify-between mb-3">

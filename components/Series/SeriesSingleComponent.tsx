@@ -2,15 +2,16 @@ import { formRating, getColorByPercentage } from "@/lib/utils";
 import Image from "next/image";
 import { getDominantColor } from "@/lib/utils";
 import FavoritesWatchListComponent from "../FavoritesWatchlistComponent";
+import { isTrue, SeriesDetail } from "@/types/types";
 
 const SeriesSingleComponent = async ({
   data,
   isInFavorites,
   isInWatchlist,
 }: {
-  data: any;
-  isInFavorites: any;
-  isInWatchlist: any;
+  data: SeriesDetail;
+  isInFavorites: isTrue;
+  isInWatchlist: isTrue;
 }) => {
   let backgroundStyle = {
     background:
@@ -64,7 +65,7 @@ const SeriesSingleComponent = async ({
           />
         </div>
         <div className="flex flex-wrap gap-2 mb-2 text-xs sm:text-base py-2 md:py-0">
-          {data.genres?.map((genre: any) => (
+          {data.genres?.map((genre) => (
             <span
               key={genre.id}
               className="px-2 py-1 md:px-3 md:py-1 text-xs font-medium rounded-full bg-white/80 text-black"

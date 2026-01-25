@@ -28,12 +28,10 @@ const ExactPost = async ({ params }: { params: { id: string } }) => {
       <GeneralCenterComponent text={"You have to logged in "} login={true} />
     );
   }
-
   const post = await getExactPostByContentId(postId, user._id);
   const comments = await getAllCommentsByContentId(postId);
-
   return (
-    <div className="bg-white rounded-lg p-4  custom-box-shadow-sm mt-6">
+    <div className="bg-white rounded-lg p-4 mx-2  md:mx-4 custom-box-shadow-sm mt-6">
       <PostDetailsComponent post={post} />
       <div className="flex items-center gap-2 mt-5">
         <LikeComponent

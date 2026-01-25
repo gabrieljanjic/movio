@@ -1,3 +1,4 @@
+import { KnownForItem } from "@/types/types";
 import Image from "next/image";
 import Link from "next/link";
 import { IoIosArrowRoundForward } from "react-icons/io";
@@ -6,21 +7,19 @@ const ExactPersonKnownForComponent = ({
   data,
   id,
 }: {
-  data: any;
+  data: { cast: KnownForItem[] };
   id: string;
 }) => {
   const sortedByPopularity = Array.from(
-    new Map(
-      data.cast.map((item: any) => [item.title || item.name, item]),
-    ).values(),
+    new Map(data.cast.map((item) => [item.title || item.name, item])).values(),
   )
-    .sort((a: any, b: any) => b.popularity - a.popularity)
+    .sort((a, b) => (b.popularity ?? 0) - (a.popularity ?? 0))
     .slice(0, 10);
   return (
     <div className="py-6 px-4">
       <h2 className="text-2xl font-semibold mb-3">Known for</h2>
       <div className="flex gap-2 overflow-x-scroll">
-        {sortedByPopularity.map((cast: any) => {
+        {sortedByPopularity.map((cast) => {
           return (
             <div
               key={cast.id}
@@ -32,7 +31,7 @@ const ExactPersonKnownForComponent = ({
                     ? `${process.env.TMDB_POSTER_PATH}/w500/${cast.poster_path}`
                     : "/images/no-image-placeholder.png"
                 }
-                alt={cast.title || cast.name}
+                alt={cast.title || cast.name || ""}
                 width={112}
                 height={168}
                 className="object-fit"

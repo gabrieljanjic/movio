@@ -6,6 +6,7 @@ import { connectDB } from "../db";
 import { Favorite } from "../models/Favorite";
 import { Content } from "../models/Content";
 import { revalidatePath } from "next/cache";
+import { WholeContent } from "@/types/types";
 
 export const checkIsInFavorites = async (id: string) => {
   await connectDB();
@@ -36,7 +37,7 @@ export const checkIsInFavorites = async (id: string) => {
 export const addToFavorites = async ({
   wholeContent,
 }: {
-  wholeContent: any;
+  wholeContent: WholeContent;
 }) => {
   try {
     await connectDB();
@@ -59,7 +60,7 @@ export const addToFavorites = async ({
         overview: wholeContent.overview,
         posterPath: wholeContent.poster_path,
         title: isMovie ? wholeContent.title : wholeContent.name,
-        voteAverage: wholeContent.vote_average,
+        voteAverage: wholeContent.vote_average || 0,
         releaseDate: isMovie
           ? wholeContent.release_date
           : wholeContent.first_air_date,
@@ -76,8 +77,11 @@ export const addToFavorites = async ({
       revalidatePath(`/series/${wholeContent.id}`);
     }
     return { success: true, message: "Added to favorites" };
-  } catch (err: any) {
-    return { success: false, message: err.message };
+  } catch (err) {
+    if (err instanceof Error) {
+      return { success: false, message: err.message };
+    }
+    return { success: false, message: "Unknown error occurred" };
   }
 };
 
@@ -111,7 +115,11 @@ export const removeFromFavorites = async (tmdbId: number) => {
     } else {
       return { success: false, message: "Something went wrong" };
     }
-  } catch (err: any) {
-    return { success: false, message: err.message };
+  } catch (err) {
+    if (err instanceof Error) {
+      return { success: false, message: err.message };
+    }
+
+    return { success: false, message: "Unknown error occurred" };
   }
 };

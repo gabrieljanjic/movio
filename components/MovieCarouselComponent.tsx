@@ -4,17 +4,25 @@ import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+type MovieCarouselProps = {
+  id: string;
+  media_type: string;
+  poster_path: string;
+  title?: string;
+  name?: string;
+  vote_average: number;
+};
+
 const MovieCarouselComponent = ({
   title,
   items,
   type = "movie",
 }: {
   title: string;
-  items: any;
+  items: MovieCarouselProps[];
   type?: "movie" | "tv" | "mixed";
 }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
-
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
       const scrollAmount = direction === "left" ? -800 : 800;

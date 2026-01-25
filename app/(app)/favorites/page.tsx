@@ -27,7 +27,7 @@ const WatchList = async () => {
     );
   }
   return (
-    <section className="p-2 bg-white custom-box-shadow-sm rounded-lg mt-4">
+    <section className="p-2 bg-white custom-box-shadow-sm rounded-lg mt-4 my-4">
       <FavoritesWatchlistSoloComponent allData={allFavorites} />
     </section>
   );

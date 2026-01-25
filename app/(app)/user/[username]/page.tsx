@@ -13,6 +13,7 @@ import FollowComponent from "@/components/FollowComponent";
 import { checkFollow } from "@/lib/actions/userActions";
 import UnFollowComponent from "@/components/UnfollowComponent";
 import PaginationQuery from "@/components/PaginationQuery";
+import { AllPostsById } from "@/types/types";
 
 const UserProfile = async ({
   params,
@@ -32,7 +33,7 @@ const UserProfile = async ({
     myUser?._id.toString() || "",
   );
 
-  const allPosts = await getAllPostsById(user._id, page);
+  const allPosts: AllPostsById = await getAllPostsById(user._id, page);
 
   const isOwnProfile = myUser
     ? user._id.toString() === myUser._id.toString()
@@ -58,11 +59,7 @@ const UserProfile = async ({
         </div>
         <div className="flex gap-8 mb-4 items-center">
           {isOwnProfile ? (
-            <AvatarUpload
-              userId={user._id}
-              currentAvatar={user.avatar}
-              username={user.userName}
-            />
+            <AvatarUpload userId={user._id} currentAvatar={user.avatar} />
           ) : (
             <Image
               src={user.avatar || "/images/portrait-placeholder-1x1.png"}
@@ -100,7 +97,7 @@ const UserProfile = async ({
       </div>
       {allPosts.posts.length > 0 ? (
         <div>
-          {allPosts.posts.map((post: any) => (
+          {allPosts.posts.map((post) => (
             <div
               key={post._id}
               className="bg-white rounded-lg p-4 px-3 custom-box-shadow-sm mb-4"

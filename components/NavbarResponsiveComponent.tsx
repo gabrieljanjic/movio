@@ -7,8 +7,9 @@ import NavbarProfileDropdown from "./NavbarProfileDropdown";
 import { IoIosMenu } from "react-icons/io";
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
+import { User } from "@/types/types";
 
-const NavbarResponsiveComponent = ({ user }: { user: any }) => {
+const NavbarResponsiveComponent = ({ user }: { user: User }) => {
   const [open, setOpen] = useState(false);
   return (
     <nav className="px-1 py-3 w-full bg-blue-900">

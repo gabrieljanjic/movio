@@ -24,7 +24,7 @@ const GeneralCenterComponent = ({
               href="/login"
               className="block w-full sm:w-auto sm:inline-block px-3 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all duration-200 shadow-sm hover:shadow-md"
             >
-              Sign In
+              Log in
             </Link>
           </div>
         )}

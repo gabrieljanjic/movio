@@ -1,15 +1,23 @@
 import { formatYear } from "@/lib/utils";
-import Image from "next/image";
+import {
+  AllCreditsExtended,
+  ExtendedCastMember,
+  ExtendedCrewMember,
+} from "@/types/types";
 import Link from "next/link";
 
-const ExactPersonAllCreditsComponent = ({ data }: { data: any }) => {
+const ExactPersonAllCreditsComponent = ({
+  data,
+}: {
+  data: AllCreditsExtended;
+}) => {
   return (
-    <div className="flex flex-col sm:flex-row gap-10 mb-6 mt-4 px-4 md:px-6">
+    <div className="flex flex-col sm:flex-row gap-10 mb-6 pb-6 mt-4 px-4 md:px-6">
       {data.cast.length > 0 && (
         <div className="w-full sm:w-1/2">
           <h1 className="text-xl md:text-2xl font-semibold mb-3 ml-2">Cast</h1>
           <div className="w-full rounded-lg flex flex-col gap-1">
-            {data.cast.map((cast: any) => (
+            {data.cast.map((cast: ExtendedCastMember) => (
               <div
                 key={cast.id}
                 className="px-2 py-1 bg-gray-50 border border-gray-200 rounded-lg"
@@ -68,7 +76,7 @@ const ExactPersonAllCreditsComponent = ({ data }: { data: any }) => {
         <div className="w-full sm:w-1/2">
           <h1 className="text-xl md:text-2xl font-semibold mb-3 ml-2">Crew</h1>
           <div className="w-full rounded-lg flex flex-col gap-1">
-            {data.crew.map((crew: any) => (
+            {data.crew.map((crew: ExtendedCrewMember) => (
               <div
                 key={crew.id}
                 className="px-2 py-1 bg-gray-50 border border-gray-200 rounded-lg"
@@ -79,7 +87,11 @@ const ExactPersonAllCreditsComponent = ({ data }: { data: any }) => {
                     <div className="flex flex-col ">
                       <div className="flex gap-2 items-center">
                         <Link
-                          href={`/person/${crew.id}`}
+                          href={
+                            crew.name
+                              ? `/series/${crew.id}`
+                              : `/movies/${crew.id}`
+                          }
                           className=" text-gray-900 hover:text-blue-600 transition-all"
                         >
                           <h3 className="font-normal text-sm md:font-semibold md:text-base">

@@ -4,8 +4,11 @@ import getSeriesSearch from "@/lib/api/external/movies/getSeriesSearch";
 import getPersonSearch from "@/lib/api/external/person/getPersonSearch";
 
 type SearchCategoriesProps = {
-  searchParams: any;
-  query: any;
+  searchParams: {
+    page?: string;
+    query: string;
+  };
+  query: string;
   type: string;
   pageNum: number;
 };

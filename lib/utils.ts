@@ -57,7 +57,7 @@ export const formatYear = (date: string) => {
   return year;
 };
 
-export const getTimeAgo = (date: any) => {
+export const getTimeAgo = (date: Date) => {
   const now = new Date();
   const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
 

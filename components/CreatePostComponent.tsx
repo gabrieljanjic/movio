@@ -4,19 +4,18 @@ import { useState } from "react";
 import { createPostActions } from "@/lib/actions/postActions";
 import Image from "next/image";
 import Link from "next/link";
+import { User, WholeContent } from "@/types/types";
 
-interface CreatePostComponentProps {
+type CreatePostComponentProps = {
   contentId: string;
-  user: any;
-  title: string;
+  user: User;
   contentType: "movie" | "tv";
-  wholeContent: any;
-}
+  wholeContent: WholeContent;
+};
 
 const CreatePostComponent = ({
   contentId,
   user,
-  title,
   contentType,
   wholeContent,
 }: CreatePostComponentProps) => {
@@ -48,7 +47,11 @@ const CreatePostComponent = ({
       });
       setPostContent("");
       setRating("");
-    } catch (err: any) {
+    } catch (err) {
+      if (err instanceof Error) {
+        return { success: false, message: err.message };
+      }
+      return { success: false, message: "Unknown error occurred" };
     } finally {
       setLoading(false);
     }

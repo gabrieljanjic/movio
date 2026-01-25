@@ -1,7 +1,8 @@
 import { formatDate } from "@/lib/utils";
+import { PersonDetail } from "@/types/types";
 import Image from "next/image";
 
-const ExactPersonBioComponent = ({ data }: { data: any }) => {
+const ExactPersonBioComponent = ({ data }: { data: PersonDetail }) => {
   return (
     <div className="flex flex-col md:flex-row gap-4 sm:gap-6 lg:gap-8 p-4 sm:p-6 lg:p-8 rounded-tl rounded-tr">
       <div className="relative w-40 h-60 sm:w-48 sm:h-72 mx-auto md:mx-0">

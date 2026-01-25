@@ -48,7 +48,7 @@ const FavoritesWatchlistSoloComponent = ({
               <div className="relative w-32 h-48 xs:w-48 xs:h-72 md:w-32 md:h-48 rounded-md overflow-hidden shadow-md hover:scale-102 sm:hover:scale-105 transition-transform">
                 <Image
                   src={posterUrl}
-                  alt={title | "Movie poster"}
+                  alt={title || "Movie poster"}
                   fill
                   className="object-cover"
                 />

@@ -1,4 +1,5 @@
 import { connectDB } from "../db";
+import "../models";
 import { Follow } from "../models/Follow";
 import { Post } from "../models/Post";
 

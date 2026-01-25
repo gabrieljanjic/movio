@@ -2,6 +2,8 @@ import { Post } from "@/lib/models/Post";
 import { connectDB } from "../db";
 import { Like } from "../models/Like";
 import { Comment } from "../models/Comment";
+import "../models";
+import { AllPostsById } from "@/types/types";
 
 export async function getPostsByContentId(
   contentId: number,
@@ -16,7 +18,7 @@ export async function getPostsByContentId(
     .populate("createdBy", "userName avatar firstName")
     .lean();
 
-  const postIds = posts.map((p: any) => p._id);
+  const postIds = posts.map((p) => p._id);
 
   const allLikes = await Like.find({
     postId: { $in: postIds },
@@ -29,7 +31,7 @@ export async function getPostsByContentId(
   const likesCountMap = new Map<string, number>();
   const commentsCountMap = new Map<string, number>();
 
-  allLikes.forEach((like: any) => {
+  allLikes.forEach((like) => {
     const postIdStr = like.postId.toString();
     likesCountMap.set(postIdStr, (likesCountMap.get(postIdStr) || 0) + 1);
     if (like.userId.toString() === userId) {
@@ -37,14 +39,14 @@ export async function getPostsByContentId(
     }
   });
 
-  allComments.forEach((comment: any) => {
+  allComments.forEach((comment) => {
     const postIdStr = comment.postId.toString();
     commentsCountMap.set(postIdStr, (commentsCountMap.get(postIdStr) || 0) + 1);
   });
 
   const postsToMap = slice ? posts.slice(0, 3) : posts;
 
-  return postsToMap.map((post: any) => {
+  return postsToMap.map((post) => {
     const postIdStr = post._id.toString();
     return {
       _id: postIdStr,
@@ -112,7 +114,7 @@ export async function getAllCommentsByContentId(postId: string) {
   const allComments = await Comment.find({ postId })
     .sort({ createdAt: -1 })
     .populate("userId", "userName _id");
-  return allComments.map((comment: any) => ({
+  return allComments.map((comment) => ({
     _id: comment._id.toString(),
     user: {
       _id: comment.userId._id.toString(),
@@ -138,7 +140,7 @@ export async function getAllPostsById(userId: string, page: number) {
     .skip(skip)
     .limit(limit);
 
-  const postIds = posts.map((p: any) => p._id);
+  const postIds = posts.map((p) => p._id);
   const allLikes = await Like.find({
     postId: { $in: postIds },
   }).lean();
@@ -149,7 +151,7 @@ export async function getAllPostsById(userId: string, page: number) {
   const likesCountMap = new Map<string, number>();
   const commentsCountMap = new Map<string, number>();
 
-  allLikes.forEach((like: any) => {
+  allLikes.forEach((like) => {
     const postIdStr = like.postId.toString();
     likesCountMap.set(postIdStr, (likesCountMap.get(postIdStr) || 0) + 1);
     if (like.userId.toString() === userId) {
@@ -157,12 +159,12 @@ export async function getAllPostsById(userId: string, page: number) {
     }
   });
 
-  allComments.forEach((comment: any) => {
+  allComments.forEach((comment) => {
     const postIdStr = comment.postId.toString();
     commentsCountMap.set(postIdStr, (commentsCountMap.get(postIdStr) || 0) + 1);
   });
 
-  const postsData = posts.map((post: any) => {
+  const postsData = posts.map((post) => {
     const postIdStr = post._id.toString();
     return {
       _id: postIdStr,
@@ -172,6 +174,8 @@ export async function getAllPostsById(userId: string, page: number) {
       createdBy: {
         _id: post.createdBy._id.toString(),
         userName: post.createdBy.userName,
+        firstName: post.createdBy.firstName,
+        avatar: post.createdBy.avatar,
       },
       iLikedIt: likedPostsIds.has(postIdStr),
       likesCount: likesCountMap.get(postIdStr) || 0,

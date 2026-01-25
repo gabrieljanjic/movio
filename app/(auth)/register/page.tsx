@@ -18,8 +18,12 @@ const RegisterPage = () => {
             setError(null);
             await registerUser(formData);
             router.push("/feed");
-          } catch (err: any) {
-            setError(err.message);
+          } catch (err) {
+            if (err instanceof Error) {
+              setError(err.message);
+            } else {
+              setError(String(err));
+            }
           }
         }}
       >

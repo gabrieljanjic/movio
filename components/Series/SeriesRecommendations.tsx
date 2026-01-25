@@ -1,11 +1,12 @@
 import Image from "next/image";
 import { formRating, getColorByPercentage } from "@/lib/utils";
 import Link from "next/link";
+import { SeriesCardProps } from "@/types/types";
 
 const SeriesRecommendations = ({
   dataRecommendations,
 }: {
-  dataRecommendations: any;
+  dataRecommendations: SeriesCardProps;
 }) => {
   return (
     <div className="p-4 sm:p-6 bg-white">
@@ -13,7 +14,7 @@ const SeriesRecommendations = ({
         Recommendations
       </h1>
       <div className="flex overflow-x-auto gap-3 pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
-        {dataRecommendations.results.slice(0, 10).map((series: any) => {
+        {dataRecommendations.results.slice(0, 10).map((series) => {
           return (
             <div
               className="flex-shrink-0 w-[150px] sm:w-[170px] border border-gray-200 bg-gray-50 rounded"

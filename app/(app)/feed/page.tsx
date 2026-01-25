@@ -4,6 +4,7 @@ import GeneralCenterComponent from "@/components/GeneralCenterComponent";
 import { getAllFollows } from "@/lib/queries/feed.queries";
 import FeedPostComponent from "@/components/FeedPostComponent";
 import PaginationQuery from "@/components/PaginationQuery";
+import { FeedResponse } from "@/types/types";
 
 const Feed = async ({ searchParams }: { searchParams: { page?: string } }) => {
   const page = Number(searchParams.page) || 1;
@@ -18,13 +19,10 @@ const Feed = async ({ searchParams }: { searchParams: { page?: string } }) => {
       />
     );
   }
-  const feedPosts = await getAllFollows(user._id, page);
-  console.log(feedPosts);
+  const feedPosts: FeedResponse = await getAllFollows(user._id, page);
   return (
     <section className="mt-6 px-4">
-      {feedPosts.posts.map((item) => {
-        return <FeedPostComponent post={item} />;
-      })}
+      <FeedPostComponent feedPosts={feedPosts} />
       <PaginationQuery
         pageNum={page}
         totalPages={feedPosts.pagination.totalPages}

@@ -1,11 +1,13 @@
+import { getTimeAgo } from "@/lib/utils";
+import { Comment } from "@/types/types";
 import Link from "next/link";
 
-const AllCommentsComponent = ({ comments }: { comments: any }) => {
+const AllCommentsComponent = ({ comments }: { comments: Comment[] }) => {
   return (
     <div>
       {comments.length > 0 ? (
         <div>
-          {comments.map((comment: any) => {
+          {comments.map((comment) => {
             return (
               <div
                 className="space-y-1 mt-3 border border-gray-200 px-3 py-1 rounded-lg"
@@ -22,7 +24,7 @@ const AllCommentsComponent = ({ comments }: { comments: any }) => {
                       </p>
                     </Link>
                     <p className="text-xs text-gray-400">
-                      {new Date(comment.createdAt).toLocaleDateString()}
+                      {getTimeAgo(new Date(comment.createdAt))}
                     </p>
                   </div>
                 </div>

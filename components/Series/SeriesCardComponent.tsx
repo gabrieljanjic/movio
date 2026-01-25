@@ -2,8 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { formatDate } from "@/lib/utils";
 import RatingBadge from "@/components/RatingBadge";
+import { SeriesCardProps } from "@/types/types";
 
-export default function SeriesCardComponent({ data }: { data: any }) {
+export default function SeriesCardComponent({
+  data,
+}: {
+  data: SeriesCardProps;
+}) {
   return (
     <section className="px-3 sm:px-4">
       <div
@@ -13,7 +18,7 @@ export default function SeriesCardComponent({ data }: { data: any }) {
     md:[grid-template-columns:repeat(auto-fit,12rem)]
   "
       >
-        {data.results.map((series: any) => (
+        {data.results.map((series) => (
           <div
             key={series.id}
             className="w-fit h-full rounded bg-gray-50 border border-gray-300 relative cursor-pointer transform transition-all duration-300 hover:scale-102 sm:hover:scale-105 overflow-hidden shadow-sm hover:shadow-md"
@@ -30,7 +35,7 @@ export default function SeriesCardComponent({ data }: { data: any }) {
                   fill
                   className="object-cover rounded-t"
                 />
-                <RatingBadge movie={series} />
+                <RatingBadge voteAverage={series.vote_average} />
               </div>
               <div className="mt-3 md:mt-2 p-2 sm:p-3">
                 <p className="font-bold text-sm sm:text-base line-clamp-2 group-hover:text-blue-500">

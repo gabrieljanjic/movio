@@ -1,4 +1,3 @@
-import getAllGenres from "@/lib/api/external/getAllGenres";
 import { CiSearch } from "react-icons/ci";
 
 const SearchFormComponent = ({
@@ -10,16 +9,12 @@ const SearchFormComponent = ({
 }) => {
   return (
     <div className="px-6 mt-4 w-full md:p-0 md:m-0">
-      <form
-        className="flex flex-1 w-full md:w-auto"
-        action={`/${type}`}
-        method="GET"
-      >
+      <form className="flex flex-1 w-full md:w-auto" action={`/${type}`}>
         <input
           type="text"
           name="query"
           defaultValue={query || ""}
-          className="flex-1 px-4 py-1 border rounded-bl-lg rounded-tl-lg focus:outline-none text-black"
+          className="flex-1 px-4 py-1 border rounded-bl-lg rounded-tl-lg focus:outline-none text-gray-800"
           placeholder="Search"
         />
         <button

@@ -1,6 +1,6 @@
 "use client";
 
-import { FaEye, FaHeart, FaRegHeart, FaRegStickyNote } from "react-icons/fa";
+import { FaEye, FaHeart, FaRegHeart } from "react-icons/fa";
 import { FiEye } from "react-icons/fi";
 import Tooltip from "./Tooltip";
 import {
@@ -12,13 +12,14 @@ import {
   addToWatchlist,
   removeFromWatchlist,
 } from "@/lib/actions/watchlistActions";
+import { WholeContent } from "@/types/types";
 
 const FavoritesWatchListComponent = ({
   wholeContent,
   isInFavorites,
   isInWatchlist,
 }: {
-  wholeContent: any;
+  wholeContent: WholeContent;
   isInFavorites: boolean;
   isInWatchlist: boolean;
 }) => {
@@ -31,7 +32,7 @@ const FavoritesWatchListComponent = ({
     }
   };
   const handleRemoveFromFavorites = async () => {
-    const res = await removeFromFavorites(wholeContent.id);
+    const res = await removeFromFavorites(Number(wholeContent.id));
     if (res.success) {
       toast.success(res.message);
     } else {
@@ -48,7 +49,7 @@ const FavoritesWatchListComponent = ({
     }
   };
   const handleRemoveFromWatchList = async () => {
-    const res = await removeFromWatchlist(wholeContent.id);
+    const res = await removeFromWatchlist(Number(wholeContent.id));
     if (res.success) {
       toast.success(res.message);
     } else {

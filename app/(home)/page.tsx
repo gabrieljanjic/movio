@@ -1,5 +1,4 @@
 import getAllTrendingThisWeek from "@/lib/api/external/getAllTrendingThisWeek";
-import getAllOfTheWeek from "@/lib/api/external/movies/getAllOfTheWeek";
 import getMovieByGenre from "@/lib/api/external/movies/getMovieByGenre";
 import getMovieOfTheDay from "@/lib/api/external/movies/getMovieOfTheDay";
 import getMovies from "@/lib/api/external/movies/getMovies";
@@ -10,14 +9,12 @@ import MovieCarouselComponent from "@/components/MovieCarouselComponent";
 import { getColorByPercentage } from "@/lib/utils";
 
 const Home = async () => {
-  const moviesOfTheWeek = await getAllOfTheWeek();
   const movieOdTheDay = await getMovieOfTheDay();
   const moviesBestRated = await getMovies("top_rated", 1);
   const trendingThisWeek = await getAllTrendingThisWeek();
   const seriesPopular = await getSeries("popular", 1);
   const actionMovies = await getMovieByGenre(53);
   const horrorMovies = await getMovieByGenre(27);
-
   const heroMovie = movieOdTheDay.results[0];
 
   return (
@@ -63,12 +60,6 @@ const Home = async () => {
       </div>
       <div className="max-w-[100vw] py-12 space-y-12 overflow-hidden">
         <MovieCarouselComponent
-          title="Top Rated Movies"
-          items={moviesBestRated.results}
-          type="movie"
-        />
-
-        <MovieCarouselComponent
           title="Trending This Week"
           items={trendingThisWeek.results}
           type="mixed"
@@ -79,7 +70,11 @@ const Home = async () => {
           items={seriesPopular.results}
           type="tv"
         />
-
+        <MovieCarouselComponent
+          title="Top Rated Movies"
+          items={moviesBestRated.results}
+          type="movie"
+        />
         <MovieCarouselComponent
           title="Thriller Movies"
           items={actionMovies.results}

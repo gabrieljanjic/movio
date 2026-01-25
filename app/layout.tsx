@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import "./globals.css";
 import { Metadata } from "next";
 import ToastProvider from "@/components/ToastProvider";

@@ -1,14 +1,20 @@
 import { formRating, getColorByPercentage } from "@/lib/utils";
 
-const RatingBadge = ({ movie }: { movie: any }) => {
+const RatingBadge = ({ voteAverage }: { voteAverage: number }) => {
   return (
     <div
       className={`absolute -bottom-5 left-6 transform -translate-x-1/2 w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm bg-neutral-700 ${getColorByPercentage(
-        movie.vote_average * 10
+        voteAverage * 10,
       )}`}
     >
-      {formRating(movie.vote_average)}
-      <span className="text-[8px]">%</span>
+      {voteAverage > 0 ? (
+        <>
+          {formRating(voteAverage)}
+          <span className="text-[8px]">%</span>
+        </>
+      ) : (
+        <span>-</span>
+      )}
     </div>
   );
 };

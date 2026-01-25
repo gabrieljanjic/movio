@@ -40,14 +40,12 @@ const SingleSeriesView = async ({ params }: { params: { id: string } }) => {
           <CreatePostComponent
             contentId={params.id}
             user={user}
-            title={data.name}
             wholeContent={data}
             contentType="tv"
           />
           <ListAllPostsComponent
             id={data.id}
             userId={user._id}
-            avatar={user.avatar}
             slice={slice}
             type={"series"}
           />

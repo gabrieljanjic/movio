@@ -1,13 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { IoIosArrowRoundForward } from "react-icons/io";
+import { CastMember } from "@/types/types";
 
 const CreditsActors = ({
   dataCredits,
   id,
   type,
 }: {
-  dataCredits: any;
+  dataCredits: { cast: CastMember[] };
   id: string;
   type: string;
 }) => {
@@ -17,7 +18,7 @@ const CreditsActors = ({
         Top Billed Cast
       </h1>
       <div className="flex gap-3 overflow-x-auto py-2 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
-        {dataCredits.cast.slice(0, 10).map((actor: any) => (
+        {dataCredits.cast.slice(0, 10).map((actor: CastMember) => (
           <div
             key={actor.id}
             className="flex flex-col flex-shrink-0 w-[110px] sm:w-[120px] custom-box-shadow-sm rounded"

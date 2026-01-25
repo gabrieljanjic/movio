@@ -6,8 +6,15 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { error } from "console";
 import { Follow } from "../models/Follow";
+
+type UpdateUser = {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  userName: string;
+  email: string;
+};
 
 export const registerUser = async (formData: FormData) => {
   const firstName = formData.get("first-name") as string;
@@ -95,12 +102,13 @@ export const signoutUser = async () => {
   redirect("/feed");
 };
 
-export const updateUserBio = async (formData: any) => {
+export const updateUserBio = async (formData: UpdateUser) => {
   try {
     await connectDB();
 
     const checkUserName = await User.findOne({
       userName: formData.userName,
+      _id: { $ne: formData._id },
     });
     if (checkUserName) {
       throw new Error("Username is already taken");
@@ -108,6 +116,7 @@ export const updateUserBio = async (formData: any) => {
 
     const checkEmail = await User.findOne({
       email: formData.email,
+      _id: { $ne: formData._id },
     });
     if (checkEmail) {
       throw new Error("Email is already taken");
@@ -125,11 +134,13 @@ export const updateUserBio = async (formData: any) => {
       },
       { new: true },
     );
-    console.log(updatedUser);
     revalidatePath(`/user/${updatedUser.userName}`);
     return { success: true, userName: updatedUser.userName };
-  } catch (err: any) {
-    return { success: false, message: err.message };
+  } catch (err) {
+    if (err instanceof Error) {
+      return { success: false, message: err.message };
+    }
+    return { success: false, message: "Unknown error occurred" };
   }
 };
 
@@ -171,14 +182,18 @@ export const followUser = async (userId: string, myUsedId: string | null) => {
 
     const revalidatePathUser = await User.findOne({ _id: userId });
 
-    const newFollow = await Follow.create({
+    await Follow.create({
       followerId: myUsedId,
       followingId: userId,
     });
+
     revalidatePath(`user/${revalidatePathUser.username}`);
     return { success: true, message: "User successfully followed" };
-  } catch (err: any) {
-    return { success: false, message: err.message };
+  } catch (err) {
+    if (err instanceof Error) {
+      return { success: false, message: err.message };
+    }
+    return { success: false, message: "Unknown error occurred" };
   }
 };
 
@@ -203,13 +218,16 @@ export const unfollowUser = async (userId: string, myUsedId: string | null) => {
 
     const revalidatePathUser = await User.findOne({ _id: userId });
 
-    const deleteFollow = await Follow.deleteOne({
+    await Follow.deleteOne({
       followerId: myUsedId,
       followingId: userId,
     });
     revalidatePath(`user/${revalidatePathUser.username}`);
     return { success: true, message: "User successfully unfollowed" };
-  } catch (err: any) {
-    return { success: false, message: err.message };
+  } catch (err) {
+    if (err instanceof Error) {
+      return { success: false, message: err.message };
+    }
+    return { success: false, message: "Unknown error occurred" };
   }
 };

@@ -6,17 +6,15 @@ import Image from "next/image";
 interface AvatarUploadProps {
   userId: string;
   currentAvatar: string | null | undefined;
-  username: string;
 }
 
 export default function AvatarUpload({
   userId,
   currentAvatar,
-  username,
 }: AvatarUploadProps) {
   const [uploading, setUploading] = useState(false);
   const [preview, setPreview] = useState(
-    currentAvatar || "/images/portrait-placeholder-1x1.png"
+    currentAvatar || "/images/portrait-placeholder-1x1.png",
   );
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {

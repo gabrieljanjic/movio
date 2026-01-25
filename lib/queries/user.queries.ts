@@ -1,6 +1,7 @@
 import { connectDB } from "../db";
 import { User } from "../models/User";
 import { revalidatePath } from "next/cache";
+import "../models";
 
 export const getPersonProfile = async (userName: string) => {
   await connectDB();
@@ -23,7 +24,7 @@ export async function updateUserAvatar(userId: string, avatarUrl: string) {
     const result = await User.findByIdAndUpdate(
       userId,
       { avatar: avatarUrl },
-      { new: true }
+      { new: true },
     );
 
     if (!result) {

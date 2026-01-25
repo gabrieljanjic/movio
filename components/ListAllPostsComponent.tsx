@@ -4,25 +4,25 @@ import { getPostsByContentId } from "@/lib/queries/post.queries";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { FaRegCommentDots } from "react-icons/fa";
 import PostDetailsComponent from "./PostDetailsComponent";
+import { ExtendedPost, Post } from "@/types/types";
 
 const ListAllPostsComponent = async ({
   id,
   userId,
   slice,
   type,
-  avatar,
 }: {
   id: number;
   userId: string;
   slice: boolean;
   type: string;
-  avatar: string;
 }) => {
   const posts = await getPostsByContentId(id, userId, slice);
+  console.log("pp", posts);
   return (
     <section className="bg-white flex flex-col gap-3 p-4 pb-6 md:pb-8">
       {posts.length ? (
-        posts.map((post: any) => (
+        posts.map((post: ExtendedPost) => (
           <div
             key={post._id}
             className="bg-white rounded-lg p-3 md:p-4 px-3 custom-box-shadow-sm"

@@ -2,6 +2,7 @@
 
 import { commentPostActions } from "@/lib/actions/postActions";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const CommentComponent = ({
   postId,
@@ -17,9 +18,12 @@ const CommentComponent = ({
       const result = await commentPostActions(postId, userId, message);
       if (result.success) {
         setMessage("");
+        toast.success("Comment successfully created");
+      } else {
+        toast.error("Something went wrong");
       }
-    } catch (err: any) {
-      console.log(err.message);
+    } catch {
+      toast.error("Something went wrong");
     }
   };
 

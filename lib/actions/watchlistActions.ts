@@ -6,6 +6,7 @@ import { Content } from "../models/Content";
 import { connectDB } from "../db";
 import { Watchlist } from "../models/Watchlist";
 import { revalidatePath } from "next/cache";
+import { WholeContent } from "@/types/types";
 
 export const checkIsInWatchlist = async (id: string) => {
   await connectDB();
@@ -36,7 +37,7 @@ export const checkIsInWatchlist = async (id: string) => {
 export const addToWatchlist = async ({
   wholeContent,
 }: {
-  wholeContent: any;
+  wholeContent: WholeContent;
 }) => {
   try {
     await connectDB();
@@ -66,7 +67,7 @@ export const addToWatchlist = async ({
       });
     }
 
-    const new2 = await Watchlist.create({
+    await Watchlist.create({
       userId: user._id,
       contentId: content._id,
     });
@@ -77,8 +78,11 @@ export const addToWatchlist = async ({
       revalidatePath(`/series/${wholeContent.id}`);
     }
     return { success: true, message: "Added to watch list" };
-  } catch (err: any) {
-    return { success: false, message: err.message };
+  } catch (err) {
+    if (err instanceof Error) {
+      return { success: false, message: err.message };
+    }
+    return { success: false, message: "Unknown error occurred" };
   }
 };
 
@@ -112,7 +116,10 @@ export const removeFromWatchlist = async (tmdbId: number) => {
     } else {
       return { success: false, message: "Something went wrong" };
     }
-  } catch (err: any) {
-    return { success: false, message: err.message };
+  } catch (err) {
+    if (err instanceof Error) {
+      return { success: false, message: err.message };
+    }
+    return { success: false, message: "Unknown error occurred" };
   }
 };

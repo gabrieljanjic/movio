@@ -12,7 +12,6 @@ import { cookies } from "next/headers";
 const SingleMovieView = async ({ params }: { params: { id: string } }) => {
   const data = await getExactMovie(params.id);
   const dataCredits = await getExactMovieCast(params.id);
-
   const isInFavorites = await checkIsInFavorites(params.id);
   const isInWatchlist = await checkIsInWatchlist(params.id);
 
@@ -38,14 +37,12 @@ const SingleMovieView = async ({ params }: { params: { id: string } }) => {
           <CreatePostComponent
             contentId={params.id}
             user={user}
-            title={data.title}
             wholeContent={data}
             contentType="movie"
           />
           <ListAllPostsComponent
             id={data.id}
             userId={user._id}
-            avatar={user.avatar}
             slice={slice}
             type={"movies"}
           />

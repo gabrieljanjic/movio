@@ -7,15 +7,17 @@ import { revalidatePath } from "next/cache";
 import { Like } from "@/lib/models/Like";
 import { Comment } from "../models/Comment";
 import { Content } from "../models/Content";
+import { WholeContent } from "@/types/types";
+import Error from "next/error";
 
-interface CreatePostInput {
-  wholeContent: any;
+type CreatePostInput = {
+  wholeContent: WholeContent;
   contentId: string;
   postContent: string;
   rating: number;
   createdBy: string;
   contentType: "movie" | "tv";
-}
+};
 
 export const createPostActions = async (data: CreatePostInput) => {
   const {
@@ -27,7 +29,7 @@ export const createPostActions = async (data: CreatePostInput) => {
     contentType,
   } = data;
   if (!contentId || !postContent) {
-    throw new Error("All fields are required");
+    return;
   }
   await connectDB();
 
@@ -85,13 +87,16 @@ export const likePostActions = async (postId: string, userId: string) => {
 export const commentPostActions = async (
   postId: string,
   userId: string,
-  message: string
+  message: string,
 ) => {
   try {
     await Comment.create({ postId, userId, message });
     revalidatePath(`/post/${postId}`);
     return { success: true };
-  } catch (err: any) {
+  } catch (err) {
+    if (err instanceof Error) {
+      return { success: false };
+    }
     return { success: false };
   }
 };

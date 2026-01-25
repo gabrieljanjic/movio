@@ -19,17 +19,13 @@ const LikeComponent = ({
   const [likesCount, setLikesCount] = useState(initialLikesCount);
 
   const handleLike = async () => {
-    try {
-      const result = await likePostActions(postId, userId);
-      if (result.action === "liked") {
-        setIsLiked(true);
-        setLikesCount((prev) => prev + 1);
-      } else {
-        setIsLiked(false);
-        setLikesCount((prev) => prev - 1);
-      }
-    } catch (err: any) {
-      console.log(err.message);
+    const result = await likePostActions(postId, userId);
+    if (result.action === "liked") {
+      setIsLiked(true);
+      setLikesCount((prev) => prev + 1);
+    } else {
+      setIsLiked(false);
+      setLikesCount((prev) => prev - 1);
     }
   };
 

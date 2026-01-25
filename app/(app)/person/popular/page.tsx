@@ -3,13 +3,14 @@ import Pagination from "@/components/Pagination";
 import SubNavbar from "@/components/SubNavbar";
 import navLinks from "@/data/navLinks";
 import getPopularPeople from "@/lib/api/external/person/getPopularPeople";
+import { PeopleResponse } from "@/types/types";
 
 const PopularPeopleFirstPage = async () => {
   const nowLink = "/person/popular";
   const name = "Person";
   const subNavBarItem = navLinks.find((item) => item.name === name);
   const pageNum = 1;
-  const data = await getPopularPeople(pageNum);
+  const data: PeopleResponse = await getPopularPeople(pageNum);
   const totalPages = data.total_pages;
   return (
     <section className="custom-card-box-shadow">

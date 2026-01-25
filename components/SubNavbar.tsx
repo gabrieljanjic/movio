@@ -1,10 +1,11 @@
+import { Navbar } from "@/types/types";
 import Link from "next/link";
 
 const SubNavbar = ({
   subNavBarItem,
   nowLink,
 }: {
-  subNavBarItem: any;
+  subNavBarItem: Navbar;
   nowLink: string;
 }) => {
   return (
@@ -13,7 +14,7 @@ const SubNavbar = ({
         {subNavBarItem.name}
       </h4>
       <div className="flex flex-wrap justify-center gap-4 sm:gap-8">
-        {subNavBarItem?.list?.map((item: any) => (
+        {subNavBarItem?.list?.map((item) => (
           <Link
             key={item.id}
             href={item.href}

@@ -31,7 +31,7 @@ export default function MovieCardComponent({ data }: { data: any }) {
                     alt={movie.title}
                     className="object-cover rounded-t"
                   />
-                  <RatingBadge movie={movie} />
+                  <RatingBadge voteAverage={movie.vote_average} />
                 </div>
                 <div className="mt-3 md:mt-2 p-2 sm:p-3">
                   <p className="font-bold text-sm sm:text-base line-clamp-2 group-hover:text-blue-500">

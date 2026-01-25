@@ -1,16 +1,18 @@
 import { formatDate, formatTime, getDominantColor } from "@/lib/utils";
 import Image from "next/image";
 import FavoritesWatchListComponent from "../FavoritesWatchlistComponent";
+import { isTrue, MovieDetail } from "@/types/types";
 
 const MoviesSingleComponent = async ({
   data,
   isInFavorites,
   isInWatchlist,
 }: {
-  data: any;
-  isInFavorites: any;
-  isInWatchlist: any;
+  data: MovieDetail;
+  isInFavorites: isTrue;
+  isInWatchlist: isTrue;
 }) => {
+  console.log("LLL", data);
   let backgroundStyle = {
     background:
       "linear-gradient(0deg, rgb(255,255,255) 0%, rgba(0,0,0,0.85) 70%)",
@@ -55,7 +57,7 @@ const MoviesSingleComponent = async ({
         <div>
           <div className="flex flex-row justify-between gap-3 sm:gap-0">
             <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 sm:mb-3">
-              {data.title || data.original_name}
+              {data.title || data.title}
             </h1>
             <div>
               <FavoritesWatchListComponent
@@ -73,7 +75,7 @@ const MoviesSingleComponent = async ({
           <div className="flex mb-4 sm:mb-5">
             {data.genres.length > 0 && (
               <div className="flex flex-wrap gap-2">
-                {data.genres.map((genre: any) => (
+                {data.genres.map((genre) => (
                   <span
                     key={genre.id}
                     className="px-2 sm:px-3 py-1 text-xs font-medium rounded-full bg-gray-200 text-gray-800"
