@@ -46,7 +46,7 @@ const NavbarResponsiveComponent = ({ user }: { user: User | null }) => {
         />
       )}
       <div
-        className={`md:hidden fixed top-0 left-0 h-full w-64 bg-blue-900 z-50 transform transition-transform duration-300 ease-in-out overflow-hidden ${
+        className={`md:hidden fixed top-0 left-0 h-full w-64 bg-blue-900 z-50 transform transition-transform duration-300 ease-in-out ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -64,7 +64,7 @@ const NavbarResponsiveComponent = ({ user }: { user: User | null }) => {
                 <Link
                   href={link.defaultPath}
                   onClick={() => setOpen(false)}
-                  className="block py-2 px-2 text-lg font-medium hover:bg-blue-800 rounded transition-colors"
+                  className="block py-1 px-2 text-lg font-medium hover:bg-blue-800 rounded transition-all"
                 >
                   {link.name}
                 </Link>
@@ -75,7 +75,7 @@ const NavbarResponsiveComponent = ({ user }: { user: User | null }) => {
                         <Link
                           href={`${subLink.href}`}
                           onClick={() => setOpen(false)}
-                          className="block py-1.5 px-2 text-sm hover:bg-blue-800 rounded transition-colors"
+                          className="block py-1.5 px-2 text-sm hover:bg-blue-800 rounded transition-all"
                         >
                           ・{subLink.name}
                         </Link>

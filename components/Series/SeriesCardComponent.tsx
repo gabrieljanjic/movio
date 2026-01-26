@@ -10,9 +10,9 @@ export default function SeriesCardComponent({
   data: SeriesCardProps;
 }) {
   return (
-    <article className="px-3 sm:px-4">
+    <article className="px-0 sm:px-4">
       <div
-        className="grid justify-center place-items-center gap-6
+        className="grid justify-center place-items-center gap-3 md:gap-6
     [grid-template-columns:repeat(auto-fit,8rem)]
     sm:[grid-template-columns:repeat(auto-fit,10rem)]
     md:[grid-template-columns:repeat(auto-fit,12rem)]
