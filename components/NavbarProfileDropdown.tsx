@@ -46,7 +46,7 @@ const NavbarProfileDropdown = ({
                 {user.firstName[0]}
               </div>
             )}
-            <span>{user.firstName}</span>
+            <span className="text-white">{user.firstName}</span>
           </div>
           {open && (
             <div className="absolute right-0 w-40 mt-2 bg-white flex flex-col z-50 rounded">
