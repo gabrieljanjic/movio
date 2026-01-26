@@ -10,9 +10,9 @@ const RegisterPage = () => {
   const [error, setError] = useState<string | null>(null);
 
   return (
-    <section className="w-full h-screen flex items-center justify-center bg-gray-100">
+    <section className="w-full h-screen flex items-center justify-center bg-gray-100 px-2">
       <form
-        className="flex flex-col gap-4 w-full max-w-md mx-auto mt-10 bg-white p-8 rounded-2xl shadow-lg"
+        className="flex flex-col gap-4 w-full max-w-md mx-auto mt-10 bg-white p-8 rounded-2xl custom-box-shadow-sm"
         action={async (formData: FormData) => {
           try {
             setError(null);

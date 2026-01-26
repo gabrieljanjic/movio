@@ -21,7 +21,7 @@ const UnfollowComponent = ({
   return (
     <button
       type="button"
-      className="bg-red-500 text-white rounded py-1 px-2"
+      className="bg-red-500 text-sm md:text-base text-white rounded py-1 px-2"
       onClick={() => handleUnfollow()}
     >
       - Unfollow

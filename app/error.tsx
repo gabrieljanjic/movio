@@ -23,13 +23,13 @@ const Error = ({ reset }: { reset: () => void }) => {
             </svg>
           </div>
         </div>
-        <h2 className="text-xl md:text-3xl font-bold text-gray-900">
+        <h2 className="text-xl md:text-2xl font-bold text-gray-900">
           Oops! Something went wrong
         </h2>
         <div className="space-y-3 pt-2">
           <button
             onClick={reset}
-            className="block w-full sm:w-auto sm:inline-block px-3 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-all duration-200"
+            className="block w-full sm:w-auto sm:inline-block px-2 py-1 md:px-3 md:py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-all duration-200"
           >
             Try Again
           </button>

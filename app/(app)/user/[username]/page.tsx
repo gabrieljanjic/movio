@@ -40,7 +40,7 @@ const UserProfile = async ({
 
   return (
     <section className="mt-10 rounded-xl bg-white p-6 custom-box-shadow-sm">
-      <div className="custom-box-shadow-sm p-6 mb-6 rounded-lg">
+      <div className="custom-box-shadow-sm p-4 xs:p-6 mb-6 rounded-lg">
         <div className="flex justify-between items-center">
           <h2 className="mb-4 text-xl font-semibold text-gray-800">Profile</h2>
           {!isOwnProfile &&
@@ -56,39 +56,34 @@ const UserProfile = async ({
               />
             ))}
         </div>
-        <div className="flex gap-8 mb-4 items-center">
+        <div className="flex flex-col xs:flex-row gap-8 mb-4 align-center">
           {isOwnProfile ? (
             <AvatarUpload userId={user._id} currentAvatar={user.avatar} />
           ) : (
-            <Image
-              src={user.avatar || "/images/portrait-placeholder-1x1.png"}
-              alt={user.userName}
-              width={150}
-              height={150}
-              className="rounded-full object-cover"
-            />
+            <div className="relative w-32 h-32 md:w-48 md:h-48">
+              <Image
+                src={user.avatar || "/images/portrait-placeholder-1x1.png"}
+                alt={user.userName}
+                fill
+                className="rounded-full object-cover"
+              />
+            </div>
           )}
           {isOwnProfile ? (
             <UserProfileBio user={user} />
           ) : (
-            <div className="space-y-2 text-sm text-gray-700 mb-8">
-              <div className="flex gap-2 items-center text-[16px]">
+            <div className="space-y-2 text-sm md:text-base text-gray-700 xs:mb-8">
+              <div className="flex gap-2 items-center">
                 <p>First name: </p>
                 <p>{user.firstName}</p>
               </div>
-              <div className="flex gap-2 items-center text-[16px]">
+              <div className="flex gap-2 items-center">
                 <p>Last name: </p>
                 <p>{user.lastName}</p>
               </div>
-              <div className="flex gap-2 items-center text-[16px]">
+              <div className="flex gap-2 items-center">
                 <p>Username: </p>
                 <p>{user.userName}</p>
-              </div>
-              <div className="flex gap-2 items-center text-[16px]">
-                <p>
-                  Created:{" "}
-                  {new Date(user.createdAt).toLocaleDateString("hr-HR")}
-                </p>
               </div>
             </div>
           )}

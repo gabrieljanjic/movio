@@ -21,7 +21,7 @@ const FollowComponent = ({
   return (
     <button
       type="button"
-      className="bg-blue-500 text-white rounded py-1 px-2"
+      className="bg-blue-500 text-sm md:text-base text-white rounded py-1 px-2"
       onClick={() => handleFollow()}
     >
       + Follow

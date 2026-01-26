@@ -21,7 +21,7 @@ const NavbarProfileDropdown = ({
     <div>
       {!user ? (
         <Link href="/login">
-          <div className="flex gap-1 items-center">
+          <div className="flex gap-1 items-center text-white">
             <BiLogIn className="text-lg" />
             Login
           </div>

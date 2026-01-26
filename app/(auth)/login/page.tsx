@@ -10,8 +10,8 @@ const LoginPage = () => {
   const [error, setError] = useState<string | null>(null);
 
   return (
-    <section className="w-full h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-2xl w-full max-w-md flex flex-col items-center gap-6 custom-box-shadow">
+    <section className="w-full h-screen flex items-center justify-center bg-gray-100 px-2">
+      <div className="bg-white p-8 rounded-2xl w-full max-w-md flex flex-col items-center gap-6 custom-box-shadow-sm">
         <div className="text-center">
           <h1 className="text-3xl font-bold">Movio</h1>
           <h3 className="text-sm text-gray-500 tracking-widest">COMMUNITY</h3>

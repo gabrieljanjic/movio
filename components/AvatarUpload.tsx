@@ -67,14 +67,15 @@ export default function AvatarUpload({
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <div className="relative w-[200px] h-[200px]">
-        <Image
-          src={preview}
-          alt="Avatar"
-          width={200}
-          height={200}
-          className="rounded-full object-cover w-full h-full"
-        />
+      <div>
+        <div className="relative w-32 h-32 md:w-48 md:h-48">
+          <Image
+            src={preview}
+            alt="Avatar"
+            fill
+            className="rounded-full object-cover w-full h-full"
+          />
+        </div>
         {uploading && (
           <div className="absolute inset-0 bg-black bg-opacity-50 rounded-full flex items-center justify-center">
             <span className="text-white text-sm">Uploading...</span>
