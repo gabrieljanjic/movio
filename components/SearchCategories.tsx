@@ -26,16 +26,18 @@ const SearchCategories = async ({
   const dataPeople = await getPersonSearch(query, pageNum, "person");
   const totalResultsPeople = dataPeople.total_results;
   return (
-    <div className="w-1/5">
-      <div className="bg-blue-900 rounded-tl rounded-tr p-3">
-        <h3 className="text-xl font-semibold text-white">Search Results</h3>
+    <div className="mb-3 md:mb-0">
+      <div className="bg-blue-900 rounded-tl rounded-tr p-2 md:p-3">
+        <h3 className="text-lg md:text-xl ml-1 font-semibold text-white">
+          Search Results
+        </h3>
       </div>
-      <ul className=" h-fit bg-white rounded-bl rounder-br">
+      <ul className="h-fit bg-white rounded-bl rounder-br">
         <li
           className={
             type === "movie"
-              ? "bg-slate-300 px-4 py-2 rounded-tl rounded-tr"
-              : "px-4 py-2"
+              ? "bg-slate-300 px-3 py-2 md:px-4 rounded-tl rounded-tr"
+              : "px-3 py-2 md:px-4"
           }
         >
           <Link
@@ -46,20 +48,26 @@ const SearchCategories = async ({
             className={type === "movie" ? "font-semibold " : ""}
           >
             <div className="flex justify-between items-center">
-              <p>Movies</p>
+              <p className="text-gray-900">Movies</p>
               <div className="px-2 py-1 bg-slate-100 w-fit flex rounded-xl">
-                <span className="text-[12px]">{totalResultsMovie}</span>
+                <span className="text-xs">{totalResultsMovie}</span>
               </div>
             </div>
           </Link>
         </li>
-        <li className={type === "tv" ? "bg-slate-300 px-4 py-2" : "px-4 py-2"}>
+        <li
+          className={
+            type === "tv"
+              ? "bg-slate-300 px-3 py-2 md:px-4"
+              : "px-3 py-2 md:px-4"
+          }
+        >
           <Link
             href={`/series?page=1&query=${query}`}
             className={type === "tv" ? "font-semibold  " : ""}
           >
             <div className="flex justify-between items-center">
-              <p>Series</p>
+              <p className="text-gray-900">Series</p>
               <div className="px-2 py-1 bg-slate-100 w-fit flex rounded-xl">
                 <span className="text-[12px]">{totalResultsSeries}</span>
               </div>
@@ -69,8 +77,8 @@ const SearchCategories = async ({
         <li
           className={
             type === "person"
-              ? "bg-slate-300 px-4 py-2 rounded-bl rounded-br"
-              : "px-4 py-2"
+              ? "bg-slate-300 px-3 py-2 md:px-4 rounded-bl rounded-br"
+              : "px-3 py-2 md:px-4"
           }
         >
           <Link
@@ -78,7 +86,7 @@ const SearchCategories = async ({
             className={type === "person" ? "font-semibold  " : ""}
           >
             <div className="flex justify-between items-center">
-              <p>People</p>
+              <p className="text-gray-900">People</p>
               <div className="px-2 py-1 bg-slate-100 w-fit flex rounded-xl">
                 <span className="text-[12px]">{totalResultsPeople}</span>
               </div>

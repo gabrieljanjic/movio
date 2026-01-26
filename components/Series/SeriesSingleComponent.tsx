@@ -38,7 +38,7 @@ const SeriesSingleComponent = async ({
   }
 
   return (
-    <div
+    <article
       className="flex flex-col md:flex-row gap-4 sm:gap-6 lg:gap-8 p-4 sm:p-6 lg:p-8 rounded-tl rounded-tr text-white"
       style={backgroundStyle}
     >
@@ -127,7 +127,7 @@ const SeriesSingleComponent = async ({
           </a>
         )}
       </div>
-    </div>
+    </article>
   );
 };
 

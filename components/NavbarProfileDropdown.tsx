@@ -9,11 +9,12 @@ import { CgProfile } from "react-icons/cg";
 import { FaRegHeart } from "react-icons/fa";
 import { IoChatboxOutline } from "react-icons/io5";
 import { BiLogIn } from "react-icons/bi";
+import Image from "next/image";
 
 const NavbarProfileDropdown = ({
   user,
 }: {
-  user: { firstName: string; userName: string } | null;
+  user: { firstName: string; userName: string; avatar?: string } | null;
 }) => {
   const [open, setOpen] = useState(false);
   return (
@@ -31,9 +32,20 @@ const NavbarProfileDropdown = ({
             className="flex items-center gap-2 cursor-pointer"
             onClick={() => setOpen(!open)}
           >
-            <div className="w-8 h-8 rounded-full bg-white text-blue-900 flex items-center justify-center font-bold">
-              {user.firstName[0]}
-            </div>
+            {user.avatar ? (
+              <div className="relative w-8 h-8 rounded-full">
+                <Image
+                  src={user.avatar}
+                  alt={user.avatar}
+                  fill
+                  className="rounded-full object-cover"
+                />
+              </div>
+            ) : (
+              <div className="w-8 h-8 rounded-full bg-white text-blue-900 flex items-center justify-center font-bold uppercase">
+                {user.firstName[0]}
+              </div>
+            )}
             <span>{user.firstName}</span>
           </div>
           {open && (

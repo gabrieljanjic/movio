@@ -53,6 +53,17 @@ export type ExtendedPost = {
     firstName: string;
     avatar?: string;
   };
+  tmdbRefId: {
+    _id: string | number;
+    tmdbId: number;
+    contentType: string;
+    title: string;
+    overview: string;
+    posterPath: string;
+    voteAverage: number;
+    releaseDate: string;
+    createdAt: string;
+  };
   iLikedIt: boolean;
   likesCount: number;
   commentsCount: number;

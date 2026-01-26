@@ -10,7 +10,7 @@ export default function SeriesCardComponent({
   data: SeriesCardProps;
 }) {
   return (
-    <section className="px-3 sm:px-4">
+    <article className="px-3 sm:px-4">
       <div
         className="grid justify-center place-items-center gap-6
     [grid-template-columns:repeat(auto-fit,8rem)]
@@ -35,7 +35,7 @@ export default function SeriesCardComponent({
                   fill
                   className="object-cover rounded-t"
                 />
-                <RatingBadge voteAverage={series.vote_average} />
+                <RatingBadge voteAverage={series.vote_average || 0} />
               </div>
               <div className="mt-3 md:mt-2 p-2 sm:p-3">
                 <p className="font-bold text-sm sm:text-base line-clamp-2 group-hover:text-blue-500">
@@ -49,6 +49,6 @@ export default function SeriesCardComponent({
           </div>
         ))}
       </div>
-    </section>
+    </article>
   );
 }

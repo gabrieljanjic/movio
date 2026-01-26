@@ -4,39 +4,99 @@ import Image from "next/image";
 import Link from "next/link";
 
 const PostDetailsComponent = ({ post }: { post: ExtendedPost }) => {
+  const timeAgo = getTimeAgo(new Date(post.createdAt));
   return (
-    <>
-      <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-3">
-          {post.createdBy.avatar ? (
-            <div className="relative w-10 h-10 sm:w-12 md:h-12">
-              <Image
-                src={post.createdBy.avatar}
-                fill
-                alt={post.createdBy.userName}
-                className="rounded-full"
-              />
-            </div>
-          ) : (
-            <div className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-lg">
-              {post.createdBy.userName[0].toUpperCase()}
-            </div>
-          )}
-          <div>
-            <Link href={`/user/${post.createdBy.userName}`}>
-              <p className="font-semibold text-gray-800 hover:underline">
-                {post.createdBy.firstName}
-              </p>
-            </Link>
-            <p className="text-xs text-gray-400">
-              {getTimeAgo(new Date(post.createdAt))}
-            </p>
-          </div>
+    <article
+      className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 mb-4 hover:shadow-lg transition-shadow"
+      key={post._id}
+    >
+      <div className="p-3 sm:p-4 flex items-center gap-2 sm:gap-3 ">
+        <Image
+          src={post.createdBy.avatar || "/images/portrait-placeholder-1x1.png"}
+          alt={post.createdBy.userName}
+          width={40}
+          height={40}
+          className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 rounded-full object-cover"
+        />
+        <div className="flex-1 min-w-0">
+          <Link
+            href={`/user/${post.createdBy.userName}`}
+            className="hover:underline"
+          >
+            <h3 className="font-semibold text-gray-900 text-sm sm:text-base truncate">
+              {post.createdBy.firstName}
+            </h3>
+          </Link>
+          <p className="text-sm text-gray-500 truncate">
+            @{post.createdBy.userName} · {timeAgo}
+          </p>
         </div>
       </div>
-      <span className="text-gray-700">Rating: {post.rating}/10</span>
-      <p className="text-gray-800 leading-relaxed">{post.postContent}</p>
-    </>
+      <div className="px-3 sm:px-4 pb-3 sm:pb-4">
+        <div className="bg-gray-50 rounded-lg p-3 sm:p-4 border border-gray-200 group transition duration-300">
+          <Link
+            href={
+              post.tmdbRefId.contentType === "movie"
+                ? `/movies/${post.tmdbRefId.tmdbId}`
+                : `/series/${post.tmdbRefId.tmdbId}`
+            }
+          >
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+              <div className="relative w-32 h-48 sm:w-24 sm:h-36 flex-shrink-0 rounded-md overflow-hidden shadow-md mx-auto sm:mx-0 ">
+                <Image
+                  src={
+                    post.tmdbRefId.posterPath
+                      ? `https://image.tmdb.org/t/p/w500${post.tmdbRefId.posterPath}`
+                      : "images/no-image-placeholder.png"
+                  }
+                  alt={post.tmdbRefId.title}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h4 className="font-bold text-base md:text-lg text-gray-900 mb-1 group-hover:text-blue-500">
+                  {post.tmdbRefId.title}
+                </h4>
+                <div className="flex items-center gap-2 mt-1 mb-2 flex-wrap">
+                  <span className="text-white bg-gray-700 px-2 text-xs md:text-sm rounded">
+                    {post.tmdbRefId.voteAverage != null
+                      ? Math.round(post.tmdbRefId.voteAverage * 10) + "%"
+                      : "-"}
+                  </span>
+                  <span className="text-gray-400">•</span>
+                  <span className="text-xs text-gray-600">
+                    {post.tmdbRefId.releaseDate
+                      ? new Date(post.tmdbRefId.releaseDate).getFullYear()
+                      : "-"}
+                  </span>
+                  <span className="text-gray-400">•</span>
+                  <span className="text-xs md:text-sm text-gray-600">
+                    {post.tmdbRefId.contentType}
+                  </span>
+                </div>
+                <p className="text-sm text-gray-600 line-clamp-3">
+                  {post.tmdbRefId.overview}
+                </p>
+              </div>
+            </div>
+          </Link>
+        </div>
+        <div className="mt-3 flex items-center gap-2 flex-wrap">
+          <span className="font-semibold text-gray-700">Rating:</span>
+          <div className="flex items-center gap-1">
+            <span className="ml-1 text-sm md:text-base font-semibold text-gray-700">
+              {post.rating}/10
+            </span>
+          </div>
+        </div>
+        <div className="mt-3">
+          <p className="text-gray-800 text-sm md:text-base leading-relaxed">
+            {post.postContent}
+          </p>
+        </div>
+      </div>
+    </article>
   );
 };
 

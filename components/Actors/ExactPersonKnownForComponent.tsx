@@ -16,7 +16,7 @@ const ExactPersonKnownForComponent = ({
     .sort((a, b) => (b.popularity ?? 0) - (a.popularity ?? 0))
     .slice(0, 10);
   return (
-    <div className="py-6 px-4">
+    <article className="py-6 px-4">
       <h2 className="text-2xl font-semibold mb-3">Known for</h2>
       <div className="flex gap-2 overflow-x-scroll">
         {sortedByPopularity.map((cast) => {
@@ -64,7 +64,7 @@ const ExactPersonKnownForComponent = ({
           </Link>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 

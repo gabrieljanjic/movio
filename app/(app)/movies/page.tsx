@@ -10,14 +10,16 @@ const MovieSearch = async ({ searchParams }: SearchProps) => {
   const dataMovie = await getMoviesSearch(query, pageNum, "movie");
   const totalPages = dataMovie.total_pages;
   return (
-    <section className="mt-6 flex gap-2">
-      <SearchCategories
-        searchParams={searchParams}
-        query={query}
-        type={"movie"}
-        pageNum={pageNum}
-      />
-      <div className="w-4/5">
+    <section className="mt-6 flex flex-col md:flex-row gap-2 mx-4">
+      <div className="w-full md:w-1/5">
+        <SearchCategories
+          searchParams={searchParams}
+          query={query}
+          type={"movie"}
+          pageNum={pageNum}
+        />
+      </div>
+      <div className="w-full">
         <MovieCardComponent data={dataMovie} />
         <PaginationQuery
           pageNum={pageNum}

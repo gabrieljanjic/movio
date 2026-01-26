@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const AllCommentsComponent = ({ comments }: { comments: Comment[] }) => {
   return (
-    <div>
+    <article>
       {comments.length > 0 ? (
         <div>
           {comments.map((comment) => {
@@ -38,7 +38,7 @@ const AllCommentsComponent = ({ comments }: { comments: Comment[] }) => {
           No comments yet be the first now
         </div>
       )}
-    </div>
+    </article>
   );
 };
 

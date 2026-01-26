@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const ActorCardComponent = async ({ data }: { data: PeopleResponse }) => {
   return (
-    <div
+    <article
       className="grid justify-center place-items-center gap-6
     [grid-template-columns:repeat(auto-fit,8rem)]
     sm:[grid-template-columns:repeat(auto-fit,10rem)]
@@ -39,7 +39,7 @@ const ActorCardComponent = async ({ data }: { data: PeopleResponse }) => {
           </div>
         );
       })}
-    </div>
+    </article>
   );
 };
 

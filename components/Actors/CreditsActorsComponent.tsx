@@ -13,7 +13,7 @@ const CreditsActors = ({
   type: string;
 }) => {
   return (
-    <div className="flex flex-col p-4 sm:p-6 bg-white">
+    <article className="flex flex-col p-4 sm:p-6 bg-white">
       <h1 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">
         Top Billed Cast
       </h1>
@@ -55,7 +55,7 @@ const CreditsActors = ({
           </Link>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 

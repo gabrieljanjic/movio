@@ -13,7 +13,7 @@ import FollowComponent from "@/components/FollowComponent";
 import { checkFollow } from "@/lib/actions/userActions";
 import UnFollowComponent from "@/components/UnfollowComponent";
 import PaginationQuery from "@/components/PaginationQuery";
-import { AllPostsById } from "@/types/types";
+import { AllPostsById, ExtendedPost } from "@/types/types";
 
 const UserProfile = async ({
   params,
@@ -33,7 +33,7 @@ const UserProfile = async ({
     myUser?._id.toString() || "",
   );
 
-  const allPosts: AllPostsById = await getAllPostsById(user._id, page);
+  const allPosts = await getAllPostsById(user._id, page);
 
   const isOwnProfile = myUser
     ? user._id.toString() === myUser._id.toString()
@@ -95,7 +95,13 @@ const UserProfile = async ({
           )}
         </div>
       </div>
-      {allPosts.posts.length > 0 ? (
+      {!checkFollowing.success && !isOwnProfile ? (
+        <div className="mt-12 w-full">
+          <p className="text-center">
+            You have to follow the person to see his posts
+          </p>
+        </div>
+      ) : allPosts.posts.length > 0 ? (
         <div>
           {allPosts.posts.map((post) => (
             <div

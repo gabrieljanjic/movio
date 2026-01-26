@@ -12,7 +12,7 @@ const AllCreditsActorsComponent = ({
   movie?: MovieDetail;
 }) => {
   return (
-    <div className="mt-4 mx-2">
+    <article className="mt-4 mx-2">
       <h1 className="text-2xl sm:text-3xl font-semibold mb-2 text-gray-900">
         {movie?.title ?? series?.name}
       </h1>
@@ -112,7 +112,7 @@ const AllCreditsActorsComponent = ({
           </div>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 

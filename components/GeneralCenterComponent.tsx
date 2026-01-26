@@ -8,7 +8,7 @@ const GeneralCenterComponent = ({
   login: boolean;
 }) => {
   return (
-    <div className="w-full flex justify-center items-center px-4 py-16 md:py-24">
+    <article className="w-full flex justify-center items-center px-4 py-16 md:py-24">
       <div className="text-center max-w-md space-y-5">
         <div className="relative w-32 h-32 mx-auto mb-6">
           <div className="absolute inset-0 bg-blue-100 rounded-full opacity-50 animate-pulse"></div>
@@ -29,7 +29,7 @@ const GeneralCenterComponent = ({
           </div>
         )}
       </div>
-    </div>
+    </article>
   );
 };
 

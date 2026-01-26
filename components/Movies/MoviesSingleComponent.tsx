@@ -12,7 +12,6 @@ const MoviesSingleComponent = async ({
   isInFavorites: isTrue;
   isInWatchlist: isTrue;
 }) => {
-  console.log("LLL", data);
   let backgroundStyle = {
     background:
       "linear-gradient(0deg, rgb(255,255,255) 0%, rgba(0,0,0,0.85) 70%)",
@@ -37,7 +36,7 @@ const MoviesSingleComponent = async ({
   }
 
   return (
-    <div
+    <article
       className="flex flex-col md:flex-row gap-4 sm:gap-6 lg:gap-8 p-4 sm:p-6 lg:p-8 rounded-tl rounded-tr text-white"
       style={backgroundStyle}
     >
@@ -106,7 +105,7 @@ const MoviesSingleComponent = async ({
           )}
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 

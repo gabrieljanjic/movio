@@ -14,14 +14,16 @@ const FamousPersonSearch = async ({ searchParams }: SearchProps) => {
   );
   const totalPages = dataPeople.total_pages;
   return (
-    <section className="mt-6 flex gap-2 px-4">
-      <SearchCategories
-        searchParams={searchParams}
-        query={query}
-        type={"person"}
-        pageNum={pageNum}
-      />
-      <div className="px-4 w-full">
+    <section className="mt-6 flex flex-col md:flex-row gap-2 mx-4">
+      <div className="w-full md:w-1/5">
+        <SearchCategories
+          searchParams={searchParams}
+          query={query}
+          type={"person"}
+          pageNum={pageNum}
+        />
+      </div>
+      <div className="w-full">
         <ActorCardComponent data={dataPeople} />
         <PaginationQuery
           pageNum={pageNum}

@@ -10,14 +10,16 @@ const SeriesSearch = async ({ searchParams }: SearchProps) => {
   const dataSeries = await getSeriesSearch(query, pageNum, "tv");
   const totalPages = dataSeries.total_pages;
   return (
-    <section className="mt-6 flex gap-2">
-      <SearchCategories
-        searchParams={searchParams}
-        query={query}
-        type={"tv"}
-        pageNum={pageNum}
-      />
-      <div className="w-4/5">
+    <section className="mt-6 flex flex-col md:flex-row gap-2 mx-4">
+      <div className="w-full md:w-1/5">
+        <SearchCategories
+          searchParams={searchParams}
+          query={query}
+          type={"tv"}
+          pageNum={pageNum}
+        />
+      </div>
+      <div className="w-full">
         <SeriesCardComponent data={dataSeries} />
         <PaginationQuery
           pageNum={pageNum}

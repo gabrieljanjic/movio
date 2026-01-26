@@ -85,13 +85,11 @@ export const commentPostActions = async (
   message: string,
 ) => {
   try {
+    await connectDB();
     await Comment.create({ postId, userId, message });
     revalidatePath(`/post/${postId}`);
     return { success: true };
   } catch (err) {
-    if (err instanceof Error) {
-      return { success: false };
-    }
     return { success: false };
   }
 };

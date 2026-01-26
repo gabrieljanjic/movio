@@ -6,7 +6,7 @@ import { MovieCardProps } from "@/types/types";
 
 export default function MovieCardComponent({ data }: { data: MovieCardProps }) {
   return (
-    <section className="px-3 sm:px-4">
+    <article className="px-3 sm:px-4">
       <div
         className="grid justify-center place-items-center gap-6
     [grid-template-columns:repeat(auto-fit,8rem)]
@@ -49,6 +49,6 @@ export default function MovieCardComponent({ data }: { data: MovieCardProps }) {
           );
         })}
       </div>
-    </section>
+    </article>
   );
 }

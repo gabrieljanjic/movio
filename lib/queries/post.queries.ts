@@ -4,6 +4,73 @@ import { Like } from "../models/Like";
 import { Comment } from "../models/Comment";
 import "../models";
 
+export async function getAllPostsById(userId: string, page: number) {
+  const limit = 10;
+  const skip = (page - 1) * limit;
+  await connectDB();
+
+  const total = await Post.countDocuments({
+    createdBy: userId,
+  });
+  const totalPages = Math.ceil(total / limit);
+  const posts = await Post.find({ createdBy: userId })
+    .populate("createdBy", "-password")
+    .populate("tmdbRefId")
+    .sort({ createdAt: -1 })
+    .skip(skip)
+    .limit(limit);
+
+  const postIds = posts.map((p) => p._id);
+  const allLikes = await Like.find({
+    postId: { $in: postIds },
+  }).lean();
+  const allComments = await Comment.find({
+    postId: { $in: postIds },
+  }).lean();
+  const likedPostsIds = new Set<string>();
+  const likesCountMap = new Map<string, number>();
+  const commentsCountMap = new Map<string, number>();
+
+  allLikes.forEach((like) => {
+    const postIdStr = like.postId.toString();
+    likesCountMap.set(postIdStr, (likesCountMap.get(postIdStr) || 0) + 1);
+    if (like.userId.toString() === userId) {
+      likedPostsIds.add(postIdStr);
+    }
+  });
+
+  allComments.forEach((comment) => {
+    const postIdStr = comment.postId.toString();
+    commentsCountMap.set(postIdStr, (commentsCountMap.get(postIdStr) || 0) + 1);
+  });
+
+  const postsData = posts.map((post) => {
+    const postIdStr = post._id.toString();
+    return {
+      _id: postIdStr,
+      postContent: post.postContent,
+      rating: post.rating,
+      createdAt: post.createdAt.toISOString(),
+      createdBy: {
+        _id: post.createdBy._id.toString(),
+        userName: post.createdBy.userName,
+        firstName: post.createdBy.firstName,
+        avatar: post.createdBy.avatar,
+      },
+      tmdbRefId: post.tmdbRefId,
+      iLikedIt: likedPostsIds.has(postIdStr),
+      likesCount: likesCountMap.get(postIdStr) || 0,
+      commentsCount: commentsCountMap.get(postIdStr) || 0,
+    };
+  });
+  return {
+    posts: postsData,
+    pagination: {
+      totalPages,
+    },
+  };
+}
+
 export async function getPostsByContentId(
   contentId: number,
   userId: string,
@@ -13,8 +80,8 @@ export async function getPostsByContentId(
 
   const posts = await Post.find({ contentId })
     .sort({ createdAt: -1 })
-    /*.populate("tmdbRefId")*/
     .populate("createdBy", "userName avatar firstName")
+    .populate("tmdbRefId")
     .lean();
 
   const postIds = posts.map((p) => p._id);
@@ -58,6 +125,7 @@ export async function getPostsByContentId(
         firstName: post.createdBy.firstName,
         avatar: post.createdBy.avatar,
       },
+      tmdbRefId: post.tmdbRefId,
       iLikedIt: likedPostsIds.has(postIdStr),
       likesCount: likesCountMap.get(postIdStr) || 0,
       commentsCount: commentsCountMap.get(postIdStr) || 0,
@@ -67,10 +135,9 @@ export async function getPostsByContentId(
 
 export async function getExactPostByContentId(postId: string, userId: string) {
   await connectDB();
-  const post = await Post.findOne({ _id: postId }).populate(
-    "createdBy",
-    "userName",
-  );
+  const post = await Post.findOne({ _id: postId })
+    .populate("createdBy", "userName firstName avatar")
+    .populate("tmdbRefId");
 
   const didILikeIt = await Like.findOne({
     postId,
@@ -102,8 +169,9 @@ export async function getExactPostByContentId(postId: string, userId: string) {
       _id: post.createdBy._id.toString(),
       userName: post.createdBy.userName,
       firstName: post.createdBy.firstName,
-      avatar: post.createdBy.avatar || "",
+      avatar: post.createdBy.avatar,
     },
+    tmdbRefId: post.tmdbRefId,
     iLikedIt: !!didILikeIt,
     likesCount: likesCounter,
     commentsCount: commentsCounter,
@@ -126,70 +194,6 @@ export async function getAllCommentsByContentId(postId: string) {
   }));
 }
 
-export async function getAllPostsById(userId: string, page: number) {
-  const limit = 10;
-  const skip = (page - 1) * limit;
-  await connectDB();
-
-  const total = await Post.countDocuments({
-    createdBy: userId,
-  });
-  const totalPages = Math.ceil(total / limit);
-  const posts = await Post.find({ createdBy: userId })
-    .populate("createdBy", "-password")
-    .sort({ createdAt: -1 })
-    .skip(skip)
-    .limit(limit);
-
-  const postIds = posts.map((p) => p._id);
-  const allLikes = await Like.find({
-    postId: { $in: postIds },
-  }).lean();
-  const allComments = await Comment.find({
-    postId: { $in: postIds },
-  }).lean();
-  const likedPostsIds = new Set<string>();
-  const likesCountMap = new Map<string, number>();
-  const commentsCountMap = new Map<string, number>();
-
-  allLikes.forEach((like) => {
-    const postIdStr = like.postId.toString();
-    likesCountMap.set(postIdStr, (likesCountMap.get(postIdStr) || 0) + 1);
-    if (like.userId.toString() === userId) {
-      likedPostsIds.add(postIdStr);
-    }
-  });
-
-  allComments.forEach((comment) => {
-    const postIdStr = comment.postId.toString();
-    commentsCountMap.set(postIdStr, (commentsCountMap.get(postIdStr) || 0) + 1);
-  });
-
-  const postsData = posts.map((post) => {
-    const postIdStr = post._id.toString();
-    return {
-      _id: postIdStr,
-      postContent: post.postContent,
-      rating: post.rating,
-      createdAt: post.createdAt.toISOString(),
-      createdBy: {
-        _id: post.createdBy._id.toString(),
-        userName: post.createdBy.userName,
-        firstName: post.createdBy.firstName,
-        avatar: post.createdBy.avatar,
-      },
-      iLikedIt: likedPostsIds.has(postIdStr),
-      likesCount: likesCountMap.get(postIdStr) || 0,
-      commentsCount: commentsCountMap.get(postIdStr) || 0,
-    };
-  });
-  return {
-    posts: postsData,
-    pagination: {
-      totalPages,
-    },
-  };
-}
 /*const allLikes = await Like.find({
     postId,
   });
