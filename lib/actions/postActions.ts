@@ -8,7 +8,6 @@ import { Like } from "@/lib/models/Like";
 import { Comment } from "../models/Comment";
 import { Content } from "../models/Content";
 import { WholeContent } from "@/types/types";
-import Error from "next/error";
 
 type CreatePostInput = {
   wholeContent: WholeContent;
@@ -89,7 +88,7 @@ export const commentPostActions = async (
     await Comment.create({ postId, userId, message });
     revalidatePath(`/post/${postId}`);
     return { success: true };
-  } catch (err) {
+  } catch {
     return { success: false };
   }
 };

@@ -13,7 +13,6 @@ import FollowComponent from "@/components/FollowComponent";
 import { checkFollow } from "@/lib/actions/userActions";
 import UnFollowComponent from "@/components/UnfollowComponent";
 import PaginationQuery from "@/components/PaginationQuery";
-import { AllPostsById, ExtendedPost } from "@/types/types";
 
 const UserProfile = async ({
   params,

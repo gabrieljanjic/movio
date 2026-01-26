@@ -13,11 +13,11 @@ const AllSeasonsComponent = async ({ data }: { data: SeriesDetail }) => {
           </h1>
           {data.seasons.reverse().map((season) => {
             return (
-              <Link href={`/series/${data.id}/season/${season.season_number}`}>
-                <div
-                  className="flex flex-col group items-center pt-2 sm:pt-0 sm:items-start sm:flex-row w-full rounded-md border border-gray-200 bg-gray-50 overflow-hidden"
-                  key={data.id}
-                >
+              <Link
+                href={`/series/${data.id}/season/${season.season_number}`}
+                key={data.id}
+              >
+                <div className="flex flex-col group items-center pt-2 sm:pt-0 sm:items-start sm:flex-row w-full rounded-md border border-gray-200 bg-gray-50 overflow-hidden">
                   <div className="relative w-40 h-60 sm:w-32 sm:h-48 flex-shrink-0">
                     <Image
                       src={
