@@ -3,10 +3,8 @@
 import { loginUser } from "@/lib/actions/userActions";
 import Link from "next/link";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
-  const router = useRouter();
   const [error, setError] = useState<string | null>(null);
 
   return (
