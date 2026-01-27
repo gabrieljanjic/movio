@@ -4,7 +4,7 @@ A full-stack social platform for movie and TV series enthusiasts. Discover trend
 
 ## 🌟 [Live Demo →](https://movio-delta.vercel.app/)
 
-![Movio Preview](https://via.placeholder.com/800x400?text=Add+Screenshot+Here)
+![Movio Preview](./public/images/home.png)
 
 ## ✨ Key Features
 
