@@ -2,9 +2,11 @@ import { getTimeAgo } from "@/lib/utils";
 import { ExtendedPost } from "@/types/types";
 import Image from "next/image";
 import Link from "next/link";
+import SpoilerText from "./SpoilerText";
 
 const PostDetailsComponent = ({ post }: { post: ExtendedPost }) => {
   const timeAgo = getTimeAgo(new Date(post.createdAt));
+  console.log(post.tmdbRefId.contentType);
   return (
     <article
       className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 mb-4 hover:shadow-lg transition-shadow"
@@ -90,10 +92,14 @@ const PostDetailsComponent = ({ post }: { post: ExtendedPost }) => {
             </span>
           </div>
         </div>
-        <div className="mt-3">
-          <p className="text-gray-800 text-sm md:text-base leading-relaxed">
-            {post.postContent}
-          </p>
+        <div className="mt-2 ml-1">
+          {post.spoiler ? (
+            <SpoilerText text={post.postContent} />
+          ) : (
+            <p className="text-gray-800 text-sm md:text-base leading-relaxed">
+              {post.postContent}
+            </p>
+          )}
         </div>
       </div>
     </article>

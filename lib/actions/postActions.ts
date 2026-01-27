@@ -15,6 +15,7 @@ type CreatePostInput = {
   postContent: string;
   rating: number;
   createdBy: string;
+  spoiler: boolean;
   contentType: "movie" | "tv";
 };
 
@@ -26,6 +27,7 @@ export const createPostActions = async (data: CreatePostInput) => {
     rating,
     createdBy,
     contentType,
+    spoiler,
   } = data;
   if (!contentId || !postContent) {
     return;
@@ -54,6 +56,7 @@ export const createPostActions = async (data: CreatePostInput) => {
     contentId: contentId,
     contentType,
     postContent,
+    spoiler: spoiler,
     rating,
     createdBy: new mongoose.Types.ObjectId(createdBy),
   });

@@ -1,6 +1,6 @@
 import CreditsActors from "@/components/Actors/CreditsActorsComponent";
 import CreatePostComponent from "@/components/CreatePostComponent";
-import ListAllPostsComponent from "@/components/ListAllPostsComponent";
+import ListAllPostsComponentShorter from "@/components/ListAllPostsComponentShorter";
 import AllSeasonsComponent from "@/components/Series/AllSeasonsComponent";
 import SeriesRecommendations from "@/components/Series/SeriesRecommendations";
 import SeriesSingleComponent from "@/components/Series/SeriesSingleComponent";
@@ -43,7 +43,7 @@ const SingleSeriesView = async ({ params }: { params: { id: string } }) => {
             wholeContent={data}
             contentType="tv"
           />
-          <ListAllPostsComponent
+          <ListAllPostsComponentShorter
             id={data.id}
             userId={user._id}
             slice={slice}

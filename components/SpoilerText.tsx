@@ -23,7 +23,7 @@ const SpoilerText = ({ text }: SpoilerTextProps) => {
         <button
           onClick={() => setRevealed(true)}
           className="
-            absolute inset-0 flex items-center justify-center
+            absolute inset-0 flex items-center pl-2
             text-xs font-medium text-white
             bg-black/40 backdrop-blur-sm
             rounded

@@ -2,6 +2,7 @@ import { getTimeAgo } from "@/lib/utils";
 import { FeedResponse } from "@/types/types";
 import Image from "next/image";
 import Link from "next/link";
+import SpoilerText from "./SpoilerText";
 
 const FeedPostComponent = ({ feedPosts }: { feedPosts: FeedResponse }) => {
   return (
@@ -93,10 +94,14 @@ const FeedPostComponent = ({ feedPosts }: { feedPosts: FeedResponse }) => {
                   </span>
                 </div>
               </div>
-              <div className="mt-3">
-                <p className="text-gray-800 text-sm md:text-base leading-relaxed">
-                  {post.postContent}
-                </p>
+              <div className="mt-2 ml-1">
+                {post.spoiler ? (
+                  <SpoilerText text={post.postContent} />
+                ) : (
+                  <p className="text-gray-800 text-sm md:text-base leading-relaxed">
+                    {post.postContent}
+                  </p>
+                )}
               </div>
             </div>
           </article>

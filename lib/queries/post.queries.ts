@@ -118,6 +118,7 @@ export async function getPostsByContentId(
       _id: postIdStr,
       postContent: post.postContent,
       rating: post.rating,
+      spoiler: post.spoiler,
       createdAt: post.createdAt.toISOString(),
       createdBy: {
         _id: post.createdBy._id.toString(),

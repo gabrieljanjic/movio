@@ -1,6 +1,6 @@
 import AllCreditsActorsComponent from "@/components/Actors/CreditsActorsComponent";
 import CreatePostComponent from "@/components/CreatePostComponent";
-import ListAllPostsComponent from "@/components/ListAllPostsComponent";
+import ListAllPostsComponentShorter from "@/components/ListAllPostsComponentShorter";
 import MoviesSingleComponent from "@/components/Movies/MoviesSingleComponent";
 import { checkIsInFavorites } from "@/lib/actions/favoritesActions";
 import { checkIsInWatchlist } from "@/lib/actions/watchlistActions";
@@ -40,7 +40,7 @@ const SingleMovieView = async ({ params }: { params: { id: string } }) => {
             wholeContent={data}
             contentType="movie"
           />
-          <ListAllPostsComponent
+          <ListAllPostsComponentShorter
             id={data.id}
             userId={user._id}
             slice={slice}

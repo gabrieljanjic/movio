@@ -23,6 +23,7 @@ const CreatePostComponent = ({
   const [rating, setRating] = useState<number | "">("");
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [spoiler, setSpoiler] = useState(false);
 
   const handleRatingChange = (value: number) => {
     if (value < 1) value = 1;
@@ -43,10 +44,12 @@ const CreatePostComponent = ({
         contentType,
         postContent,
         rating,
+        spoiler,
         createdBy: user._id,
       });
       setPostContent("");
       setRating("");
+      setSpoiler(false);
     } catch (err) {
       if (err instanceof Error) {
         return { success: false, message: err.message };
@@ -83,15 +86,25 @@ const CreatePostComponent = ({
       </div>
       <div className="flex flex-col gap-3">
         {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-        <input
-          type="number"
-          min={1}
-          max={10}
-          className="w-32 border text-sm sm:text-base border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-          placeholder="Rating (1-10)"
-          value={rating}
-          onChange={(e) => handleRatingChange(Number(e.target.value))}
-        />
+        <div className="flex items-center justify-between gap-2">
+          <input
+            type="number"
+            min={1}
+            max={10}
+            className="w-32 border text-sm sm:text-base border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            placeholder="Rating (1-10)"
+            value={rating}
+            onChange={(e) => handleRatingChange(Number(e.target.value))}
+          />
+          <div className="flex gap-2 items-center mr-3">
+            <p className="text-gray-800">Does this post contain spoilers?</p>
+            <input
+              type="checkbox"
+              className="w-4 h-4"
+              onChange={() => setSpoiler(!spoiler)}
+            />
+          </div>
+        </div>
         <textarea
           rows={5}
           className="w-full border text-sm sm:text-base border-gray-300 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"

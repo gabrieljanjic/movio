@@ -13,6 +13,7 @@ const PostSchema = new mongoose.Schema({
   contentType: {
     type: String,
   },
+  spoiler: { type: Boolean, default: false },
   postContent: { type: String, required: true },
   rating: { type: Number },
   createdBy: {

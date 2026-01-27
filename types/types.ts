@@ -35,6 +35,7 @@ export type Post = {
   _id: string;
   tmdbRefId: Content;
   contentId: string;
+  spoiler?: boolean;
   contentType?: string;
   postContent: string;
   rating?: number;
@@ -46,6 +47,7 @@ export type ExtendedPost = {
   _id: string;
   postContent: string;
   rating?: number;
+  spoiler?: boolean;
   createdAt: string;
   createdBy: {
     _id: string;
