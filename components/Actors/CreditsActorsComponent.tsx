@@ -20,7 +20,7 @@ const CreditsActors = ({
       <div className="flex gap-3 overflow-x-auto py-2 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
         {dataCredits.cast.slice(0, 10).map((actor: CastMember) => (
           <Link href={`/person/${actor.id}`} key={actor.id}>
-            <div className="flex flex-col flex-shrink-0 w-[110px] sm:w-[120px] custom-box-shadow-sm rounded group">
+            <div className="flex flex-col flex-shrink-0 w-[110px] sm:w-[120px] custom-box-shadow-sm rounded group h-full">
               <Image
                 src={
                   actor.profile_path

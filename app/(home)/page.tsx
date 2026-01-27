@@ -19,7 +19,7 @@ const Home = async () => {
 
   return (
     <div className="min-h-screen">
-      <div className="relative h-[600px] w-full">
+      <div className="relative h-[60vh] md:h-[80vh] w-full">
         <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/60 to-transparent z-10" />
         <Image
           src={`https://image.tmdb.org/t/p/original${heroMovie.backdrop_path}`}
@@ -28,18 +28,20 @@ const Home = async () => {
           className="object-cover"
           priority
         />
-        <div className="absolute bottom-0 left-0 right-0 p-8 z-20 max-w-7xl mx-auto">
-          <span className="text-white font-boldmb-4">TRENDING TODAY</span>
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
+        <div className="absolute bottom-0 left-0 right-0 p-8 z-20 mx-auto">
+          <span className="text-white text-sm md:text-base font-semibold mb-4">
+            TRENDING TODAY
+          </span>
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl  font-bold text-white mb-4">
             {heroMovie.title}
           </h1>
-          <p className="text-gray-300 max-w-2xl text-lg mb-6 line-clamp-3">
+          <p className="text-gray-300 max-w-2xl text-sm  sm:text-base  md:text-lg mb-6 line-clamp-3">
             {heroMovie.overview}
           </p>
           <div className="flex items-center gap-4">
             <Link
               href={`/movies/${heroMovie.id}`}
-              className="px-8 py-3 bg-white text-gray-950 font-semibold rounded-lg hover:bg-gray-200 transition"
+              className="px-2 py-1 sm:py-4 sm:px-2  md:px-8 md:py-3 bg-white text-gray-950 text-sm md:text-base font-semibold rounded-lg hover:bg-gray-200 transition"
             >
               More Info
             </Link>
@@ -58,7 +60,7 @@ const Home = async () => {
           </div>
         </div>
       </div>
-      <div className="max-w-[100vw] py-12 space-y-12 overflow-hidden">
+      <div className="max-w-[100vw] py-3 sm:py-6 md:py-9 lg:py-12 space-y-3 sm:space-y-6 md:space-y-9 lg:space-y-12 mx-4 overflow-hidden">
         <MovieCarouselComponent
           title="Trending This Week"
           items={trendingThisWeek.results}

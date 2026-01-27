@@ -3,7 +3,6 @@ import LikeComponent from "./LikeComponent";
 import { getPostsByContentId } from "@/lib/queries/post.queries";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { FaRegCommentDots } from "react-icons/fa";
-import PostDetailsComponent from "./PostDetailsComponent";
 import { ExtendedPost } from "@/types/types";
 import Image from "next/image";
 import { getTimeAgo } from "@/lib/utils";

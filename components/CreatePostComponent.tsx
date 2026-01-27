@@ -91,13 +91,15 @@ const CreatePostComponent = ({
             type="number"
             min={1}
             max={10}
-            className="w-32 border text-sm sm:text-base border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-32 border text-sm sm:text-base border-gray-300 p-1 sm:p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
             placeholder="Rating (1-10)"
             value={rating}
             onChange={(e) => handleRatingChange(Number(e.target.value))}
           />
           <div className="flex gap-2 items-center mr-3">
-            <p className="text-gray-800">Does this post contain spoilers?</p>
+            <p className="text-gray-800 text-xs sm:text-sm md:text-base">
+              Does this post contain spoilers?
+            </p>
             <input
               type="checkbox"
               className="w-4 h-4"
