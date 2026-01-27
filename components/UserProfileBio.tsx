@@ -67,7 +67,7 @@ const UserProfileBio = ({ user }: { user: User }) => {
           )}
         </div>
       </div>
-      <div className="flex flex-col md:flex-row xs:gap-2 text-sm sm:text-sm md:text-base">
+      <div className="flex flex-col items-center md:flex-row xs:gap-2 text-sm sm:text-sm md:text-base">
         <p>Last name: </p>
         <div className="flex gap-1 items-center">
           {openLastName ? (

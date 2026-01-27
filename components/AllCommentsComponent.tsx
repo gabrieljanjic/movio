@@ -4,9 +4,9 @@ import Link from "next/link";
 
 const AllCommentsComponent = ({ comments }: { comments: Comment[] }) => {
   return (
-    <article>
+    <section>
       {comments.length > 0 ? (
-        <div>
+        <article>
           {comments.map((comment) => {
             return (
               <div
@@ -32,13 +32,13 @@ const AllCommentsComponent = ({ comments }: { comments: Comment[] }) => {
               </div>
             );
           })}
-        </div>
+        </article>
       ) : (
-        <div className="mt-6 text-center mb-4">
+        <article className="mt-6 text-center mb-4">
           No comments yet be the first now
-        </div>
+        </article>
       )}
-    </article>
+    </section>
   );
 };
 
