@@ -10,7 +10,7 @@ const RegisterPage = () => {
   const [error, setError] = useState<string | null>(null);
 
   return (
-    <section className="w-full h-screen flex items-center justify-center bg-gray-100 px-2">
+    <section className="w-full h-screen flex items-center justify-center px-2">
       <form
         className="flex flex-col gap-4 w-full max-w-md mx-auto mt-10 bg-white p-8 rounded-2xl custom-box-shadow-sm"
         action={async (formData: FormData) => {
@@ -27,41 +27,43 @@ const RegisterPage = () => {
           }
         }}
       >
-        <h1 className="text-3xl font-bold text-center mb-4">Sign up</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-center mb-4">
+          Sign up
+        </h1>
         <input
           type="text"
           name="first-name"
           placeholder="First name"
-          className="border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="border border-gray-300 rounded-md p-2 md:p-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
         />
         <input
           type="text"
           name="last-name"
           placeholder="Last name"
-          className="border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="border border-gray-300 rounded-md p-2 md:p-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
         />
         <input
           type="text"
           name="username"
           placeholder="Username"
-          className="border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="border border-gray-300 rounded-md p-2 md:p-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
         />
         <input
           type="email"
           name="email"
           placeholder="Email"
-          className="border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="border border-gray-300 rounded-md p-2 md:p-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
         />
         <input
           type="password"
           name="password"
           placeholder="Password"
-          className="border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="border border-gray-300 rounded-md p-2 md:p-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
         />
         {error && <p className="text-red-500 text-sm">{error}</p>}
         <button
           type="submit"
-          className="bg-blue-500 text-white py-3 rounded-md hover:bg-blue-600 transition"
+          className="bg-blue-800 text-white p-2 md:p-3 rounded-md hover:bg-blue-900 transition"
         >
           SIGN UP
         </button>

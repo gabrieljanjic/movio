@@ -5,7 +5,8 @@ import { getAllFollows } from "@/lib/queries/feed.queries";
 import FeedPostComponent from "@/components/FeedPostComponent";
 import PaginationQuery from "@/components/PaginationQuery";
 import { FeedResponse } from "@/types/types";
-
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 const Feed = async ({ searchParams }: { searchParams: { page?: string } }) => {
   const page = Number(searchParams.page) || 1;
   const cookieStore = cookies();

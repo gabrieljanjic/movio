@@ -10,10 +10,10 @@ const LoginPage = () => {
   const [error, setError] = useState<string | null>(null);
 
   return (
-    <section className="w-full h-screen flex items-center justify-center bg-gray-100 px-2">
-      <div className="bg-white p-8 rounded-2xl w-full max-w-md flex flex-col items-center gap-6 custom-box-shadow-sm">
+    <section className="w-full h-screen flex items-center justify-center px-2">
+      <div className=" bg-white p-8 rounded-2xl w-full max-w-md flex flex-col items-center gap-6 custom-box-shadow-sm">
         <div className="text-center">
-          <h1 className="text-3xl font-bold">Movio</h1>
+          <h1 className="text-2xl md:text-3xl font-bold">Movio</h1>
           <h3 className="text-sm text-gray-500 tracking-widest">COMMUNITY</h3>
         </div>
         <form
@@ -22,7 +22,6 @@ const LoginPage = () => {
             try {
               setError(null);
               await loginUser(formData);
-              router.push("/feed");
             } catch (err) {
               if (err instanceof Error) {
                 setError(err.message);
@@ -36,18 +35,18 @@ const LoginPage = () => {
             type="email"
             name="email"
             placeholder="Email"
-            className="border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="border border-gray-300 rounded-md p-2 md:p-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
           <input
             type="password"
             name="password"
             placeholder="Password"
-            className="border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="border border-gray-300 rounded-md p-2 md:p-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
           {error && <p className="text-red-500 text-sm">{error}</p>}
           <button
             type="submit"
-            className="bg-blue-500 text-white py-3 rounded-md hover:bg-blue-600 transition"
+            className="bg-blue-800 text-white p-2 md:p-3 rounded-md hover:bg-blue-900 transition"
           >
             LOG IN
           </button>

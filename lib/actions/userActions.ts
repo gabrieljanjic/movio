@@ -26,6 +26,9 @@ export const registerUser = async (formData: FormData) => {
   if (!firstName || !lastName || !email || !password)
     throw new Error("All field are required");
 
+  if (password.length < 8)
+    throw new Error("Password must be at least 8 characters long");
+
   await connectDB();
 
   const existingEmail = await User.findOne({ email });
@@ -58,7 +61,8 @@ export const registerUser = async (formData: FormData) => {
     maxAge: 7 * 24 * 60 * 60,
   });
 
-  revalidatePath("/feed");
+  revalidatePath("/feed", "page");
+  redirect("/feed");
   return { firstName: user.firstName, lastName: user.lastName };
 };
 
@@ -88,8 +92,8 @@ export const loginUser = async (formData: FormData) => {
     maxAge: 7 * 24 * 60 * 60,
   });
 
-  revalidatePath("/feed");
-  return { firstName: user.firstName, lastName: user.lastName };
+  revalidatePath("/feed", "page");
+  redirect("/feed");
 };
 
 export const signoutUser = async () => {
@@ -134,7 +138,7 @@ export const updateUserBio = async (formData: UpdateUser) => {
       },
       { new: true },
     );
-    revalidatePath(`/user/${updatedUser.userName}`);
+    revalidatePath(`/user/${updatedUser.userName}`, "page");
     return { success: true, userName: updatedUser.userName };
   } catch (err) {
     if (err instanceof Error) {
@@ -187,7 +191,7 @@ export const followUser = async (userId: string, myUsedId: string | null) => {
       followingId: userId,
     });
 
-    revalidatePath(`user/${revalidatePathUser.username}`);
+    revalidatePath(`/user/${revalidatePathUser.userName}`, "page");
     return { success: true, message: "User successfully followed" };
   } catch (err) {
     if (err instanceof Error) {
@@ -222,7 +226,7 @@ export const unfollowUser = async (userId: string, myUsedId: string | null) => {
       followerId: myUsedId,
       followingId: userId,
     });
-    revalidatePath(`user/${revalidatePathUser.username}`);
+    revalidatePath(`/user/${revalidatePathUser.userName}`, "page");
     return { success: true, message: "User successfully unfollowed" };
   } catch (err) {
     if (err instanceof Error) {
