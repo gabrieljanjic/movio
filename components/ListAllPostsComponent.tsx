@@ -18,7 +18,6 @@ const ListAllPostsComponent = async ({
   type: string;
 }) => {
   const posts = await getPostsByContentId(id, userId, slice);
-  console.log(posts);
   return (
     <section className="bg-white flex flex-col gap-3 p-4 pb-6 md:pb-8">
       {posts.length ? (

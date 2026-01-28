@@ -6,7 +6,6 @@ import SpoilerText from "./SpoilerText";
 
 const PostDetailsComponent = ({ post }: { post: ExtendedPost }) => {
   const timeAgo = getTimeAgo(new Date(post.createdAt));
-  console.log(post.tmdbRefId.contentType);
   return (
     <article
       className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 mb-4 hover:shadow-lg transition-shadow"

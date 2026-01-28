@@ -275,6 +275,13 @@ export type PeopleResponse = {
   total_results: number;
 };
 
+export type UserResponse = {
+  page: number;
+  results: User[];
+  total_pages: number;
+  total_results: number;
+};
+
 export type AllCredits = {
   id: number;
   cast: CastMember[];
