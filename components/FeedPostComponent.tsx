@@ -1,13 +1,21 @@
 import { getTimeAgo } from "@/lib/utils";
-import { FeedResponse } from "@/types/types";
+import { AllPostsById, ExtendedPost } from "@/types/types";
 import Image from "next/image";
 import Link from "next/link";
 import SpoilerText from "./SpoilerText";
+import LikeComponent from "./LikeComponent";
+import { FaRegCommentDots } from "react-icons/fa";
 
-const FeedPostComponent = ({ feedPosts }: { feedPosts: FeedResponse }) => {
+const FeedPostComponent = ({
+  feedPosts,
+  userId,
+}: {
+  feedPosts: AllPostsById;
+  userId: string;
+}) => {
   return (
     <>
-      {feedPosts.posts.map((post) => {
+      {feedPosts.posts.map((post: ExtendedPost) => {
         const imageUrl = `https://image.tmdb.org/t/p/w500${post.tmdbRefId.posterPath}`;
         const timeAgo = getTimeAgo(new Date(post.createdAt));
         return (
@@ -102,6 +110,20 @@ const FeedPostComponent = ({ feedPosts }: { feedPosts: FeedResponse }) => {
                     {post.postContent}
                   </p>
                 )}
+              </div>
+              <div className="flex items-center gap-1 mt-2 md:mt-5 ml-1">
+                <LikeComponent
+                  postId={post._id}
+                  userId={userId}
+                  initialLiked={post.iLikedIt}
+                  initialLikesCount={post.likesCount}
+                />
+                <Link href={`/post/${post._id}`}>
+                  <div className="flex gap-2 items-center">
+                    <p>{post.commentsCount}</p>{" "}
+                    <FaRegCommentDots className="text-xl cursor-pointer" />
+                  </div>
+                </Link>
               </div>
             </div>
           </article>

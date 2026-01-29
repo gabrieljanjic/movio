@@ -4,7 +4,6 @@ import GeneralCenterComponent from "@/components/GeneralCenterComponent";
 import { getAllFollows } from "@/lib/queries/feed.queries";
 import FeedPostComponent from "@/components/FeedPostComponent";
 import PaginationQuery from "@/components/PaginationQuery";
-import { FeedResponse } from "@/types/types";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
@@ -21,12 +20,12 @@ const Feed = async ({ searchParams }: { searchParams: { page?: string } }) => {
       />
     );
   }
-  const feedPosts: FeedResponse = await getAllFollows(user._id, page);
+  const feedPosts = await getAllFollows(user._id, page);
   return (
     <section>
       {feedPosts.posts.length > 0 ? (
         <div className="mt-6 px-4">
-          <FeedPostComponent feedPosts={feedPosts} />
+          <FeedPostComponent feedPosts={feedPosts} userId={user._id} />
           <PaginationQuery
             pageNum={page}
             totalPages={feedPosts.pagination.totalPages}
