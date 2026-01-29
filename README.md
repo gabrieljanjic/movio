@@ -59,9 +59,11 @@ A full-stack social platform for movie and TV series enthusiasts. Discover trend
 - HTTP-only cookies for secure session management
 - Responsive design with mobile-first approach
 
-## 📸 Screenshots
+## 🧩 Database Schema
 
-Add your screenshots here to showcase the app!
+![Database Diagram](./public/images/diagram.PNG)
+
+The diagram illustrates core entities such as users, posts, comments, follows, watchlists, and their relationships within the application.
 
 ## 💻 Local Development
 
