@@ -56,7 +56,7 @@ const UserProfile = async ({
               />
             ))}
         </div>
-        <div className="flex flex-col xs:flex-row gap-8 mb-4 align-center">
+        <div className="flex flex-col xs:flex-row gap-8 mb-4 items-center align-center">
           {isOwnProfile ? (
             <AvatarUpload userId={user._id} currentAvatar={user.avatar} />
           ) : (

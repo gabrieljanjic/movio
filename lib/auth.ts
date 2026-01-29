@@ -11,7 +11,7 @@ export const getUserFromToken = async (token: string) => {
   const rawUser = await User.findById(decoded.id).select(
     "_id firstName lastName userName avatar email createdAt",
   );
-  if (!rawUser) throw new Error("User not found");
+  if (!rawUser) return null;
   const user = {
     _id: rawUser._id.toString(),
     firstName: rawUser.firstName,

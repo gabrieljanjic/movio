@@ -17,11 +17,11 @@ type UpdateUser = {
 };
 
 export const registerUser = async (formData: FormData) => {
-  const firstName = formData.get("first-name") as string;
-  const lastName = formData.get("last-name") as string;
-  const userName = formData.get("username") as string;
-  const email = formData.get("email") as string;
-  const password = formData.get("password") as string;
+  const firstName = (formData.get("first-name") as string)?.trim();
+  const lastName = (formData.get("last-name") as string)?.trim();
+  const userName = (formData.get("username") as string)?.trim();
+  const email = (formData.get("email") as string)?.trim();
+  const password = (formData.get("password") as string)?.trim();
 
   if (!firstName || !lastName || !email || !password)
     throw new Error("All field are required");
@@ -66,12 +66,14 @@ export const registerUser = async (formData: FormData) => {
 };
 
 export const loginUser = async (formData: FormData) => {
-  const email = formData.get("email") as string;
-  const password = formData.get("password") as string;
-  if (!email || !password) throw new Error("Email and password required");
+  const identifier = (formData.get("identifier") as string)?.trim();
+  const password = (formData.get("password") as string)?.trim();
+  if (!identifier || !password) throw new Error("All fields are required");
   await connectDB();
 
-  const user = await User.findOne({ email });
+  const user = await User.findOne({
+    $or: [{ email: identifier }, { userName: identifier }],
+  });
   if (!user) {
     throw new Error("Invalid credentials");
   }
@@ -141,7 +143,7 @@ export const updateUserBio = async (formData: UpdateUser) => {
     return { success: true, userName: updatedUser.userName };
   } catch (err) {
     if (err instanceof Error) {
-      return { success: false, message: err.message };
+      return { success: false, message: "Unknown error occurred" };
     }
     return { success: false, message: "Unknown error occurred" };
   }

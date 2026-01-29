@@ -6,6 +6,7 @@ import { useState } from "react";
 
 const LoginPage = () => {
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   return (
     <section className="w-full h-screen flex items-center justify-center px-2">
@@ -19,6 +20,7 @@ const LoginPage = () => {
           action={async (formData: FormData) => {
             try {
               setError(null);
+              setLoading(true);
               await loginUser(formData);
             } catch (err) {
               if (err instanceof Error) {
@@ -26,13 +28,15 @@ const LoginPage = () => {
               } else {
                 setError(String(err));
               }
+            } finally {
+              setLoading(false);
             }
           }}
         >
           <input
-            type="email"
-            name="email"
-            placeholder="Email"
+            type="text"
+            name="identifier"
+            placeholder="Username or email"
             className="border border-gray-300 rounded-md p-2 md:p-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
           <input
@@ -44,9 +48,10 @@ const LoginPage = () => {
           {error && <p className="text-red-500 text-sm">{error}</p>}
           <button
             type="submit"
-            className="bg-blue-800 text-white p-2 md:p-3 rounded-md hover:bg-blue-900 transition"
+            disabled={loading}
+            className="bg-blue-800 text-white p-2 md:p-3 rounded-md hover:bg-blue-900 transition disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            LOG IN
+            {loading ? "Loading..." : "LOG IN"}
           </button>
         </form>
 

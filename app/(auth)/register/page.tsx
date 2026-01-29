@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const RegisterPage = () => {
   const [error, setError] = useState<string | null>(null);
-
+  const [loading, setLoading] = useState(false);
   return (
     <section className="w-full h-screen flex items-center justify-center px-2">
       <form
@@ -14,6 +14,7 @@ const RegisterPage = () => {
         action={async (formData: FormData) => {
           try {
             setError(null);
+            setLoading(true);
             await registerUser(formData);
           } catch (err) {
             if (err instanceof Error) {
@@ -21,6 +22,8 @@ const RegisterPage = () => {
             } else {
               setError(String(err));
             }
+          } finally {
+            setLoading(false);
           }
         }}
       >
@@ -60,9 +63,10 @@ const RegisterPage = () => {
         {error && <p className="text-red-500 text-sm">{error}</p>}
         <button
           type="submit"
-          className="bg-blue-800 text-white p-2 md:p-3 rounded-md hover:bg-blue-900 transition"
+          disabled={loading}
+          className="bg-blue-800 text-white p-2 md:p-3 rounded-md hover:bg-blue-900 transition disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          SIGN UP
+          {loading ? "Loading..." : "SIGN UP"}
         </button>
         <div className="flex gap-2 text-sm text-gray-600 justify-center mt-4">
           <p>You have an account?</p>
