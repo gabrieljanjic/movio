@@ -2,11 +2,9 @@
 
 import { registerUser } from "@/lib/actions/userActions";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const RegisterPage = () => {
-  const router = useRouter();
   const [error, setError] = useState<string | null>(null);
 
   return (
@@ -17,7 +15,6 @@ const RegisterPage = () => {
           try {
             setError(null);
             await registerUser(formData);
-            router.push("/feed");
           } catch (err) {
             if (err instanceof Error) {
               setError(err.message);

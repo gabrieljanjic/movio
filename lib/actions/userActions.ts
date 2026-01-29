@@ -63,7 +63,6 @@ export const registerUser = async (formData: FormData) => {
 
   revalidatePath("/feed", "page");
   redirect("/feed");
-  return { firstName: user.firstName, lastName: user.lastName };
 };
 
 export const loginUser = async (formData: FormData) => {
@@ -103,7 +102,7 @@ export const signoutUser = async () => {
     sameSite: "strict",
     maxAge: 0,
   });
-  redirect("/feed");
+  redirect("/");
 };
 
 export const updateUserBio = async (formData: UpdateUser) => {
