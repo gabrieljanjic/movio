@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   keywords:
     "movies, TV shows, film database, TMDB, movie search, trending movies, popular movies, now playing, movie ratings, movie reviews, movie comments, user login, social movies, film community",
   icons: {
-    icon: "/images/favicon.png",
+    icon: "/images/favicon.ico",
   },
 };
 

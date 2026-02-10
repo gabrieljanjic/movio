@@ -19,15 +19,21 @@ const UserSearch = async ({ searchParams }: SearchProps) => {
           pageNum={pageNum}
         />
       </div>
-      <div className="w-full">
-        <UserCardComponent data={dataUser} />
-        <PaginationQuery
-          pageNum={pageNum}
-          totalPages={totalPages}
-          path1="/user"
-          query={query}
-        />
-      </div>
+      {dataUser.results.length > 0 ? (
+        <div className="w-full">
+          <UserCardComponent data={dataUser} />
+          <PaginationQuery
+            pageNum={pageNum}
+            totalPages={totalPages}
+            path="/user"
+            query={query}
+          />
+        </div>
+      ) : (
+        <p className="w-full text-gray-700 text-center mt-12">
+          No results found.
+        </p>
+      )}
     </section>
   );
 };

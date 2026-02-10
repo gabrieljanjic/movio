@@ -19,15 +19,21 @@ const MovieSearch = async ({ searchParams }: SearchProps) => {
           pageNum={pageNum}
         />
       </div>
-      <div className="w-full">
-        <MovieCardComponent data={dataMovie} />
-        <PaginationQuery
-          pageNum={pageNum}
-          totalPages={totalPages}
-          path1="/movies"
-          query={query}
-        />
-      </div>
+      {dataMovie.results.length > 0 ? (
+        <div className="w-full">
+          <MovieCardComponent data={dataMovie} />
+          <PaginationQuery
+            pageNum={pageNum}
+            totalPages={totalPages}
+            path="/movies"
+            query={query}
+          />
+        </div>
+      ) : (
+        <p className="w-full text-gray-700 text-center mt-12">
+          No results found.
+        </p>
+      )}
     </section>
   );
 };

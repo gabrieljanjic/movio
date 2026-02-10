@@ -7,7 +7,6 @@ import { FiEye } from "react-icons/fi";
 import { IoIosLogOut } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
 import { FaRegHeart } from "react-icons/fa";
-import { IoChatboxOutline } from "react-icons/io5";
 import { BiLogIn } from "react-icons/bi";
 import Image from "next/image";
 
@@ -58,17 +57,6 @@ const NavbarProfileDropdown = ({
                 <div className="flex gap-2 items-center hover:bg-slate-300 px-4 py-2  hover:rounded-tl hover:rounded-tr">
                   <CgProfile />
                   Profile
-                </div>
-              </Link>
-
-              <Link
-                href={"/chat"}
-                className="text-black"
-                onClick={() => setOpen(false)}
-              >
-                <div className="flex gap-2 items-center hover:bg-slate-300 px-4 py-2 border-b border-gray-300">
-                  <IoChatboxOutline />
-                  Chat
                 </div>
               </Link>
               <Link

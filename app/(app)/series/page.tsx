@@ -19,15 +19,21 @@ const SeriesSearch = async ({ searchParams }: SearchProps) => {
           pageNum={pageNum}
         />
       </div>
-      <div className="w-full">
-        <SeriesCardComponent data={dataSeries} />
-        <PaginationQuery
-          pageNum={pageNum}
-          totalPages={totalPages}
-          path1="/series"
-          query={query}
-        />
-      </div>
+      {dataSeries.results.length > 0 ? (
+        <div className="w-full">
+          <SeriesCardComponent data={dataSeries} />
+          <PaginationQuery
+            pageNum={pageNum}
+            totalPages={totalPages}
+            path="/series"
+            query={query}
+          />
+        </div>
+      ) : (
+        <p className="w-full text-gray-700 text-center mt-12">
+          No results found.
+        </p>
+      )}
     </section>
   );
 };

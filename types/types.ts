@@ -71,13 +71,6 @@ export type ExtendedPost = {
   commentsCount: number;
 };
 
-export type FeedResponse = {
-  posts: Post[];
-  pagination: {
-    totalPages: number;
-  };
-};
-
 export type AllPostsById = {
   posts: ExtendedPost[];
   pagination: {

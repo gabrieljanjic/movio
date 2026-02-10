@@ -23,15 +23,21 @@ const FamousPersonSearch = async ({ searchParams }: SearchProps) => {
           pageNum={pageNum}
         />
       </div>
-      <div className="w-full">
-        <ActorCardComponent data={dataPeople} />
-        <PaginationQuery
-          pageNum={pageNum}
-          totalPages={totalPages}
-          path1="/person"
-          query={query}
-        />
-      </div>
+      {dataPeople.results.length > 0 ? (
+        <div className="w-full">
+          <ActorCardComponent data={dataPeople} />
+          <PaginationQuery
+            pageNum={pageNum}
+            totalPages={totalPages}
+            path="/person"
+            query={query}
+          />
+        </div>
+      ) : (
+        <p className="w-full text-gray-700 text-center mt-12">
+          No results found.
+        </p>
+      )}
     </section>
   );
 };

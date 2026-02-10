@@ -1,5 +1,6 @@
 const getPersonSearch = async (query: string, page: number, type: string) => {
-  const fullQuery = `page=${page}&query=${query}`;
+  const encodedQuery = encodeURIComponent(query);
+  const fullQuery = `page=${page}&query=${encodedQuery}`;
   const res = await fetch(
     `${process.env.TMDB_SEARCH_URL}/${type}?${fullQuery}`,
     {
@@ -11,7 +12,7 @@ const getPersonSearch = async (query: string, page: number, type: string) => {
       next: {
         revalidate: 300,
       },
-    }
+    },
   );
   if (!res.ok) {
     throw new Error("Failed");

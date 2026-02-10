@@ -4,12 +4,12 @@ import { IoArrowBack, IoArrowForward } from "react-icons/io5";
 const PaginationQuery = ({
   pageNum,
   totalPages,
-  path1,
+  path,
   query,
 }: {
   pageNum: number;
   totalPages: number;
-  path1: string;
+  path: string;
   query?: string;
 }) => {
   const pageNumbers: number[] = [];
@@ -24,8 +24,8 @@ const PaginationQuery = ({
         <Link
           href={
             query
-              ? `${path1}?page=${pageNum - 1}&query=${query}`
-              : `${path1}?page=${pageNum - 1}`
+              ? `${path}?page=${pageNum - 1}&query=${query}`
+              : `${path}?page=${pageNum - 1}`
           }
           className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition"
         >
@@ -39,9 +39,7 @@ const PaginationQuery = ({
         <Link
           key={num}
           href={
-            query
-              ? `${path1}?page=${num}&query=${query}`
-              : `${path1}?page=${num}`
+            query ? `${path}?page=${num}&query=${query}` : `${path}?page=${num}`
           }
           className={`px-3 py-1 rounded transition ${
             num === pageNum
@@ -56,8 +54,8 @@ const PaginationQuery = ({
         <Link
           href={
             query
-              ? `${path1}?page=${pageNum + 1}&query=${query}`
-              : `${path1}?page=${pageNum + 1}`
+              ? `${path}?page=${pageNum + 1}&query=${query}`
+              : `${path}?page=${pageNum + 1}`
           }
           className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition"
         >

@@ -122,7 +122,7 @@ const UserProfile = async ({
           <PaginationQuery
             pageNum={page}
             totalPages={allPosts.pagination.totalPages}
-            path1={`/user/${params.username}`}
+            path={`/user/${params.username}`}
           />
         </div>
       ) : (

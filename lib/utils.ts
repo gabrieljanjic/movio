@@ -22,7 +22,7 @@ export const getDominantColor = async (
   return dominant;
 };
 
-export const formatDate = (rawDate: string) => {
+export const formatDate = (rawDate: string | null) => {
   if (!rawDate) return "-";
   const [year, month, day] = rawDate.split("-");
   return `${day}. ${month}. ${year}`;
@@ -49,7 +49,10 @@ export const formRating = (rawRating: number) => {
 export const formatTime = (time: number) => {
   const hours = Math.floor(time / 60);
   const minutes = time % 60;
-  return `${hours}h ${minutes}min`;
+  if (hours > 0) {
+    return `${hours}h ${minutes}min`;
+  }
+  return `${minutes}min`;
 };
 
 export const formatYear = (date: string) => {

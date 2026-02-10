@@ -29,7 +29,7 @@ const Feed = async ({ searchParams }: { searchParams: { page?: string } }) => {
           <PaginationQuery
             pageNum={page}
             totalPages={feedPosts.pagination.totalPages}
-            path1={"/feed"}
+            path={"/feed"}
           />
         </div>
       ) : (
