@@ -56,7 +56,7 @@ const LoginPage = () => {
         </form>
 
         <div className="flex gap-2 text-sm text-gray-600">
-          <p>Don&apos;t forget me</p>{" "}
+          <p>Don&apos;t have an account</p>{" "}
           <Link href="/register" className="text-blue-500 hover:underline">
             Sign up
           </Link>
