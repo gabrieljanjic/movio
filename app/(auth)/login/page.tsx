@@ -35,6 +35,7 @@ const LoginPage = () => {
         >
           <input
             type="text"
+            autoFocus
             name="identifier"
             placeholder="Username or email"
             className="border border-gray-300 rounded-md p-2 md:p-3 focus:outline-none focus:ring-2 focus:ring-blue-600"

@@ -32,6 +32,7 @@ const RegisterPage = () => {
         </h1>
         <input
           type="text"
+          autoFocus
           name="first-name"
           placeholder="First name"
           className="border border-gray-300 rounded-md p-2 md:p-3 focus:outline-none focus:ring-2 focus:ring-blue-600"

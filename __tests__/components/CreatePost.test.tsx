@@ -28,7 +28,7 @@ describe("CreatePostComponent", () => {
       "A thief who steals corporate secrets through dream-sharing technology.",
     vote_average: 8.8,
   };
-  it("should", async () => {
+  it("should createPost if everything is valid", async () => {
     render(
       <CreatePostComponent
         contentId={contentId}
@@ -55,5 +55,20 @@ describe("CreatePostComponent", () => {
       spoiler: false,
       createdBy: "user123",
     });
+  });
+
+  it("should be able to check checkbox", async () => {
+    render(
+      <CreatePostComponent
+        contentId={contentId}
+        user={mockUser}
+        contentType={contentType}
+        wholeContent={mockWholeContent}
+      />,
+    );
+    const checkbox = screen.getByRole("checkbox");
+    userEvent.setup();
+    await userEvent.click(checkbox);
+    expect(checkbox).toBeChecked();
   });
 });

@@ -56,11 +56,21 @@ A full-stack social platform for movie and TV series enthusiasts. Discover trend
 - **API**: The Movie Database (TMDB)
 - **Deployment**: Vercel
 
+## Testing
+
+**Test Coverage: ~89%**
+
+Tested with **Vitest** and **React Testing Library**.
+
+```bash
+npm run test
+npm run test:coverage
+```
+
 ## Technical Highlights
 
 - Server Actions for secure data mutations
 - Dynamic rendering with `force-dynamic` for real-time content
-- Optimized MongoDB queries with `.lean()` for performance
 - HTTP-only cookies for secure session management
 - Responsive design with mobile-first approach
 

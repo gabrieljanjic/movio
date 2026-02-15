@@ -26,8 +26,6 @@ const CreatePostComponent = ({
   const [spoiler, setSpoiler] = useState(false);
 
   const handleRatingChange = (value: number) => {
-    if (value < 1) value = 1;
-    if (value > 10) value = 10;
     setRating(value);
   };
 
